@@ -1,0 +1,17 @@
+	
+Following steps were helpful for me on Ubuntu:
+
+    Install php5-mcrypt using:
+
+    apt-get install php5-mcrypt
+
+    Activate mcrypt extension:
+
+    php5enmod mcrypt
+
+    Make sure it is loaded:
+
+    php -i | grep mcrypt
+
+you should see mcrypt support => enabled if it is activated.
+
