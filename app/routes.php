@@ -26,12 +26,19 @@ Route::get('users', function()
 });
 
 Route::get('login', array('uses' => 'HomeController@showLogin'));
-
 Route::post('login', array('uses' => 'HomeController@doLogin'));
 
-
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
-Route::post('logout', array('uses' => 'HomeController@doLogout'));
 
-Route::get('createuser', array('uses' => 'UserController@creation'));
-Route::post('createuser', array('uses' => 'UserController@createuser'));
+Route::get('createuser', array('uses' => 'ProfileController@getCreateUser'));
+Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
+
+//Profile
+Route::group(
+	['prefix' => 'profile', 'before' => ['auth']], 
+	function () {
+
+		Route::get('dashboard', [ 'uses' => 'ProfileController@getDashboard']);
+
+	}
+);

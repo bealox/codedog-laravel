@@ -10,15 +10,15 @@
 	<header class="row">
 		@include('includes.header')
 	</header>
+	<div id="content">
+		<div id="main" class="row">
+			@yield('content')
 
-	<div id="main" class="row">
-		@yield('content')
-
+		</div>
+		<footer class="row">
+			@include('includes.footer')
+		</footer>
 	</div>
-
-	<footer class="row">
-		@include('includes.footer')
-	</footer>
 
 </div>
 </body>

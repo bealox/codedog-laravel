@@ -22,11 +22,11 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'homestead',
-			'username'  => 'homestead',
-			'password'  => 'secret',
 			'charset'   => 'utf8',
+			'host'      => getenv('LARAVEL_HOST'),
+			'database'  => getenv('LARAVEL_DATABASE_CODEDOG'),
+			'username'  => getenv('LARAVEL_USERNAME_CODEDOG'),
+			'password'  => getenv('LARAVEL_PASSWD_CODEDOG'),
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),

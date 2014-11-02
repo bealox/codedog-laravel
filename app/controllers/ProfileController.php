@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends BaseController {
+class ProfileController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,13 +15,13 @@ class UserController extends BaseController {
 	|
 	*/
 
-	public function creation()
+	public function getCreateUser()
 	{
-		return View::make('createuser');
+		return View::make('pages.admin.createuser');
 	}
 
 
-	public function createuser()
+	public function postCreateUser()
 	{
 		$rules = array(
 			'first_name' => 'required|alpha',
@@ -57,9 +57,14 @@ class UserController extends BaseController {
 			$breeder->password = $hash;
 			$breeder->save();
 
-			return Redirect::to('users');
+			return Redirect::to('/');
 
 		}
 	}
+
+	public function getDashboard() {
+		return View::make('dashboard');
+	}
+		
 	
-}
+} 	

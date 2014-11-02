@@ -7,3 +7,18 @@ body {
 	padding:0;
 	margin:0;
 }
+
+a {
+	text-decoration:none;
+	color:black;
+}
+
+/**
+	Images
+**/
+.main.logo {
+	height:28px;
+	width:100px;
+	background-image:url("../img/dogcatlogo.png");
+	display:inline-block;
+}

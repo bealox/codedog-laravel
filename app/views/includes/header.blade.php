@@ -1,16 +1,18 @@
 
-<div class="header">
-	<div class="header-inner">
-		<ul class="admin">
+<div>
+	<div id="menu-bar">
+		<a href="/"><span class="main logo" href="/"></span></a>
+		<div class="admin">
 			@if(Auth::user())	
-				<li><a href="{{url('logout')}}">Logout</a></li>
+				<a href="{{url('logout')}}">Sign out</a>
+				Hello {{Auth::user()->first_name}}
+				<a href="/dashboard">setting</a>
 			@else
-				<li><a href="{{url('login')}}">login</a></li>
+				<a href="{{url('login')}}">login</a>
 			@endif
-		</ul>
-		<a id="logo" href="/">Seek dog</a>
+		</div>
 		<ul class="menu">
-			<li><a href="/">Home</a></l
+			<li><a href="/">Home</a></li>
 			<li><a href="/about">Post</a></li>
 			<li><a href="/contact">Contact</a></li>
 		</ul>

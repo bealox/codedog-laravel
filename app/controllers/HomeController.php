@@ -15,15 +15,11 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
 
 	public function showLogin()
 	{
 		// show the form
-		return View::make('login');
+		return View::make('pages.login');
 	}
 
 	public function doLogin()
@@ -47,7 +43,7 @@ class HomeController extends BaseController {
 			);
 
 			if(Auth::attempt($userdata)) {
-				echo "SUCCESS";	
+				return Redirect::to('/');	
 			}else{
 				return Redirect::to('login')
 					->withErrors(['message', 'wrong']);
@@ -58,6 +54,6 @@ class HomeController extends BaseController {
 	public function doLogout()
 	{
 		Auth::logout(); // log the user out of our application
-		return Redirect::to('login');
+		return Redirect::to('/');
 	}
 }
