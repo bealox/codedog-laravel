@@ -37,8 +37,8 @@ Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
 Route::group(
 	['prefix' => 'profile', 'before' => ['auth']], 
 	function () {
-
-		Route::get('dashboard', [ 'uses' => 'ProfileController@getDashboard']);
-
+		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'ProfileController@getDashboard']);
+		Route::get('createpost', [ 'as' => 'createpost', 'uses' => 'ProfileController@getCreatePost']);
+		Route::post('createpost', [ 'as' => 'createpost', 'uses' => 'ProfileController@postCreatePost']);
 	}
 );

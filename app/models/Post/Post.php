@@ -16,5 +16,13 @@ class Post extends BaseModel{
 	protected $sitClassField = 'class_name';
 	protected $stiBaseClass = 'Post';
 
+	/** 
+	 * list of attributes allow to be mass-assignable
+	 *
+	 * @var array
+	 */
+	protected $fillable = array('title', 'description');
+
+	protected $dates = ['deleted_at'];
 }
 

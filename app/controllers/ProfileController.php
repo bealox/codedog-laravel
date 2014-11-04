@@ -26,7 +26,7 @@ class ProfileController extends BaseController {
 		$rules = array(
 			'first_name' => 'required|alpha',
 			'last_name' => 'required|alpha',
-			'email' => 'required|email',
+			'email' => 'required|email|unique:User,email',
 			'password' => 'required|alphaNum|min:5'
 			
 		);
@@ -62,9 +62,48 @@ class ProfileController extends BaseController {
 		}
 	}
 
+	public $links= array(
+	  	    array('link' => array('name' => 'Dashboard', 'class_name' => 'selected', 'url' => 'profile/dashboard')),
+	  	    array('link' => array('name' => 'Post', 'class_name' => '', 'url' => 'profile/createpost')),
+	);
+
 	public function getDashboard() {
-		return View::make('dashboard');
+		foreach( $this->links[0]['link'] as $string) {
+			Log::info($this->links[0]['link']['name']);
+		}
+		return View::make('pages.admin.dashboard')->with('links', $this->links);
 	}
+
+	public function getCreatePost() {
+		return View::make('pages.admin.createpost')->with('links', $this->links);
+	}
+
+	public function postCreatePost() {
+		$rules = array(
+			'title' => 'required|alpha_dash',
+			'description' => 'required',
+		);
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+			return Redirect::to('profile/createpost')
+				->withErrors($validator);
+		}else{
+
+			$postdata = array(
+				'title' => Input::get('title'),
+				'description' => Input::get('description'),
+			);
+
+
+			$breeder = PuppyPost::create($postdata);
+
+			return Redirect::to('/');
+
+		}
+	}
+		
 		
 	
 } 	

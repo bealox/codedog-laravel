@@ -6,7 +6,7 @@
 			@if(Auth::user())	
 				<a href="{{url('logout')}}">Sign out</a>
 				Hello {{Auth::user()->first_name}}
-				<a href="/dashboard">setting</a>
+				<a href="{{url('profile/dashboard')}}">setting</a>
 			@else
 				<a href="{{url('login')}}">login</a>
 			@endif
