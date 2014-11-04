@@ -24,5 +24,10 @@ class Post extends BaseModel{
 	protected $fillable = array('title', 'description');
 
 	protected $dates = ['deleted_at'];
+
+	public function users()
+	{
+		return $this->belongsToMany('User','Post_User', 'post_id', 'user_id');
+	}
 }
 

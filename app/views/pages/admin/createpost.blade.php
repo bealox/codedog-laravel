@@ -9,6 +9,9 @@
 	<p>
 		{{ $errors -> first('title') }}
 		{{ $errors -> first('description') }}
+		@if(Session::has('success'))
+			{{ Session::get('success') }}
+		@endif
 	</p>
 	<p>
 		{{ Form::label('title', 'Title') }}

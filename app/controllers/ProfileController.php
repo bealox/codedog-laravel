@@ -97,9 +97,10 @@ class ProfileController extends BaseController {
 			);
 
 
-			$breeder = PuppyPost::create($postdata);
+			$post = PuppyPost::create($postdata);
+			$post->users()->attach(Auth::id());
 
-			return Redirect::to('/');
+			return Redirect::to('profile/createpost')->withinput()->with('success', 'A post has been created');
 
 		}
 	}
