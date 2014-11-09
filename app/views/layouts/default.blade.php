@@ -8,7 +8,7 @@
 <div class="container">
 
 	<header class="row">
-		@include('includes.header')
+		@include('includes.headerExample')
 	</header>
 	<div id="content">
 		<div id="main" class="row">

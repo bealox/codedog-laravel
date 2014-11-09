@@ -7,5 +7,6 @@
 {{HTML::style('css/main.css')}}
 {{HTML::style('css/header.css')}}
 {{HTML::script('js/jquery2.1.1.js')}}
+{{HTML::script('js/jquery-ui.min.js')}}
 
 

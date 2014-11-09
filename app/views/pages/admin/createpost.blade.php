@@ -15,7 +15,8 @@
 	</p>
 	<p>
 		{{ Form::label('title', 'Title') }}
-		{{ Form::text('title')}}
+		{{ Form::text('title',$value = null, $attributes = 
+				array('maxlength'=>80))}}
 	</p>
 	<p>
 		{{ Form::label('description', 'Description') }}
@@ -23,5 +24,11 @@
 	</p>
 	<p>{{ Form::submit('Submit!')}}</p>
 {{Form::close()}}
+
+@foreach($posts as $post)
+	<ul>
+		<li>{{$post}}</li>
+	</ul>
+@endforeach
 @stop
 

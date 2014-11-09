@@ -1,4 +1,3 @@
-
 <div>
 	<div id="menu-bar">
 		<a href="/"><span class="main logo" href="/"></span></a>

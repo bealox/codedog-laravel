@@ -26,3 +26,14 @@ a:hover {
 	background-image:url("../img/dogcatlogo.png");
 	display:inline-block;
 }
+
+.icon.medium {
+	height: 28px;
+	width: 28px;
+}
+
+.hamburger_menu {
+	display:inline-block;
+	background-image:url("../img/icon/hamburger_icon.png");
+}
+

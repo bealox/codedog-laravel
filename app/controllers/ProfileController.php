@@ -75,12 +75,15 @@ class ProfileController extends BaseController {
 	}
 
 	public function getCreatePost() {
-		return View::make('pages.admin.createpost')->with('links', $this->links);
+		//return View::make('pages.admin.createpost')->with('links', $this->links);
+		$posts = PuppyPost::all();
+		$links = $this->links;
+		return View::make('pages.admin.createpost', compact('posts', 'links'));
 	}
 
 	public function postCreatePost() {
 		$rules = array(
-			'title' => 'required|alpha_dash',
+			'title' => 'required|max:100',
 			'description' => 'required',
 		);
 

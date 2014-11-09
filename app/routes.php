@@ -25,15 +25,22 @@ Route::get('users', function()
 		->with('catusers', $catusers)->with('single', $get_user);
 });
 
+/**
+ * Login and Logout
+ */
 Route::get('login', array('uses' => 'HomeController@showLogin'));
 Route::post('login', array('uses' => 'HomeController@doLogin'));
-
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
+/**
+ * User creation
+ */
 Route::get('createuser', array('uses' => 'ProfileController@getCreateUser'));
 Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
 
-//Profile
+/**
+ * Profile
+ */
 Route::group(
 	['prefix' => 'profile', 'before' => ['auth']], 
 	function () {
