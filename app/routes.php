@@ -39,7 +39,7 @@ Route::get('createuser', array('uses' => 'ProfileController@getCreateUser'));
 Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
 
 /**
- * Profile
+ * Admin
  */
 Route::group(
 	['prefix' => 'admin', 'before' => ['auth']], 
