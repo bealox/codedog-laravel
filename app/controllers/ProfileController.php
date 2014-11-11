@@ -61,16 +61,11 @@ class ProfileController extends BaseController {
 
 		}
 	}
+	public $links= array('Dashboard','CreatePost');
+	
 
-	public $links= array(
-	  	    array('link' => array('name' => 'Dashboard', 'class_name' => 'selected', 'url' => 'profile/dashboard')),
-	  	    array('link' => array('name' => 'Post', 'class_name' => '', 'url' => 'profile/createpost')),
-	);
 
 	public function getDashboard() {
-		foreach( $this->links[0]['link'] as $string) {
-			Log::info($this->links[0]['link']['name']);
-		}
 		return View::make('pages.admin.dashboard')->with('links', $this->links);
 	}
 

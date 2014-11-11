@@ -42,7 +42,7 @@ Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
  * Profile
  */
 Route::group(
-	['prefix' => 'profile', 'before' => ['auth']], 
+	['prefix' => 'admin', 'before' => ['auth']], 
 	function () {
 		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'ProfileController@getDashboard']);
 		Route::get('createpost', [ 'as' => 'createpost', 'uses' => 'ProfileController@getCreatePost']);

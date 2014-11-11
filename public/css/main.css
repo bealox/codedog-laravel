@@ -37,3 +37,8 @@ a:hover {
 	background-image:url("../img/icon/hamburger_icon.png");
 }
 
+.cog_icon{
+	display:inline-block;
+	background-image:url("../img/icon/cog-icon.png");
+}
+

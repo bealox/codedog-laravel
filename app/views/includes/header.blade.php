@@ -1,6 +1,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">  
     <div class="identity">
 	@if(Auth::user())
+		<a href="{{URL::route('dashboard')}}"><span class="icon medium cog_icon"></span></a>
 		Hello {{Auth::user()->first_name}}
 	@endif
     </div>

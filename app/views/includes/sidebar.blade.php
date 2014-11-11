@@ -1,9 +1,7 @@
 <div class="sidebar row">
 	<ul>
-	@for($i=0 ; $i <= count($links)-1 ; $i++)
-	<li><a href="{{url($links[$i]['link']['url'])}}">
-		{{$links[$i]['link']['name']}}
-	</a></li>
-	@endfor
+	@foreach( $links as $link )
+	<li><a href="{{URL::route(strtolower($link))}}">{{$link}}</a></li>
+	@endforeach
 	</ul>
 </div>	
