@@ -1,6 +1,6 @@
 <?php
 
-class ProfileController extends BaseController {
+class AdminController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------

@@ -25,6 +25,7 @@ Route::get('users', function()
 		->with('catusers', $catusers)->with('single', $get_user);
 });
 
+
 /**
  * Login and Logout
  */
@@ -35,8 +36,8 @@ Route::get('logout', array('uses' => 'HomeController@doLogout'));
 /**
  * User creation
  */
-Route::get('createuser', array('uses' => 'ProfileController@getCreateUser'));
-Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
+Route::get('createuser', array('uses' => 'AdminController@getCreateUser'));
+Route::post('createuser', array('uses' => 'AdminController@postCreateUser'));
 
 /**
  * Admin
@@ -44,8 +45,8 @@ Route::post('createuser', array('uses' => 'ProfileController@postCreateUser'));
 Route::group(
 	['prefix' => 'admin', 'before' => ['auth']], 
 	function () {
-		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'ProfileController@getDashboard']);
-		Route::get('createpost', [ 'as' => 'createpost', 'uses' => 'ProfileController@getCreatePost']);
-		Route::post('createpost', [ 'as' => 'createpost', 'uses' => 'ProfileController@postCreatePost']);
+		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'AdminController@getDashboard']);
+		Route::get('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@getCreatePost']);
+		Route::post('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@postCreatePost']);
 	}
 );

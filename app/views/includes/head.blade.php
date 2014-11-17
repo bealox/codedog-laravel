@@ -5,8 +5,11 @@
 <title>@yield('meta_title', 'seekdog')</title>
 
 {{HTML::style('css/main.css')}}
-{{HTML::style('css/header.css')}}
-{{HTML::script('js/jquery2.1.1.js')}}
-{{HTML::script('js/jquery-ui.min.js')}}
+{{HTML::script('js/package/jquery2.1.1.js')}}
 
+{{ HTML::style('css/header.css'); }}
+{{ HTML::style('js/package/tooltipster-master/css/tooltipster.css'); }}
+{{ HTML::script('js/package/tooltipster-master/js/jquery.tooltipster.min.js');}}
+{{ HTML::script('js/tooltip.js');}}
 
+	
