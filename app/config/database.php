@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => getenv('LARAVEL_HOST'),
-			'database'  => getenv('LARAVEL_DATABASE_CODEDOG'),
-			'username'  => getenv('LARAVEL_USERNAME_CODEDOG'),
-			'password'  => getenv('LARAVEL_PASSWD_CODEDOG'),
+			'host'      => '128.199.237.249',
+			'database'  => 'seekdog',
+			'username'  => 'codedog',
+			'password'  => '3ddi3dog',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
