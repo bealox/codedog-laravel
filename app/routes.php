@@ -27,11 +27,20 @@ Route::get('users', function()
 
 
 /**
- * Login and Logout
+ * Home Page Controller
  */
 Route::get('login', array('uses' => 'HomeController@showLogin'));
-Route::post('login', array('uses' => 'HomeController@doLogin'));
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
+
+
+
+
+/**
+ * Login Page Controller
+ */
+Route::post('login', array('uses' => 'LoginController@doLogin'));
+Route::post('postAuth', array('uses' => 'LoginController@postAuth'));
+
 
 /**
  * User creation
