@@ -3,7 +3,7 @@
 		<nav>
 			<ul>
 				<li class="menu_home tooltip" title="Home">
-					<a href="#">
+					<a href="{{URL::to('/')}}">
 					<span class="icon medium"></span>
 					<span class="header_link">Home</span>
 					</a>
@@ -28,9 +28,15 @@
 				</li>
 			</ul>
 			<div class="side_menu">
-				<a href="#">
-					<span>Login</span>
-				</a>
+				@if(Auth::user())
+					<a  class="tooltip_setting" href="#" title="<a href='#'>title</a>">
+						<span class="icon medium"></span>
+					</a>
+				@else
+					<a href="{{URL::route('login')}}">
+						<span>Login</span>
+					</a>
+				@endif
 			</div>
 		</nav>
 	</div>

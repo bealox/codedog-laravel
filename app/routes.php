@@ -27,25 +27,17 @@ Route::get('users', function()
 
 
 /**
- * Home Page Controller
+ * LoginController
  */
-Route::get('login', array('uses' => 'HomeController@showLogin'));
-Route::get('logout', array('uses' => 'HomeController@doLogout'));
-
-
-
-
-/**
- * Login Page Controller
- */
-Route::post('login', array('uses' => 'LoginController@doLogin'));
+Route::get('login', array('as' => 'login','uses' => 'LoginController@showLogin'));
+Route::get('logout', array('as' => 'logout', 'uses' => 'LoginController@doLogout'));
 Route::post('postAuth', array('uses' => 'LoginController@postAuth'));
 
 
 /**
  * User creation
  */
-Route::get('createuser', array('uses' => 'AdminController@getCreateUser'));
+Route::get('createuser', array('as' => 'createuser','uses' => 'AdminController@getCreateUser'));
 Route::post('createuser', array('uses' => 'AdminController@postCreateUser'));
 
 /**
