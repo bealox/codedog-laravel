@@ -61,10 +61,12 @@ class AdminController extends BaseController {
 
 		}
 	}
+
+	/**
+	 * Links
+	 */
 	public $links= array('Dashboard','CreatePost');
 	
-
-
 	public function getDashboard() {
 		return View::make('pages.admin.dashboard')->with('links', $this->links);
 	}

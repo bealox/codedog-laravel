@@ -9,7 +9,7 @@ $(document).ready(function() {
 		theme: 'tooltip_setting_theme',
 		delay: 100,
 		contentAsHTML: true,
-		content: $('<a style="pointer-events:auto;" href="/logout"><b>Logout</b></a>)')
+		content: $('<div class="tooltip_link"><a style="pointer-events:auto;" href="/logout">Logout</a></div><div class="tooltip_link"><a style="pointer-events:auto;" href="/admin/dashboard">Settings</a></div>)')
 	});
 	if(width <= 1050) {
 		$("nav li").each(function(i, v) {

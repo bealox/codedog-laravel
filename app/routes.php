@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('pages.home');
-});
+Route::get('/', array('uses' => 'HomeController@homePage'));
 
 Route::get('users', function()
 {
@@ -39,6 +36,13 @@ Route::post('postAuth', array('uses' => 'LoginController@postAuth'));
  */
 Route::get('createuser', array('as' => 'createuser','uses' => 'AdminController@getCreateUser'));
 Route::post('createuser', array('uses' => 'AdminController@postCreateUser'));
+
+/**
+ * Post Controller
+ */
+
+Route::get('puppypost', array('as' => 'puppypost', 'uses' => 'HomeController@homePage'));
+Route::get('maturepost', array('as' => 'maturepost', 'uses' => 'HomeController@homePage'));
 
 /**
  * Admin

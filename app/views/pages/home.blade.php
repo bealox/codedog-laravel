@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('meta_title')
-    Your title text will go here
+	Home
 @stop
 
 @section('meta_description')
@@ -8,5 +8,4 @@
 @stop
 
 @section('content')
-	<h1>Home page</h1>
 @stop

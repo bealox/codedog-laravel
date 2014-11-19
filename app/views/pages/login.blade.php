@@ -2,10 +2,13 @@
 @section('meta_title')
 	Login
 @stop
+@section('external')
+	{{HTML::style('css/login.css');}}
+@stop
 
 @section('content')
+    <div class="login_container">
 	{{ Form::open(array('url' => 'postAuth')) }}
-		<h1>Login</h1>
 
 		<!-- if there are login errors, show them here -->
 		<p>
@@ -15,18 +18,17 @@
 		</p>
 
 		<p>
-			{{ Form::label('email', 'Email Address') }}
-			{{ Form::text('email', Input::old('email'), array('placeholder' => 'awesome@awesome.com')) }}
+			{{ Form::text('email', Input::old('email'), array('placeholder' => 'email', 'class' => 'inputs')) }}
 		</p>
 
 		<p>
-			{{ Form::label('password', 'Password') }}
-			{{ Form::password('password') }}
+			{{ Form::password('password', array('placeholder' => 'password', 'class' => 'inputs')) }}
 		</p>
-
+		<div class="action_bar">
 		<input type="submit" name="login" value="Login">
 		<input type="submit" name="forgotPassword" value="Forgot Password">
+		</div>
 	{{ Form::close() }}
-
+  </div>
 @stop
 

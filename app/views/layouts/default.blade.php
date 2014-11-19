@@ -4,24 +4,20 @@
 <head>
 	@include('includes.head')
 	{{HTML::style('css/default_layout.css');}}
+	@yield('external')
 </head>
 <body>
 <div id="content">
 
-	<header class="col left">
+	<header>
 		@include('includes.header')
 	</header>
 	<div class="container">
-		<div id="col_1" class="row">
-			<div>
-				<h2>Links</h2>
-				<ul>
-					<li><a href="#">Puppy Posts</a></li>
-					<li><a href="#">Mature Posts</a></li>
-					<li><a href="#">Rsecue Posts</a></li>
-				</ul>
+		@if(isset($links))
+			<div id="col_1" class="row">
+				@include('includes.sidebar')
 			</div>
-		</div>
+		@endif
 		<div id="col_2" class="row">
 			@yield('content')
 		</div>

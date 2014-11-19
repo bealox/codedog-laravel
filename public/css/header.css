@@ -3,6 +3,7 @@
  * #4f393a; Link
  * #9c060b Link hover
  * #496656 header
+ * a98789 light bground
  */
 * {
 	padding:0;
@@ -117,6 +118,10 @@ nav ul li .icon{
 	font-size: 12px;
 	line-height: 16px;
 	padding: 8px 10px;
+}
+
+.tooltip_link {
+	padding: 3px 0 3px 0;
 }
 
 /**
