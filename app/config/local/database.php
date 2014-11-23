@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'charset'   => 'utf8',
-			'host'      => '128.199.237.249',
+			'host'      => '128.199.135.111',
 			'database'  => 'seekdog',
 			'username'  => 'codedog',
 			'password'  => '3ddi3dog',

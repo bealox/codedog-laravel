@@ -7,8 +7,11 @@
 @stop
 
 @section('content')
-    <div class="login_container">
-	{{ Form::open(array('url' => 'postAuth')) }}
+<div id="login">
+{{ Form::open(array('url' => 'postAuth')) }}
+
+    <div class="login_container rounded_border">
+	<h2 class="title">Sign in</h2>
 
 		<!-- if there are login errors, show them here -->
 		<p>
@@ -25,10 +28,16 @@
 			{{ Form::password('password', array('placeholder' => 'password', 'class' => 'inputs')) }}
 		</p>
 		<div class="action_bar">
-		<input type="submit" name="login" value="Login">
-		<input type="submit" name="forgotPassword" value="Forgot Password">
+		<input type="submit" name="login" value="Login" class="button">
+		<input type="submit" name="forgotPassword" value="Forgot Password" class="button">
+		
 		</div>
-	{{ Form::close() }}
   </div>
+  <div class="register_container rounded_border">
+	<h2 class="title_signup">Are you a registered dog breeder?</h2>
+	<a class="large button" href="{{URL::route('createbreeder');}}">Sign up</a>
+  </div>
+{{ Form::close() }}
+</div>
 @stop
 

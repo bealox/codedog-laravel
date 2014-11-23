@@ -34,8 +34,8 @@ Route::post('postAuth', array('uses' => 'LoginController@postAuth'));
 /**
  * User creation
  */
-Route::get('createuser', array('as' => 'createuser','uses' => 'AdminController@getCreateUser'));
-Route::post('createuser', array('uses' => 'AdminController@postCreateUser'));
+Route::get('createbreeder', array('as' => 'createbreeder','uses' => 'AdminController@getCreateUser'));
+Route::post('createbreeder', array('as' => 'createbreeder', 'uses' => 'AdminController@postCreateUser'));
 
 /**
  * Post Controller

@@ -1,11 +1,15 @@
-<!doctype html>
-<html>
-<head>
-	<title>breeder creation page</title>
-</head>
-<body>
+
+@extends('layouts.default')
+@section('meta_title')
+	Login
+@stop
+@section('external')
+	{{HTML::style('css/login.css');}}
+@stop
+
+@section('content')
 	{{Form::open(array('url' => 'createuser'))}}
-		<h1>User Form</h1>
+		<h2>User Form</h2>
 		
 		<p>
 			{{ $errors -> first('email')}}
@@ -14,29 +18,22 @@
 			{{ $errors -> first('last_name')}}
 		</p>
 		<p>
-			{{ Form::label('first_name', 'First Name')}}
-			{{ Form::text ('first_name')}}
+			{{ Form::text ('first_name',"", array('placeholder' => 'First Name', 'class' => 'inputs'))}}
 		</p>
 		<p>
-			{{ Form::label('last_name', 'Last Name')}}
-			{{ Form::text ('last_name')}}
+			{{ Form::text ('last_name',"", array('placeholder' => 'Last Name', 'class' => 'inputs'))}}
 		</p>
 		<p>
-			{{ Form::label('email', 'Email Address') }}
 			{{ Form::text 
 			('email', Input::old('email'), 
-			array('placeholder' => 'example@domain.com'))}}
+			array('placeholder' => 'example@domain.com', 'class' => 'inputs'))}}
 		</p>
 		<p>
-			{{ Form::label('password', 'Password') }}
-			{{ Form::password('password') }}
+			{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'inputs')) }}
 		</p>
 		<p>
-			{{ Form::label('type', 'Breeder type') }}
 			{{ Form::select('type', array('Dog'=> 'Dog', 'Cat' => 'Cat'), 'Dog')}}
 		</p>
 		<p>{{ Form::submit('Submit!') }}</p>
 	{{ Form::close() }}
-
-</body>
-</html>
+@stop
