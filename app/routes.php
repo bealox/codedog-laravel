@@ -47,6 +47,7 @@ Route::get('maturepost', array('as' => 'maturepost', 'uses' => 'HomeController@h
 /**
  * Admin
  */
+
 Route::group(
 	['prefix' => 'admin', 'before' => ['auth']], 
 	function () {
