@@ -15,7 +15,8 @@ return array(
 	|
 	*/
 
-	'driver' => 'smtp',
+	#'driver' => 'smtp',
+	'driver' =>  'log',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +55,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'john@sqonk.com.au', 'name' => 'John Adolfo'),
 
 	/*
 	|--------------------------------------------------------------------------

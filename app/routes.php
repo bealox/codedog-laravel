@@ -55,3 +55,14 @@ Route::group(
 		Route::post('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@postCreatePost']);
 	}
 );
+
+
+/**
+* Reminders Controller
+**/
+
+Route::get('password/reset/{token}', 'RemindersController@getReset');
+Route::post('password/reset/{token}', 'RemindersController@postReset');
+Route::post('password/remind/', 'RemindersController@postRemind');
+
+

@@ -15,6 +15,7 @@ class LoginController extends BaseController {
         if(Input::get('login')) {
             return $this->doLogin(); //if login then use this method
         } elseif(Input::get('forgotPassword')) {
+        	//echo "blah blah";
             return $this->forgotPassword(); //if register then use this method
         }
 
