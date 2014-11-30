@@ -13,6 +13,11 @@
 
 Route::get('/', array('uses' => 'HomeController@homePage'));
 
+Route::get('test', function()
+{
+	return View::make('pages.testarea');
+});
+
 Route::get('users', function()
 {
 	$dogusers = DogBreeder::all();
@@ -28,7 +33,7 @@ Route::get('users', function()
  */
 Route::get('login', array('as' => 'login','uses' => 'LoginController@showLogin'));
 Route::get('logout', array('as' => 'logout', 'uses' => 'LoginController@doLogout'));
-Route::post('postAuth', array('uses' => 'LoginController@postAuth'));
+Route::post('postauth', array('uses' => 'LoginController@postAuth'));
 
 
 /**
@@ -36,6 +41,7 @@ Route::post('postAuth', array('uses' => 'LoginController@postAuth'));
  */
 Route::get('createbreeder', array('as' => 'createbreeder','uses' => 'AdminController@getCreateUser'));
 Route::post('createbreeder', array('as' => 'createbreeder', 'uses' => 'AdminController@postCreateUser'));
+Route::post('postcodejson', array('uses' => 'PostcodeController@submitPostcodeJson'));
 
 /**
  * Post Controller

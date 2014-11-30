@@ -1,0 +1,13 @@
+.create_user_container{
+	background:#f4f5f6;
+	text-align:center;
+	margin:20px auto 0  auto;
+	width:400px;
+	height: 500px;
+	display:inline-block;
+}
+
+.create_user_container .title{
+	margin: 20px;
+	text-align:center;
+}

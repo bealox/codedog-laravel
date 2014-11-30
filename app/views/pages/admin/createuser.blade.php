@@ -5,11 +5,17 @@
 @stop
 @section('external')
 	{{HTML::style('css/login.css');}}
+	{{HTML::style('css/create_user.css');}}
+	{{HTML::style('js/package/jquery-ui-1.11.2/jquery-ui.theme.min.css')}}
+	{{HTML::script('js/package/jquery-ui-1.11.2/jquery-ui.min.js')}}
+	{{HTML::script('js/utils.js')}}
+	{{HTML::style('css/utils.css')}}
 @stop
 
 @section('content')
 	{{Form::open(array('url' => 'createuser'))}}
-		<h2>User Form</h2>
+	<div class="create_user_container rounded_border">
+		<h2 class="title">New User Form</h2>
 		
 		<p>
 			{{ $errors -> first('email')}}
@@ -32,8 +38,17 @@
 			{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'inputs')) }}
 		</p>
 		<p>
-			{{ Form::select('type', array('Dog'=> 'Dog', 'Cat' => 'Cat'), 'Dog')}}
+			{{Form::text('postcode', '',array('id'=>'postcode', 'placeholder' => 'Postcode', 'class' => 'inputs'))}}
 		</p>
-		<p>{{ Form::submit('Submit!') }}</p>
+		<p>
+			{{Form::text('suburb', '',array('id'=>'suburb', 'placeholder' => 'Suburb', 'class' => 'inputs'))}}
+		</p>
+		<p>
+			{{Form::text('address', '',array('id'=>'address', 'placeholder' => 'Address', 'class' => 'inputs'))}}
+		</p>
+		<p>{{Form::hidden('latitude', '',array('id'=>'latitude'))}}</p>
+		<p>{{Form::hidden('longitude', '',array('id'=>'longitude'))}}</p>
+		<p><input type="submit" class="button"></p>
+</div>
 	{{ Form::close() }}
 @stop
