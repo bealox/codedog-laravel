@@ -8,7 +8,7 @@
 
 @section('content')
 <div id="login">
-{{ Form::open(array('url' => 'postAuth')) }}
+{{ Form::open(array('url' => 'postauth')) }}
 
     <div class="login_container rounded_border">
 	<h2 class="title">Sign in</h2>
@@ -35,7 +35,7 @@
   </div>
   <div class="register_container rounded_border">
 	<h2 class="title_signup">Are you a registered dog breeder?</h2>
-	<a class="large button" href="{{URL::route('createbreeder');}}">Sign up</a>
+	<a class="large button" href="{{URL::route('createuser');}}">Sign up</a>
   </div>
 {{ Form::close() }}
 </div>

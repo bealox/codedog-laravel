@@ -100,4 +100,13 @@ h2 {
 	-webkit-border-radius: 6px 6px 6px 6px;
 }
 
+.error {
+	color:white;;
+	background:#B24747;
+	border:none;
+	width:350px;
+	padding: 5px;
+	margin:0 auto 10px auto;
+}
+
 

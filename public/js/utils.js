@@ -42,6 +42,18 @@ function postcode_autocomplete() {
 			$('input[name="suburb"]').val(ui.item.obj.location);	
 			$('input[name="longitude"]').val(ui.item.obj.longitude);	
 			$('input[name="latitude"]').val(ui.item.obj.latitude);	
+		},
+		open: function(event) {
+			$('.ui-autocomplete').css('height', '100px');
+			var $input = $(event.target),
+			    inputTop = $input.offset().top,
+			    inputHeight = $input.height(),
+			    autocompleteHeight = $('.ui-autocomplete').height(),
+			    windowHeight = $(window).height();
+
+			if ((inputHeight + inputTop+ autocompleteHeight) > windowHeight) {
+			    $('.ui-autocomplete').css('height', (windowHeight - inputHeight - inputTop - 20) + 'px');
+			}
 		}
             });
 }

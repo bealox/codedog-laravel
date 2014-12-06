@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '128.199.135.111',
-			'database'  => 'seekdog',
-			'username'  => 'codedog',
-			'password'  => '3ddi3dog',
+			'host'      => getenv('mysql.host'),
+			'database'  => getenv('mysql.database'),
+			'username'  => getenv('mysql.username'),
+			'password'  => getenv('mysql.password'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

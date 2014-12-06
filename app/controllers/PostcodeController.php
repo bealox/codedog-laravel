@@ -56,5 +56,6 @@ class PostcodeController extends BaseController {
 
 		curl_close($ch);
 		print_r($result); 
+		//return Response::json($result);
 	}
 }

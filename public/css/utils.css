@@ -21,10 +21,6 @@ border:0;border-collapse:collapse;
 }
 
 .ui-widget-content {
-	overflow:scroll;
-	overflow-x: hidden;
-	height:100px;
-	width:200px;
 	margin-bottom:-1px;
 	border-right:1px solid #ccc;
 	border-left:1px solid #ccc;
@@ -33,6 +29,7 @@ border:0;border-collapse:collapse;
     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
 }
+.ui-autocomplete { overflow:auto; width:200px;position:absolute;} 
 
 .ui-widget-content:hover {
 	border-right:1px solid #ccc;
@@ -54,4 +51,8 @@ border:0;border-collapse:collapse;
     border-radius:0;
     font-weight: normal;
     width:100%;
+}
+
+.ui-helper-hidden-accessible, .modal-footer {
+	display:none;
 }

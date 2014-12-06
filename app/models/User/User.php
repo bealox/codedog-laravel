@@ -54,6 +54,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->belongToMany('Post');
 	}
 
+	public function metadata()
+	{
+		return $this->hasOne('Metadata');
+	}
+
 	public function getRememberToken()
 	{
 		    return $this->remember_token;

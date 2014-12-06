@@ -10,6 +10,7 @@
 	"autoload": {
 		"classmap": [
 			"app/commands",
+			"app/lib",
 			"app/controllers",
 			"app/models",
 			"app/models/User",

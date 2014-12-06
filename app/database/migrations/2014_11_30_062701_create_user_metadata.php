@@ -13,14 +13,16 @@ class CreateUserMetadata extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('Metadata', function($table)
-		{
-			$table->increments('id');
-			$table->string('address');
-			$table->string('suburb', 50);
-			$table->string('latitude');
-			$table->string('longitude');
-			$table->integer('postcode');
+		if(!Schema::hasTable('Metadata')){
+			Schema::create('Metadata', function($table)
+			{
+				$table->increments('id');
+				$table->string('address');
+				$table->string('suburb', 50);
+				$table->string('latitude');
+				$table->string('longitude');
+				$table->integer('postcode');
+			});
 		}
 	}
 

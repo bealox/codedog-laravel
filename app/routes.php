@@ -39,8 +39,8 @@ Route::post('postauth', array('uses' => 'LoginController@postAuth'));
 /**
  * User creation
  */
-Route::get('createbreeder', array('as' => 'createbreeder','uses' => 'AdminController@getCreateUser'));
-Route::post('createbreeder', array('as' => 'createbreeder', 'uses' => 'AdminController@postCreateUser'));
+Route::get('createuser', array('as' => 'createuser','uses' => 'AdminController@getCreateUser'));
+Route::post('createuser', array('as' => 'createuser', 'uses' => 'AdminController@postCreateUser'));
 Route::post('postcodejson', array('uses' => 'PostcodeController@submitPostcodeJson'));
 
 /**
