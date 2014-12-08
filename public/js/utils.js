@@ -10,9 +10,6 @@ function postcode_autocomplete() {
                         type: 'POST',
                         url: 'postcodejson', //your server side script
                         dataType: 'json',
-			select: function (item) {
-				alert(item);	
-			},
                         data: {
                             postcode: request.term
                         },
