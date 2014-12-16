@@ -13,7 +13,7 @@ class AdminController extends BaseController {
 	|
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
-	*/
+	 */
 
 	public function getCreateUser()
 	{
@@ -30,8 +30,8 @@ class AdminController extends BaseController {
 			'password' => 'required|alphaNum|min:5|confirmed',
 			'password_confirmation' => 'required',
 			'postcode' => 'required|digits:4',
-			'suburb' => 'required'
-			
+			'suburb' => 'required',
+			'state' => 'required|not_in:default'
 		);
 
 		$error = null;
@@ -44,10 +44,10 @@ class AdminController extends BaseController {
 
 		// Was there a reCAPTCHA response?
 		if ($_POST['g-recaptcha-response']) {
-		    $resp = $reCaptcha->verifyResponse(
-			$_SERVER['REMOTE_ADDR'],
-			$_POST['g-recaptcha-response']
-		    );
+			$resp = $reCaptcha->verifyResponse(
+				$_SERVER['REMOTE_ADDR'],
+				$_POST['g-recaptcha-response']
+			);
 		}
 
 		if($resp == null || !$resp->success){
@@ -56,7 +56,7 @@ class AdminController extends BaseController {
 				->withErrors(array('robot' => 'Please verify you are not a robot.'))
 				->withInput(Input::except('passwod'));
 		}
-		
+
 
 		if($validator->fails()) {
 			return Redirect::to('createuser')
@@ -73,6 +73,7 @@ class AdminController extends BaseController {
 			$metadata = array(
 				'postcode' => Input::get('postcode'),
 				'suburb' => Input::get('suburb'),
+				'state' => Input::get('state'),
 				'latitude' => Input::get('latitude'),
 				'longitude' => Input::get('longitude')
 			);
@@ -97,10 +98,9 @@ class AdminController extends BaseController {
 	/**
 	 * Links
 	 */
-	public $links= array('Dashboard','CreatePost');
-	
+
 	public function getDashboard() {
-		return View::make('pages.admin.dashboard')->with('links', $this->links);
+		return View::make('pages.admin.dashboard');
 	}
 
 	public function getCreatePost() {
@@ -136,7 +136,9 @@ class AdminController extends BaseController {
 
 		}
 	}
-		
-		
-	
+
+	public function getHistory() {
+		return View::make('pages.admin.history');
+	}
+
 } 	

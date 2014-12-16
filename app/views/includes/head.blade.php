@@ -3,13 +3,20 @@
 <meta name="keywords" content="@yield('meta_keywords', 'default keywords')">
 
 <title>@yield('meta_title', 'seekdog')</title>
-
 {{HTML::style('css/main.css')}}
+{{HTML::style('css/header.css')}}
+
+<!-- Pure -->
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Font-awsome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 {{HTML::script('js/package/jquery2.1.1.js')}}
 
-{{ HTML::style('css/header.css'); }}
-{{ HTML::style('js/package/tooltipster-master/css/tooltipster.css'); }}
-{{ HTML::script('js/package/tooltipster-master/js/jquery.tooltipster.min.js');}}
-{{ HTML::script('js/tooltip.js');}}
+{{HTML::style('packages/jquery-dropdown/jquery-dropdown.css')}}
+{{HTML::script('packages/jquery-dropdown/jquery-dropdown.js')}}
+
 
 	

@@ -1,6 +1,57 @@
 $(document).ready( function() {
-	postcode_autocomplete();
+	postcode_select2();
+       	postcode_autocomplete();
 });
+
+function postcode_select2() {
+	$("#e1").select2({
+		placeholder: "Search for a postcode",
+		minimumInputLength: 3,
+		width: '60%',
+		ajax:{
+			url:'postcodejson',
+			type:'POST',
+			datatype:'json',
+			quietMillis: 250,
+			params: {
+			    contentType: 'application/json; charset=utf-8'
+			  },
+			data: function(term, page) {
+				return {
+					q:term
+				};
+			},
+			results: function(data, page) {
+			    var Results = [];
+                            if(data.localities.locality instanceof Array){
+                                ($.map(data.localities.locality, function (item) {
+					Results.push({'id': item, 'text': item.postcode+ ' - ' + item.location + ' - ' + item.state});
+                                }));
+				   return {
+					results: Results
+				    };
+                            //if a single result is returned
+			    }else{
+                                 ($.map(data.localities, function (item) {
+					Results.push({'id': item, 'text': item.postcode + ' - ' + item.location + ' - ' + item.state});
+                                }));
+				    return {
+					results: Results
+				    }
+			    }
+			},
+			cache: true
+		}
+	});
+
+	$('#e1').on('change',function(e) {
+		console.log($(this).select2('data').id);
+	});
+}
+
+
+
+
 
 function postcode_autocomplete() {
             $("#postcode").autocomplete({
@@ -11,14 +62,14 @@ function postcode_autocomplete() {
                         url: 'postcodejson', //your server side script
                         dataType: 'json',
                         data: {
-                            postcode: request.term
+                            postcode: request.term,
                         },
                         success: function (data) {
                             //if multiple results are returned
                             if(data.localities.locality instanceof Array)
                                 response ($.map(data.localities.locality, function (item) {
                                     return {
-                                        label: item.location + ', ' + item.postcode,
+                                        label: item.location + ' ' + item.postcode + ',' + item.state,
                                         value: item.postcode,
 					obj: item
                                     }
@@ -27,7 +78,7 @@ function postcode_autocomplete() {
                             else
                                 response ($.map(data.localities, function (item) {
                                     return {
-                                        label: item.location + ', ' + item.postcode,
+                                        label: item.location + ', ' + item.postcode + ',' +item.state,
                                         value: item.postcode,
 					obj: item
                                     }
@@ -37,6 +88,7 @@ function postcode_autocomplete() {
                 },
 		select: function(event, ui) {
 			$('input[name="suburb"]').val(ui.item.obj.location);	
+			$('select[name="state"]').val(ui.item.obj.state);	
 			$('input[name="longitude"]').val(ui.item.obj.longitude);	
 			$('input[name="latitude"]').val(ui.item.obj.latitude);	
 		},

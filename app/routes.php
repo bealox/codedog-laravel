@@ -41,7 +41,8 @@ Route::post('postauth', array('uses' => 'LoginController@postAuth'));
  */
 Route::get('createuser', array('as' => 'createuser','uses' => 'AdminController@getCreateUser'));
 Route::post('createuser', array('as' => 'createuser', 'uses' => 'AdminController@postCreateUser'));
-Route::post('postcodejson', array('uses' => 'PostcodeController@submitPostcodeJson'));
+Route::post('postcodejson', array('uses' => 'PostcodeController@jQueryPostcode'));
+Route::post('postcodejson2', array('uses' => 'PostcodeController@rawPostcode'));
 
 /**
  * Post Controller
@@ -58,11 +59,21 @@ Route::group(
 	['prefix' => 'admin', 'before' => ['auth']], 
 	function () {
 		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'AdminController@getDashboard']);
+		Route::get('history', [ 'as' => 'history', 'uses' => 'AdminController@getHistory']);
 		Route::get('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@getCreatePost']);
 		Route::post('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@postCreatePost']);
 	}
 );
 
+/**
+ * API
+ */
+Route::group(
+	['prefix' => 'api'],
+	function() {
+		Route::get('postcode/{id}', ['as' => 'postcode', 'uses' => 'PostcodeController@printPostcode']); 
+	}
+);
 
 /**
 * Reminders Controller

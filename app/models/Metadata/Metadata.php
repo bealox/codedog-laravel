@@ -18,7 +18,14 @@ class Metadata extends BaseModel{
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('address', 'suburb', 'postcode', 'latitude', 'longitude');
+	protected $fillable = array('address', 'suburb', 'postcode', 'latitude', 'longitude', 'state');
+
+	/**
+	 * List of attributes not allow to be mass-assignable
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id');
 
 	protected $dates = ['deleted_at'];
 

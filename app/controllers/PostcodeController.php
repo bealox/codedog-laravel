@@ -18,13 +18,15 @@ class PostcodeController extends BaseController {
 	private $url = 'https://auspost.com.au/api/postcode/search.json?';
 	private $api_key = 'd52a2ddd-37ee-4fa9-9d44-31a433ae95a6';
 
-	public function submitPostcodeJson() {
+	public function postcodeJson($value = null) {
 		$ch = curl_init();
 
-		$postcode = Input::get('postcode');
+		$postcode = $value != null ? $value : Input::get('postcode2');
+		$request = Request::instance();
+		$value = ltrim($request->getContent(), 'q=');
 
 		$config = array(
-			'q' => $postcode,
+			'q' => $value,
 			'excludepostboxflag' => 'true'
 		);
 
@@ -45,18 +47,28 @@ class PostcodeController extends BaseController {
 
 		$result = curl_exec($ch);
 
-		/*	
+			
 		if(!curl_errno($ch))
 		{
 		 $info = curl_getinfo($ch);
-		 echo $info['url'];
+		 Log::info($info['url']);
 		}
-		 */
+		 
 		 
 
 		curl_close($ch);
-		print_r($result); 
-		//return Response::json($result);
+		return $result;
+	}
+
+	public function jQueryPostcode(){
+		print_r($this->postcodeJson()); 
+	}
+
+	public function printPostCode($id) {
+		return Response::json($this->postcodeJson($id));
+	}
+	public function rawPostcode() {
+		return json_encode($this->postcodeJson());
 	}
 }
 ?>

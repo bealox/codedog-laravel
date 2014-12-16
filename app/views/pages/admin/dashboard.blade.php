@@ -3,7 +3,6 @@
 	Dashboard
 @stop
 @section('content')
-<h1>Dashboard</h1>
-@include('includes.sidebar', $links)
+<h1>Person Details</h1>
 @stop
 
