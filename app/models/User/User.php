@@ -33,7 +33,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('first_name', 'last_name', 'email');
+	protected $fillable = array('first_name', 'last_name', 'email', 'confirmation_code');
 
 	/**
 	 * List of attributes not allow to be mass-assignable
@@ -65,7 +65,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	}
 
 	public function setRememberToken($value)
-	{
+ 		{
 		    $this->remember_token = $value;
 	}
 
@@ -73,5 +73,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		    return 'remember_token';
 	}
+
+	public function password_reminders()
+	{
+		return $this->hasOne('password_reminders');
+	}	
+
 }
 

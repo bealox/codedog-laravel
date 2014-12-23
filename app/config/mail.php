@@ -15,8 +15,8 @@ return array(
 	|
 	*/
 
-	#'driver' => 'smtp',
-	'driver' =>  'log',
+	'driver' => 'smtp',
+	#'driver' =>  'log',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'john@sqonk.com.au', 'name' => 'John Adolfo'),
+	'from' => array('address' => 'no-reply@dingo.com', 'name' => 'Dingo'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,10 +78,11 @@ return array(
 	| If your SMTP server requires a username for authentication, you should
 	| set it here. This will get used to authenticate with your server on
 	| connection. You may also set the "password" value below this one.
+	| 2 gmail-smtp.l.google.com 5ei5h0uk00@gmail.com:b4uh4u5gmail 
 	|
 	*/
 
-	'username' => null,
+	'username' => '5ei5h0uk00@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +95,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'b4uh4u5gmail',
 
 	/*
 	|--------------------------------------------------------------------------

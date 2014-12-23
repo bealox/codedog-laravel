@@ -31,18 +31,22 @@ Route::get('users', function()
 /**
  * LoginController
  */
-Route::get('login', array('as' => 'login','uses' => 'LoginController@showLogin'));
-Route::get('logout', array('as' => 'logout', 'uses' => 'LoginController@doLogout'));
-Route::post('postauth', array('uses' => 'LoginController@postAuth'));
+Route::get('login', array('as' => 'login','uses' => 'LoginController@getLogin'));
+Route::get('logout', array('as' => 'logout', 'uses' => 'LoginController@getLogout'));
+Route::post('login', array('as' => 'login', 'uses' => 'LoginController@postLogin'));
 
 
 /**
  * User creation
  */
-Route::get('createuser', array('as' => 'createuser','uses' => 'AdminController@getCreateUser'));
-Route::post('createuser', array('as' => 'createuser', 'uses' => 'AdminController@postCreateUser'));
+Route::get('createuser', array('as' => 'createuser','uses' => 'RegistrationController@getCreateUser'));
+Route::post('createuser', array('as' => 'createuser', 'uses' => 'RegistrationController@postCreateUser'));
 Route::post('postcodejson', array('uses' => 'PostcodeController@jQueryPostcode'));
 Route::post('postcodejson2', array('uses' => 'PostcodeController@rawPostcode'));
+Route::get('createuser/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegistrationController@confirm'
+]);
 
 /**
  * Post Controller
@@ -82,5 +86,6 @@ Route::group(
 Route::get('password/reset/{token}', 'RemindersController@getReset');
 Route::post('password/reset/{token}', 'RemindersController@postReset');
 Route::post('password/remind/', 'RemindersController@postRemind');
+Route::get('password/remind/', 'RemindersController@getRemind');
 
 

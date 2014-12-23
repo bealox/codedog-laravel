@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Auth\Reminders\DatabaseReminderRepository as DbRepository;
+
 class RemindersController extends Controller {
 
 	/**
@@ -19,16 +21,16 @@ class RemindersController extends Controller {
 	 */
 	public function postRemind()
 	{
-		echo "postremind";
-		switch ($response = Password::remind(Input::only('email')))
+		$response = Password::remind(Input::only('email'), function($message){
+				$message->subject(trans('Your Net-dog password reset.')); 
+		});
+		switch ($response)
 		{
 			case Password::INVALID_USER:
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::REMINDER_SENT:
-				//echo "the response: " .  Lang::get($response);
-				//return Redirect::back()->with('status', Lang::get($response));
-				return View::make('password.remind');
+				return Redirect::back()->with('success', 'Your password has been reset successfully');
 
 		}	
 	}
@@ -41,9 +43,11 @@ class RemindersController extends Controller {
 	 */
 	public function getReset($token = null)
 	{
+		self::deleteExpired();
 		if (is_null($token)) App::abort(404);
-
-		return View::make('password.reset')->with('token', $token);
+		$email = DB::table(Config::get('auth.reminder.table'))->where('token', $token)->pluck('email'); 
+		if (is_null($email)) App::abort(404);
+		return View::make('password.reset')->with('token', $token)->with('email', $email);
 	}
 
 	/**
@@ -59,9 +63,12 @@ class RemindersController extends Controller {
 
 		$response = Password::reset($credentials, function($user, $password)
 		{
-			$user->password = Hash::make($password);
+			if(!$user->exists())
+				Log::info("wtd");
 
+			$user->password = Hash::make($password);
 			$user->save();
+
 		});
 
 		switch ($response)
@@ -72,8 +79,13 @@ class RemindersController extends Controller {
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::PASSWORD_RESET:
-				return Redirect::to('/');
+				return Redirect::to('/')->with('success', Lang::get($response));
 		}
+	}
+
+	public static function deleteExpired() {
+		 $reminders = new DbRepository(DB::connection(), Config::get('auth.reminder.table'), Config::get('app.key'));
+		 $reminders->deleteExpired();
 	}
 
 }

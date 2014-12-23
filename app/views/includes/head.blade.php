@@ -13,8 +13,9 @@
 <!-- Font-awsome -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-{{HTML::script('js/package/jquery2.1.1.js')}}
-
+{{HTML::script('packages/jquery-1.11.2.min.js')}}
+{{HTML::script('packages/noty-2.3.2/js/noty/packaged/jquery.noty.packaged.min.js')}}
+{{HTML::script('js/noty.js')}}
 {{HTML::style('packages/jquery-dropdown/jquery-dropdown.css')}}
 {{HTML::script('packages/jquery-dropdown/jquery-dropdown.js')}}
 

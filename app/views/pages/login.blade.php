@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-{{ Form::open(array('url' => 'postauth', 'class' => 'pure-form pure-form-stacked')) }}
+{{ Form::open(array('url' => 'login', 'class' => 'pure-form pure-form-stacked')) }}
 <div class="pure-g">
 	<div class="pure-u-10-24">
 		<div class="l-box"> 
@@ -22,11 +22,14 @@
 					{{ Form::text('email', Input::old('email'), array('placeholder' => 'email', 'class' => 'pure-input-1')) }}
 					<label> Password </label>
 					{{ Form::password('password', array('placeholder' => 'password', 'class' => 'pure-input-1')) }}
-					<div class="pure-u-10-24">
-					<input type="submit" name="login" value="Login" class="pure-button pure-input-1">
+					<div class="pure-u-10-10">
+					<label>{{ Form::checkbox('remember_me', 'true', null, ['class' => '']);}} remember me </label>
 					</div>
-					<div class="pure-u-13-24">
-					<input type="submit" name="forgotPassword" value="Forgot Password" class="pure-button pure-input-1">
+					<div class="pure-u-5-24">
+					<input type="submit" name="login" value="Login" class="pure-button pure-button-primary">
+					</div>
+					<div class="pure-u-10-24">
+					<a class="pure-button pure-input-1" href="/password/remind/">forgot password</a>
 					</div>
 				
 		  </fieldset>

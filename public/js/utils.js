@@ -25,7 +25,7 @@ function postcode_select2() {
 			    var Results = [];
                             if(data.localities.locality instanceof Array){
                                 ($.map(data.localities.locality, function (item) {
-					Results.push({'id': item, 'text': item.postcode+ ' - ' + item.location + ' - ' + item.state});
+					Results.push({'id': item.id, 'text':item.postcode + ' - ' + item.location + ' - ' + item.state, 'data': item});
                                 }));
 				   return {
 					results: Results
@@ -33,7 +33,7 @@ function postcode_select2() {
                             //if a single result is returned
 			    }else{
                                  ($.map(data.localities, function (item) {
-					Results.push({'id': item, 'text': item.postcode + ' - ' + item.location + ' - ' + item.state});
+					Results.push({'id': item.id, 'text': item.postcode + ' - ' + item.location + ' - ' + item.state, 'data': item});
                                 }));
 				    return {
 					results: Results
@@ -44,8 +44,13 @@ function postcode_select2() {
 		}
 	});
 
-	$('#e1').on('change',function(e) {
-		console.log($(this).select2('data').id);
+	$(document).on('change', '#e1',function() {
+		console.log($(this).select2('data').data);
+		$('input[name="postcode_id"]').val($(this).select2('data').data.postcode);
+		$('input[name="suburb"]').val($(this).select2('data').data.location)
+		$('input[name="state"]').val($(this).select2('data').data.state)
+		$('input[name="longitude"]').val($(this).select2('data').data.longitude)
+		$('input[name="latitude"]').val($(this).select2('data').data.latitude)
 	});
 }
 
