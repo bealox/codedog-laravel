@@ -39,13 +39,13 @@ Route::post('login', array('as' => 'login', 'uses' => 'LoginController@postLogin
 /**
  * User creation
  */
-Route::get('createuser', array('as' => 'createuser','uses' => 'RegistrationController@getCreateUser'));
-Route::post('createuser', array('as' => 'createuser', 'uses' => 'RegistrationController@postCreateUser'));
+Route::get('register', array('as' => 'createuser','uses' => 'RegistrationController@getCreateUser'));
+Route::post('register', array('as' => 'createuser', 'uses' => 'RegistrationController@postCreateUser'));
 Route::post('postcodejson', array('uses' => 'PostcodeController@jQueryPostcode'));
 Route::post('postcodejson2', array('uses' => 'PostcodeController@rawPostcode'));
-Route::get('createuser/verify/{confirmationCode}', [
+Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
-    'uses' => 'RegistrationController@confirm'
+    'uses' => 'RegistrationController@getConfirmAction'
 ]);
 
 /**

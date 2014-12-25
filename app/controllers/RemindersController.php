@@ -11,7 +11,7 @@ class RemindersController extends Controller {
 	 */
 	public function getRemind()
 	{
-		return View::make('password.remind');
+		return View::make('pages.password.remind');
 	}
 
 	/**
@@ -47,7 +47,7 @@ class RemindersController extends Controller {
 		if (is_null($token)) App::abort(404);
 		$email = DB::table(Config::get('auth.reminder.table'))->where('token', $token)->pluck('email'); 
 		if (is_null($email)) App::abort(404);
-		return View::make('password.reset')->with('token', $token)->with('email', $email);
+		return View::make('pages.password.reset')->with('token', $token)->with('email', $email);
 	}
 
 	/**

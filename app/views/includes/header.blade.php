@@ -1,12 +1,6 @@
 <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal">
-		<a  href="#" class="pure-menu-heading">Pet seeker</a>
+		<a  href="/" class="pure-menu-heading">Pet seeker</a>
 		<ul>
-			<li class="menu_home">
-				<a href="{{URL::to('/')}}">
-				<span class="fa fa-home fa-fw"></span>
-				<span class="header_link">Home</span>
-				</a>
-			</li>
 			<li class="menu_posts"> 
 				<a href="#" >
 				<span class="fa fa-pencil-square-o fa-fw"></span>

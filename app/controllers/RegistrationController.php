@@ -17,7 +17,7 @@ class RegistrationController extends BaseController {
 
 	public function getCreateUser()
 	{
-		return View::make('pages.admin.createuser');
+		return View::make('pages.createuser');
 	}
 
 
@@ -49,7 +49,6 @@ class RegistrationController extends BaseController {
 		}
 
 		if($resp == null || !$resp->success){
-			Log::info("am i here" . $error);
 			return Redirect::to('createuser')
 				->withErrors(array('robot' => 'Please verify you are not a robot.'))
 				->withInput(Input::except('passwod'));
@@ -90,8 +89,10 @@ class RegistrationController extends BaseController {
 
 			$breeder->save();
 			$meta->save();	
+
+			$data = array_add(array('confirmation_code' => $confirmation_code), 'key', 'value');
 			
-			Mail::send('email.verify', $confirmation_code, function($message) {
+			Mail::send('emails.verify.newuser', $data, function($message) {
 			    $message->to(Input::get('email'), Input::get('username'))
 				->subject('Verify your email address');
 			});
@@ -101,5 +102,21 @@ class RegistrationController extends BaseController {
 
 		}
 	}
+
+	public function getConfirmAction( $confirmation_code)
+	{
+		if(is_null($confirmation_code)){
+			throw InvalidConfirmationCodeException;
+		}	
+
+		$user = User::where('confirmation_code', $confirmation_code)->firstOrFail();
+
+		$user->confirmed = 1;
+		$user->confirmation_code = null;
+		$user->save();
+
+		return Redirect::to('login')->with('success', 'You have successfully verified your account.');
+	}
+		
 
 } 	

@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.simple_default')
 @section('meta_title')
 	Login
 @stop

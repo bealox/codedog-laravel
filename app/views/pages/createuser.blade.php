@@ -19,7 +19,7 @@
 
 
 @section('content')
-	{{Form::open(array('url' => 'createuser', 'class' => 'pure-form pure-form-aligned'))}}
+	{{Form::open(array('url' => 'register', 'class' => 'pure-form pure-form-aligned'))}}
 <div class="pure-g">
 	<div class="pure-u-11-24">
 	<div class="l-box">
@@ -31,15 +31,14 @@
 					{{ $errors -> first('password')}}
 					{{ $errors -> first('first_name')}}
 					{{ $errors -> first('last_name')}}
-					{{ $errors -> first('postcode')}}
 					{{ $errors -> first('password_confirmation')}}
 					{{ $errors -> first('robot')}}
-					{{ $errors -> first('state')}}
+					{{ $errors -> first('postcode')}}
 				</p>
 			@endif
 			<div class="pure-control-group">
 				<label> First Name </label>
-				{{ Form::text ('first_name',"", array('placeholder' => 'Required', 'required'))}}
+				{{ Form::text ('first_name',"", array('placeholder' => 'First Name', 'required'))}}
 			</div>
 			<div class="pure-control-group">
 				<label>Last Name</label>
@@ -60,27 +59,18 @@
 				{{ Form::password('password_confirmation', array('placeholder' => 'Confirm Password', 'required')) }}
 			</div>
 			<div class="pure-control-group">
-				<label>State</label>
-				{{Form::select('state' ,array('default' => 'please select', 'ACT' => 'ACT', 'NSW' => 'NSW', 
-					'VIC' => 'VIC', 'QLD' => 'QLD', 'SA' => 'SA',
-					'WA' => 'WA', 'TAS' => 'TAS', 'NT' => 'NT'), 'none')}}
-			</div>
-			<div class="pure-control-group">
 				<label>Postcode</label>
-				{{Form::text('postcode', '',array('id'=>'postcode', 'placeholder' => 'Postcode', 'required'))}}
-			</div>	
-			<div class="pure-control-group">
-				<select id="e1">
-				<option value="AL">Alibaba</option>
-				<option value="AU">Australia</option>
-				</select>
+				<input type="hidden" id="e1" name="postcode" class="input-large" require></input>
 			</div>
 			<div style="text-align:center;">
-				<div class="g-recaptcha" data-sitekey="6Ldc5v4SAAAAALJ_2fquUl_7z13tTugj3oPo-ikb" style="display:inline-block;" ></div>
+				<div class="g-recaptcha" data-sitekey="6Ldc5v4SAAAAALJ_2fquUl_7z13tTugj3oPo-ikb" style="display:inline-block;"></div>
 			</div>
 
 			<p>{{Form::hidden('latitude', '',array('id'=>'latitude'))}}</p>
 			<p>{{Form::hidden('longitude', '',array('id'=>'longitude'))}}</p>
+			<p>{{Form::hidden('postcode_id', '',array('id'=>'postcode_id'))}}</p>
+			<p>{{Form::hidden('suburb', '',array('id'=>'suburb'))}}</p>
+			<p>{{Form::hidden('state', '',array('id'=>'state'))}}</p>
 
 	</div>
 	</div>

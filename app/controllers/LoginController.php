@@ -35,14 +35,16 @@ class LoginController extends BaseController {
 			$userdata = array(
 				'email' => Input::get('email'),
 				'password' => Input::get('password'),
+				'confirmed' => 1,
 			);
 			Log::info(Input::get('remember_me'));
 
 			if(Auth::attempt($userdata, (Input::get('remember_me')=='true') ? true : false)) {
-				return Redirect::to('/');	
+				return Redirect::to('/')->withMessage('success', 'Thanks for signing up! please check your email to verify your address.');	
 			}else{
 				return Redirect::to('login')
-					->withErrors(array('password' => 'Password invalid')); 
+					->withInput()
+					->withErrors(['credentials' => 'We were unable to sign you in.']);	
 			}
 
 		}
