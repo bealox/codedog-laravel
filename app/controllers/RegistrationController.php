@@ -49,14 +49,14 @@ class RegistrationController extends BaseController {
 		}
 
 		if($resp == null || !$resp->success){
-			return Redirect::to('createuser')
+			return Redirect::to('register')
 				->withErrors(array('robot' => 'Please verify you are not a robot.'))
 				->withInput(Input::except('passwod'));
 		}
 
 
 		if($validator->fails()) {
-			return Redirect::to('createuser')
+			return Redirect::to('register')
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		}else{
@@ -78,11 +78,9 @@ class RegistrationController extends BaseController {
 				'longitude' => Input::get('longitude')
 			);
 
-			$type = Input::get('type');
-			$hash = Hash::make(input::get('password'));
 
 			$breeder = DogBreeder::create($userdata);
-			$breeder->password = $hash;
+			$breeder->password = input::get('password');
 
 			$meta = Metadata::create($metadata);
 			$meta->user_id = $breeder->id;

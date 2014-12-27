@@ -11,14 +11,7 @@
 <div class="pure-g">
 	<div class="pure-u-10-24">
 		<div class="l-box"> 
-		    @if(Session::has('success'))
-			    <div id="success_val" style="display:none">{{Session::get('success')}}</div>
-			   <script>
-				var msg = $('#success_val').text();	
-				var n = noty({text: msg, type: 'success', timeout: '3000'});
-				n.onShow;
-			    </script>
-		    @endif
+		    @include('includes.notification_noty')
 		    <fieldset>
 				<p>
 					{{ $errors->first('email') }}

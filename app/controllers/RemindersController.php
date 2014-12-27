@@ -60,20 +60,18 @@ class RemindersController extends Controller {
 		$credentials = Input::only(
 			'email', 'password', 'password_confirmation', 'token'
 		);
-
+		
 		$response = Password::reset($credentials, function($user, $password)
 		{
-			if(!$user->exists())
-				Log::info("wtd");
-
-			$user->password = Hash::make($password);
-			$user->save();
-
+				$user->password = $password;
+				$user->save();
 		});
 
 		switch ($response)
 		{
 			case Password::INVALID_PASSWORD:
+				Flash::info(Lang::get($response));
+				return Redirect::back()->withErrors(array('validate' => Lang::get($response)));
 			case Password::INVALID_TOKEN:
 			case Password::INVALID_USER:
 				return Redirect::back()->with('error', Lang::get($response));

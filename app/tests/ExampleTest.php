@@ -7,11 +7,10 @@ class ExampleTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function testBasicExample()
+	public function it_displays_flash_notifications()
 	{
-		$crawler = $this->client->request('GET', '/');
-
-		$this->assertTrue($this->client->getResponse()->isOk());
+		Flash::message('Welcome aboard');
+		$this->call('GET', '/');
 	}
 
 }

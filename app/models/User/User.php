@@ -79,5 +79,17 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->hasOne('password_reminders');
 	}	
 
+	/**
+	 * Password must always be hashed
+	 *
+	 * @para password
+	 */
+
+	public function setPasswordAttribute($password)
+	{
+	
+		$this->attributes['password'] = Hash::make($password);
+	}
+
 }
 

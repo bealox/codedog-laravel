@@ -1,6 +1,6 @@
 @extends('layouts.simple_default')
 @section('meta_title')
-	Login
+	Pet Seeker	
 @stop
 @section('external')
 	{{HTML::style('css/login.css');}}
@@ -12,24 +12,7 @@
 <div class="l-box">
 	{{Form::open(array('url' => '/password/remind', 'class' => 'pure-form pure-form-aligned'))}}
 <legend>Password Reminder</legend>
-
-            @if(Session::has('error'))
-	    <div id="error_val" style="display:none">{{Session::get('error')}}</div>
-	   <script>
-	        var msg = $('#error_val').text();	
-		var n = noty({text: msg, type: 'error', timeout: '3000'});
-		n.onShow;
-	    </script>
-	    @endif
-
-            @if(Session::has('success'))
-	    <div id="success_val" style="display:none">{{Session::get('success')}}</div>
-	   <script>
-	        var msg = $('#success_val').text();	
-		var n = noty({text: msg, type: 'success', timeout: '3000'});
-		n.onShow;
-	    </script>
-	    @endif
+	    @include('includes.notification_noty')
 	    <div class="pure-control-group">
 		    <label>Email</label>
 				{{ Form::text 

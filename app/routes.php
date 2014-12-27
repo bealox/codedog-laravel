@@ -18,13 +18,12 @@ Route::get('test', function()
 	return View::make('pages.testarea');
 });
 
-Route::get('users', function()
+Route::get('fu', function()
 {
 	$dogusers = DogBreeder::all();
 	$catusers = CatBreeder::all();
 	$get_user = DogBreeder::find(2);
-	return View::make('users')->with('users', $dogusers)
-		->with('catusers', $catusers)->with('single', $get_user);
+	return Redirect::to('test')->with('notification', 'failed');
 });
 
 
