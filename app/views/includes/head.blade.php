@@ -18,8 +18,6 @@
 
 {{HTML::script('packages/noty-2.3.2/js/noty/packaged/jquery.noty.packaged.min.js')}}
 {{HTML::script('js/noty.js')}}
-{{HTML::style('packages/jquery-dropdown/jquery-dropdown.css')}}
-{{HTML::script('packages/jquery-dropdown/jquery-dropdown.js')}}
 
 
 	

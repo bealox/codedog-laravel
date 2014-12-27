@@ -1,4 +1,8 @@
-<div class="home-menu pure-menu pure-menu-open pure-menu-horizontal">
-		<a  href="/" class="pure-menu-heading">Pet seeker</a>
+<div class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="nav-bar">
+			<a  href="/" class="navbar-brand">Pet Post</a>
+		</div>
+	</div>
 </div>
 
