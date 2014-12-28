@@ -27,9 +27,8 @@ class LoginController extends BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails()) {
-			return Redirect::to('login')
-				->withErrors($validator)
-				->withInput(Input::except('password'));
+			Flash::errors($validator->errors()->toArray());
+			return Redirect::to('login');
 		}else{
 
 			$userdata = array(
@@ -40,11 +39,11 @@ class LoginController extends BaseController {
 			Log::info(Input::get('remember_me'));
 
 			if(Auth::attempt($userdata, (Input::get('remember_me')=='true') ? true : false)) {
-				return Redirect::to('/')->withMessage('success', 'Thanks for signing up! please check your email to verify your address.');	
+				return Redirect::to('/');
 			}else{
+				Flash::error('We were unable to sign you in.');
 				return Redirect::to('login')
-					->withInput()
-					->withErrors(['credentials' => 'We were unable to sign you in.']);	
+					->withInput();
 			}
 
 		}

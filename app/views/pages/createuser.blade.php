@@ -3,12 +3,6 @@
 	Login
 @stop
 @section('external')
-	<!--
-	{{HTML::style('css/login.css');}}
-	{{HTML::style('css/create_user.css');}}
-	-->
-	{{HTML::style('js/package/jquery-ui-1.11.2/jquery-ui.theme.min.css')}}
-	{{HTML::script('js/package/jquery-ui-1.11.2/jquery-ui.min.js')}}
 	{{HTML::script('js/utils.js')}}
 	{{HTML::script('https://www.google.com/recaptcha/api.js')}}
 	{{HTML::style('css/utils.css')}}
@@ -59,7 +53,7 @@
 			</div>
 			<div class="pure-control-group">
 				<label>Postcode</label>
-				<input type="hidden" id="e1" name="postcode" class="input-large" require></input>
+				<input type="hidden" id="e1" name="postcode" class="input-large" required="required"></input>
 			</div>
 			<div style="text-align:center;">
 				<div class="g-recaptcha" data-sitekey="6Ldc5v4SAAAAALJ_2fquUl_7z13tTugj3oPo-ikb" style="display:inline-block;"></div>

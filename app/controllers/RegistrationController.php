@@ -49,15 +49,15 @@ class RegistrationController extends BaseController {
 		}
 
 		if($resp == null || !$resp->success){
+			Flash::error('Please verify you are not a robot.');
 			return Redirect::to('register')
-				->withErrors(array('robot' => 'Please verify you are not a robot.'))
 				->withInput(Input::except('passwod'));
 		}
 
 
 		if($validator->fails()) {
+			Flash::errors($validator->errors()->toArray());
 			return Redirect::to('register')
-				->withErrors($validator)
 				->withInput(Input::except('password'));
 		}else{
 
@@ -95,7 +95,7 @@ class RegistrationController extends BaseController {
 				->subject('Verify your email address');
 			});
 
-
+			Flash::success("Thanks for signing up! please check your email.");
 			return Redirect::to('/');
 
 		}
@@ -113,7 +113,8 @@ class RegistrationController extends BaseController {
 		$user->confirmation_code = null;
 		$user->save();
 
-		return Redirect::to('login')->with('success', 'You have successfully verified your account.');
+		Flash::success("You have successfully verified your account.");
+		return Redirect::to('login');
 	}
 		
 

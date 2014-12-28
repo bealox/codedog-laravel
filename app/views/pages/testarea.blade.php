@@ -4,8 +4,9 @@
 @stop
 @section('external')
 @stop
-@include('includes.notification_noty')
 @section('content')
+@include('includes.notification')
+<script> $('.flash-modal').modal();</script>
 @stop
 
 

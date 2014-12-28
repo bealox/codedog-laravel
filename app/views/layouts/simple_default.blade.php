@@ -11,6 +11,7 @@
 		@include('includes.simple_header')
 	</header>
 	<div class="container">
+			@include('includes.notification')
 			@yield('content')
 	</div>
 

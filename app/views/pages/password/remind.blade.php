@@ -12,7 +12,6 @@
 <div class="l-box">
 	{{Form::open(array('url' => '/password/remind', 'class' => 'pure-form pure-form-aligned'))}}
 <legend>Password Reminder</legend>
-	    @include('includes.notification_noty')
 	    <div class="pure-control-group">
 		    <label>Email</label>
 				{{ Form::text 

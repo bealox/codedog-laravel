@@ -22,8 +22,7 @@ Route::get('fu', function()
 {
 	$dogusers = DogBreeder::all();
 	$catusers = CatBreeder::all();
-	$get_user = DogBreeder::find(2);
-	return Redirect::to('test')->with('notification', 'failed');
+	return Redirect::to('test');
 });
 
 

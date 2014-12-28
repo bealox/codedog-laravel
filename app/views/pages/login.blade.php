@@ -11,14 +11,7 @@
 <div class="pure-g">
 	<div class="pure-u-10-24">
 		<div class="l-box"> 
-		    @include('includes.notification_noty')
 		    <fieldset>
-				<p>
-					{{ $errors->first('email') }}
-					{{ $errors->first('password') }}
-					{{ $errors->first('message') }}
-					{{ $errors->first('credentials') }}
-				</p>
 				 <legend>Sign in</legend>
 					<label> Email </label>
 					{{ Form::text('email', Input::old('email'), array('placeholder' => 'email', 'class' => 'pure-input-1')) }}

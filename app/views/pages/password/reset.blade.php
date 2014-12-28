@@ -17,7 +17,6 @@
 				{{ $errors -> first('validate')}}
 			</p>
 			@endif
-	    @include('includes.notification_noty')
 	    <input type="hidden" name="token" value="{{ $token }}">
 	    <input type="hidden" name="email" value="{{ $email }}">
 	    	<label>New Password:</label> 
