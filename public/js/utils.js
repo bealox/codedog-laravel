@@ -7,7 +7,7 @@ function postcode_select2() {
 	$("#e1").select2({
 		placeholder: "Search for a postcode",
 		minimumInputLength: 3,
-		width: '60%',
+		width: '100%',
 		ajax:{
 			url:'postcodejson',
 			type:'POST',
@@ -40,7 +40,8 @@ function postcode_select2() {
 				    }
 			    }
 			},
-			cache: true
+			cache: true,
+			containerCssClass: "form-group"
 		}
 	});
 

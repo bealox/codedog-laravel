@@ -3,8 +3,6 @@
 <meta name="keywords" content="@yield('meta_keywords', 'default keywords')">
 
 <title>@yield('meta_title', 'seekdog')</title>
-{{HTML::style('css/main.css')}}
-{{HTML::style('css/header.css')}}
 {{HTML::script('packages/jquery-1.11.2.min.js')}}
 
 <!-- Pure -->
