@@ -30,9 +30,9 @@
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{Auth::user()->first_name}}<span class="fa fa-chevron-down fa-fw"></span></a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="/admin/dashboard">
+				<li><a href="{{URL::route('dashboard')}}">
 				<span class="fa fa-cog fa-fw"></span>
-				Settings</a></li>
+				Profile</a></li>
 				<li><a href="/logout">
 				<span class="fa fa-sign-out fa-fw"></span>
 				Log out</a></li>

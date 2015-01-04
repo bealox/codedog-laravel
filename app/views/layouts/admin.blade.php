@@ -9,15 +9,16 @@
 	@include('includes.header')
 </header>
 <div class="container">
+	@include('includes.notification')
 	<div class="row">
 	<div class="col-md-3 col-xs-12">
 		<div class="list-group">
-		 <a class="list-group-item disabled">Settings</a>
+		 <a class="list-group-item disabled">Profile</a>
 		  <a href="{{URL::route('dashboard');}}" class="list-group-item {{(Request::is('*/dashboard')?'active' : '')}}">
-		    Account Details
+		    Account Detail
 		  </a>
-		  <a href="{{URL::route('history');}}" class="list-group-item {{(Request::is('*/history')?'active' : '')}}">
-		    History of Ads 
+		  <a href="{{URL::route('profile.post.index');}}" class="list-group-item {{(Request::is('*/post')?'active' : '')}}">
+		    Postal History 
 		  </a>
 		</div>
 	</div>

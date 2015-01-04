@@ -17,6 +17,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'User';
+	protected $softDelete = true;
 
 	protected $sitClassField = 'class_name';
 	protected $stiBaseClass = 'User';
@@ -51,7 +52,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public function posts()
 	{
-		return $this->belongToMany('Post');
+		return $this->hasMany('Post');
 	}
 
 	public function metadata()
@@ -89,6 +90,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 	
 		$this->attributes['password'] = Hash::make($password);
+	}
+
+	public function fullName()
+	{
+		return $this->first_name ." ". $this->last_name;	
 	}
 
 }

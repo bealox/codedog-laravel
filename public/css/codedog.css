@@ -1,0 +1,12 @@
+.view_box {
+	height:67px; 
+	width:67px; 
+	float:left; 
+	text-align:center; 
+	background:#ddd; 
+	margin-right:10px;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border: 0px solid #ddd;
+}

@@ -25,6 +25,10 @@ class Breed extends BaseModel {
 	public function users() {
 		return $this->belongToMany('User');
 	}
+	
+	public function posts() {
+		return $this->hasMany('Post');
+	}
 
 }
 

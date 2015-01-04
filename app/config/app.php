@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Codedog\Notifications\FlashServiceProvider',
+		'Jenssegers\Date\DateServiceProvider',
 
 	),
 
@@ -190,6 +191,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Flash'		  => 'Codedog\Notifications\Flash',
+		'Date'            => 'Jenssegers\Date\Date',
 
 	),
 

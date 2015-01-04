@@ -4,5 +4,5 @@
 @stop
 
 @section('content')
-<h1>History of Ads</h1>
+	@include('includes.post.post_profile');
 @stop

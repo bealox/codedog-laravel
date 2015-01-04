@@ -27,7 +27,7 @@ class RegistrationController extends BaseController {
 			'first_name' => 'required|alpha',
 			'last_name' => 'required|alpha',
 			'email' => 'required|email|unique:User,email',
-			'password' => 'required|alphaNum|min:5|confirmed',
+			'password' => 'required|alphaNum|Between:5,12|confirmed',
 			'password_confirmation' => 'required',
 			'postcode' => 'required'
 		);

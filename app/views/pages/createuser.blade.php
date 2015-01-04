@@ -70,10 +70,13 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 e srerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."<br/><br/>
 		  </div>
 		</div>
-		<label class="pure-checkbox">
+	</div>
+	<div class="col-md-10 col-md-offset-1">
+		<div class="checkbox">
+			<label>
 			<input type="checkbox" required>agree
-		</label>
-
+			</label>
+		</div>
 	</div>
 	<div class="col-md-5 col-md-offset-1">
 		<div class="g-recaptcha" data-sitekey="6Ldc5v4SAAAAALJ_2fquUl_7z13tTugj3oPo-ikb" style="display:inline-block;"></div>

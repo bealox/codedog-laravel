@@ -29,5 +29,10 @@ class Metadata extends BaseModel{
 
 	protected $dates = ['deleted_at'];
 
+	public function area() 
+	{
+		return $this->suburb . " ". $this->postcode. " ".$this->state;
+	}
+
 }
 

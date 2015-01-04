@@ -10,20 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+ 	
 Route::get('/', array('uses' => 'HomeController@homePage'));
-
-Route::get('test', function()
-{
-	return View::make('pages.testarea');
-});
-
-Route::get('fu', function()
-{
-	$dogusers = DogBreeder::all();
-	$catusers = CatBreeder::all();
-	return Redirect::to('test');
-});
 
 
 /**
@@ -54,16 +42,18 @@ Route::get('puppypost', array('as' => 'puppypost', 'uses' => 'HomeController@hom
 Route::get('maturepost', array('as' => 'maturepost', 'uses' => 'HomeController@homePage'));
 
 /**
- * Admin
+ * Profile
  */
 
 Route::group(
-	['prefix' => 'admin', 'before' => ['auth']], 
+	['prefix' => 'profile', 'before' => ['auth']], 
 	function () {
-		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'AdminController@getDashboard']);
-		Route::get('history', [ 'as' => 'history', 'uses' => 'AdminController@getHistory']);
-		Route::get('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@getCreatePost']);
-		Route::post('createpost', [ 'as' => 'createpost', 'uses' => 'AdminController@postCreatePost']);
+		Route::get('dashboard', [ 'as' => 'dashboard', 'uses' => 'controllers\User\UserProfileController@getDashboard']);
+		Route::get('dashboard/change_password', [ 'as' => 'change_password', 'uses' => 'controllers\User\UserProfileController@getChangePassword']);
+		Route::post('dashboard/change_password', [ 'as' => 'change_password', 'uses' => 'controllers\User\UserProfileController@postChangePassword']);
+		Route::get('dashboard/change_address', [ 'as' => 'change_address', 'uses' => 'controllers\User\UserProfileController@getChangeAddress']);
+		Route::post('dashboard/change_address', [ 'as' => 'change_address', 'uses' => 'controllers\User\UserProfileController@postChangeAddress']);
+		Route::resource('post', 'controllers\Post\PostProfileController');
 	}
 );
 
@@ -71,9 +61,12 @@ Route::group(
  * API
  */
 Route::group(
-	['prefix' => 'api'],
+	['prefix' => 'api', 'before' => ['auth']],
 	function() {
 		Route::get('postcode/{id}', ['as' => 'postcode', 'uses' => 'PostcodeController@printPostcode']); 
+		Route::get('user/{id}', function($id){
+			return Response::json(User::with('metadata')->findOrFail($id)); 
+		});
 	}
 );
 

@@ -12,6 +12,7 @@ class Post extends BaseModel{
 	 * @var string
 	 */
 	protected $table = 'Post';
+	protected $softDelete = true;
 
 	protected $sitClassField = 'class_name';
 	protected $stiBaseClass = 'Post';
@@ -25,9 +26,14 @@ class Post extends BaseModel{
 
 	protected $dates = ['deleted_at'];
 
-	public function users()
+	public function user()
 	{
-		return $this->belongsToMany('User','Post_User', 'post_id', 'user_id');
+		return $this->belongTo('User');
+	}
+
+	public function breed()
+	{
+		return $this->belongTo('Breed');
 	}
 }
 
