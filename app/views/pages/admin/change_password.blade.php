@@ -23,6 +23,7 @@
 					{{ Form::password('new_password_confirmation', array('placeholder' => 'Confirm New Password', 'required', 'class' => 'form-control')) }}
 				</div>
 		</div>
+
 		<div class="col-md-8 col-md-offset-2">	
 			<div class="row">
 			<div class="col-md-8">

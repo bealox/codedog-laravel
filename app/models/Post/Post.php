@@ -35,5 +35,10 @@ class Post extends BaseModel{
 	{
 		return $this->belongTo('Breed');
 	}
+
+	public function scopeSessionuser($query) 
+	{
+		return $query->where('user_id', '=', Auth::user().id);
+	}
 }
 

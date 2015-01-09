@@ -18,7 +18,7 @@ class Metadata extends BaseModel{
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('address', 'suburb', 'postcode', 'latitude', 'longitude', 'state');
+	protected $fillable = array('address', 'suburb', 'postcode', 'latitude', 'longitude', 'state', 'phone_no', 'postoffice_id');
 
 	/**
 	 * List of attributes not allow to be mass-assignable

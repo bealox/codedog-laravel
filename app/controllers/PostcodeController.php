@@ -21,18 +21,14 @@ class PostcodeController extends BaseController {
 	public function postcodeJson($value = null) {
 		$ch = curl_init();
 
+		Log::info('xxx ' . $value);
+
 		$postcode = $value != null ? $value : Input::get('postcode2');
 		$request = Request::instance();
-		$value = ltrim($request->getContent(), 'q=');
+		$value = $request->getContent();
 
-		$config = array(
-			'q' => $value,
-			'excludepostboxflag' => 'true'
-		);
-
-
-
-		$url = $this->url . http_build_query($config);
+		$url = $this->url.$value.'&excludepostboxflag=true';
+		Log::info($url);
 
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);

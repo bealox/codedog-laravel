@@ -17,17 +17,27 @@ class UserProfileController extends \BaseController {
 
 
 	public function getChangeAddress() {
-		return View::make('pages.admin.change_address');
+		$metadata = Auth::user()->metadata;
+		$state = $metadata->state;
+		
+		return View::make('pages.admin.change_address', compact('state', 'metadata'));
 	}
 
 	public function postChangeAddress() {
 
 		$user = Auth::user();
 
-		$user->metadata->phone_no= Input::get('phone_no');
-		$user->metadata->address = Input::get('address');
-		$user->metadata->show_details = Input::get('show_details');
-		$user->push();
+		$metadata = array(
+			'postcode' => Input::get('postcode_id'),
+			'postoffice_id' => Input::get('postoffice_id'),
+			'phone_no' => Input::get('phone_no'),
+			'address' => Input::get('address'),
+			'suburb' => Input::get('suburb'),
+			'show_details' => Input::get('show_details'),
+			'latitude' => Input::get('latitude'),
+			'longitude' => Input::get('longitude')
+		);
+		$user->metadata->update($metadata);
 		\Flash::success('Your user detail has been updated!');
 		return \Redirect::to('profile/dashboard');
 	}

@@ -1,35 +1,35 @@
 @extends('layouts.admin')
 @section('meta_title')
-	Dashboard
+	Dog Post	
 @stop
 @section('content')
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">User Detail 
-	<a href="{{URL::route('change_password')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Edit</a>
+	<a href="{{URL::route('change_password')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Change Password</a>
     </h3>
   </div>
-  <div class="panel-body">
+	<div class="panel-body">
+		<h4>
+			<img src="{{Auth::user()->thumbnail_url}}" class="img-rounded">
+			<span class="text-primary">{{Auth::user()->fullName()}}</span>
+		</h4>
+	</div>
 	<table class="table">
 		<thead width="100px">
-			<td width="200px"><strong>Name</strong></td>
-			<td>{{Auth::user()->fullName()}}</td>
-		</thead>
-		<tr>
-			<th><strong>Email/User Name</strong></th>
+			<td><strong>Email/User Name</strong></td>
 			<td>{{Auth::user()->email}}</td>
-		</tr>
+		</thead>
 		<tr>
 			<th><strong>Password</strong></th>
 			<td>✱✱✱✱✱✱✱✱✱✱✱✱✱✱<td>
 		</tr>
 	</table>
-  </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-	<a href="{{URL::route('change_address')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Edit</a>
+	<a href="{{URL::route('change_address')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Edit Detail</a>
 	Contact Detail
     </h3>
   </div>

@@ -67,8 +67,8 @@ class PostProfileController extends \BaseController {
 
 	public function getHistory() {
 		return View::make('pages.admin.history',[
-			'expireds' => Post::where('created_at', '<', new \DateTime('today'))->paginate('10'),
-			'actives' => Post::where('created_at', '>', new \DateTime('today'))->get()
+			'expireds' => Post::where('created_at', '<', new \DateTime('today'))->sessionuser()->paginate('10'),
+			'actives' => Post::where('created_at', '>', new \DateTime('today'))->sessionuser()->get()
 		]);
 	}
 

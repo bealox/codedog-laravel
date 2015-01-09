@@ -4,8 +4,7 @@ class PostTableSeeder extends Seeder {
 
 	public function run() 
 	{
-		Eloquent::unguard();
-
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 		$faker = Faker\Factory::create();
 
 		PuppyPost::truncate();
@@ -14,8 +13,7 @@ class PostTableSeeder extends Seeder {
 			PuppyPost::create([
 				'title' => $faker->sentence(30),
 				'description' => $faker->paragraph(3),
-				'user_id' => 42,
-				'image_url' => $faker->imageUrl(67,67),
+				'user_id' => $faker->numberBetween($min = 1, $max = 2),
 				'created_at' => $faker->dateTimeThisYear()
 			]);	
 		}

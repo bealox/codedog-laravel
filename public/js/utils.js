@@ -1,25 +1,35 @@
 $(document).ready( function() {
 	postcode_select2();
-       	postcode_autocomplete();
 });
 
 function postcode_select2() {
+
+	var query= {q:''};
+
+	if($('input[name="static_state"]').length){
+		query['state'] = $('input[name="static_state"]').val();
+	}
+
 	$("#e1").select2({
-		placeholder: "Search for a postcode",
+		placeholder: 'Postcode',
 		minimumInputLength: 3,
 		width: '100%',
+		initSelection: function(element, callback){
+			var data = {'id': selected_location.id, 'text': selected_location.postcode + ' - ' + 
+			selected_location.suburb + ' - ' + selected_location.state};
+			callback(data);
+		},
 		ajax:{
-			url:'postcodejson',
+			url:'/postcodejson',
 			type:'POST',
 			datatype:'json',
 			quietMillis: 250,
 			params: {
 			    contentType: 'application/json; charset=utf-8'
-			  },
+			},
 			data: function(term, page) {
-				return {
-					q:term
-				};
+				query['q'] = term;
+				return query;
 			},
 			results: function(data, page) {
 			    var Results = [];
@@ -40,13 +50,13 @@ function postcode_select2() {
 				    }
 			    }
 			},
-			cache: true,
-			containerCssClass: "form-group"
+			cache: true
 		}
-	});
+	}).select2('val', []);
 
 	$(document).on('change', '#e1',function() {
 		console.log($(this).select2('data').data);
+		$('input[name="postoffice_id"]').val($(this).select2('data').data.id);
 		$('input[name="postcode_id"]').val($(this).select2('data').data.postcode);
 		$('input[name="suburb"]').val($(this).select2('data').data.location)
 		$('input[name="state"]').val($(this).select2('data').data.state)
