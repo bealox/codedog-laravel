@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Post;
+use Codedog\Notifications\Flash;
 use Illuminate\Support\Facades\Redirect;
 
 class PostProfileController extends \BaseController {
@@ -17,6 +18,7 @@ class PostProfileController extends \BaseController {
 			'actives' => Post::where('created_at', '>', new \DateTime('today'))->get()
 		]);
 	}
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -31,45 +33,24 @@ class PostProfileController extends \BaseController {
 		return Redirect::back();
 	}
 
-	public function getCreatePost() {
-		//return View::make('pages.admin.createpost')->with('links', $this->links);
-		$posts = PuppyPost::all();
-		$links = $this->links;
-		return View::make('pages.admin.createpost', compact('posts', 'links'));
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return View::make('pages.admin.post_editor');			
 	}
 
-	public function postCreatePost() {
-		$rules = array(
-			'title' => 'required|max:100',
-			'description' => 'required',
-		);
-
-		$validator = Validator::make(Input::all(), $rules);
-
-		if($validator->fails()) {
-			return Redirect::to('profile/createpost')
-				->withErrors($validator);
-		}else{
-
-			$postdata = array(
-				'title' => Input::get('title'),
-				'description' => Input::get('description'),
-			);
-
-
-			$post = PuppyPost::create($postdata);
-			$post->users()->attach(Auth::id());
-
-			return Redirect::to('profile/createpost')->withinput()->with('success', 'A post has been created');
-
-		}
-	}
-
-	public function getHistory() {
-		return View::make('pages.admin.history',[
-			'expireds' => Post::where('created_at', '<', new \DateTime('today'))->sessionuser()->paginate('10'),
-			'actives' => Post::where('created_at', '>', new \DateTime('today'))->sessionuser()->get()
-		]);
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
 	}
 
 

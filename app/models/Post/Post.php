@@ -40,5 +40,6 @@ class Post extends BaseModel{
 	{
 		return $query->where('user_id', '=', Auth::user().id);
 	}
+
 }
 

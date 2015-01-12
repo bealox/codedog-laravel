@@ -95,7 +95,7 @@ class RegistrationController extends BaseController {
 				->subject('Verify your email address');
 			});
 
-			Flash::success("Thanks for signing up! please check your email.");
+			Flash::success("Complete your account registration. send verification email");
 			return Redirect::to('/');
 
 		}

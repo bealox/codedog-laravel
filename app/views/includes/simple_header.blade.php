@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Dog Post</a>
+      <a class="navbar-brand" href="{{URL::route('home')}}">Dog Post</a>
     </div>
 
   </div><!-- /.container-fluid -->

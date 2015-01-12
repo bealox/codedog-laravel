@@ -16,6 +16,7 @@ class Breed extends BaseModel {
 	 * @var string
 	 */
 	protected $table = 'Breed';
+	protected $softDelete = true;
 
 	protected $sitClassField = 'class_name';
 	protected $stiBaseClass = 'Breed';
@@ -28,6 +29,10 @@ class Breed extends BaseModel {
 	
 	public function posts() {
 		return $this->hasMany('Post');
+	}
+
+	public function breed_type(){
+		return $this->belongTo('BreedType');
 	}
 
 }

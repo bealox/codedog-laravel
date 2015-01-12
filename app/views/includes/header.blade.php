@@ -27,9 +27,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	@if(Auth::user())
+		<li>
+			<a href="{{URL::route('profile.post.create')}}"><span class="fa fa-pencil-square fa-fw"></span>Write</a>
+		</li>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
-				<img src="{{Auth::user()->thumbnail_url}}" width="20px" height="20px" class="img-rounded">
 				{{Auth::user()->first_name}}<span class="fa fa-chevron-down fa-fw"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu">

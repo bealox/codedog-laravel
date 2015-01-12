@@ -15,10 +15,10 @@
 		<div class="list-group">
 		 <a class="list-group-item disabled">Profile</a>
 		  <a href="{{URL::route('dashboard');}}" class="list-group-item {{(Request::is('*/dashboard')?'active' : '')}}">
-		    Account Detail
+		    Account Details
 		  </a>
 		  <a href="{{URL::route('profile.post.index');}}" class="list-group-item {{(Request::is('*/post')?'active' : '')}}">
-		    Postal History 
+		    Posts 
 		  </a>
 		</div>
 	</div>
