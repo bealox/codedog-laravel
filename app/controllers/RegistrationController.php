@@ -29,7 +29,9 @@ class RegistrationController extends BaseController {
 			'email' => 'required|email|unique:User,email',
 			'password' => 'required|alphaNum|Between:5,12|confirmed',
 			'password_confirmation' => 'required',
-			'postcode' => 'required'
+			'postcode' => 'required',
+			'breed' => 'required',
+			'membership' => 'required|alphaNum'
 		);
 
 		$error = null;
@@ -39,6 +41,16 @@ class RegistrationController extends BaseController {
 
 		$secret = getenv('RECAPTCHA_SECRET');
 		$reCaptcha = new ReCaptcha($secret);
+		
+		//so postcode select can have initial selection
+		$metadata = array(
+			'postcode' => Input::get('postcode_id'),
+			'suburb' => Input::get('suburb'),
+			'state' => Input::get('state'),
+			'latitude' => Input::get('latitude'),
+			'longitude' => Input::get('longitude'),
+			'postoffice_id' => Input::get('postoffice_id'),
+		);
 
 		// Was there a reCAPTCHA response?
 		if ($_POST['g-recaptcha-response']) {
@@ -50,14 +62,13 @@ class RegistrationController extends BaseController {
 
 		if($resp == null || !$resp->success){
 			Flash::error('Please verify you are not a robot.');
-			return Redirect::to('register')
-				->withInput(Input::except('passwod'));
+			return Redirect::to('register')->with(compact('metadata'))->withInput(Input::except('passwod'));	
 		}
 
 
 		if($validator->fails()) {
 			Flash::errors($validator->errors()->toArray());
-			return Redirect::to('register')
+			return Redirect::to('register')->with(compact('metadata'))
 				->withInput(Input::except('password'));
 		}else{
 
@@ -67,26 +78,21 @@ class RegistrationController extends BaseController {
 				'first_name' => Input::get('first_name'),
 				'last_name' => Input::get('last_name'),
 				'email' => Input::get('email'),
+				'membership_no' => Input::get('membership'),
 				'confirmation_code' => $confirmation_code
 			);
-
-			$metadata = array(
-				'postcode' => Input::get('postcode_id'),
-				'suburb' => Input::get('suburb'),
-				'state' => Input::get('state'),
-				'latitude' => Input::get('latitude'),
-				'longitude' => Input::get('longitude')
-			);
-
-
+			
 			$breeder = DogBreeder::create($userdata);
 			$breeder->password = input::get('password');
 
-			$meta = Metadata::create($metadata);
-			$meta->user_id = $breeder->id;
-
+			//Inserting breeds (M to M)
+			$breeds =explode(',', Input::get('breed'));
+			$breeder->breeds()->sync($breeds);
+			//Inserting metadata (O to O)
+			$meta= new Metadata($metadata);
+			$breeder->metadata()->save($meta);
+			//this is to save the password
 			$breeder->save();
-			$meta->save();	
 
 			$data = array_add(array('confirmation_code' => $confirmation_code), 'key', 'value');
 			

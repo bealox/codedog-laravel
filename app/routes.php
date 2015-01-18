@@ -28,7 +28,9 @@ Route::post('login', array('as' => 'login', 'uses' => 'LoginController@postLogin
 Route::get('register', array('as' => 'createuser','uses' => 'RegistrationController@getCreateUser'));
 Route::post('register', array('as' => 'createuser', 'uses' => 'RegistrationController@postCreateUser'));
 Route::post('postcodejson', array('uses' => 'PostcodeController@jQueryPostcode'));
-Route::post('postcodejson2', array('uses' => 'PostcodeController@rawPostcode'));
+Route::post('breedjson', array('uses' => 'controllers\Breed\BreedController@json'));
+Route::post('breedjson_id', array('uses' => 'controllers\Breed\BreedController@json_id'));
+Route::get('breedjson', array('uses' => 'controllers\Breed\BreedController@json'));
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'RegistrationController@getConfirmAction'
@@ -67,6 +69,7 @@ Route::group(
 		Route::get('user/{id}', function($id){
 			return Response::json(User::with('metadata')->findOrFail($id)); 
 		});
+		Route::get('breedjson/{id}', array('uses' => 'controllers\Breed\BreedController@json'));
 	}
 );
 

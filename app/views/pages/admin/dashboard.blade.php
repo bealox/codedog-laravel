@@ -29,6 +29,35 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
+	Membership Details	
+    </h3>
+  </div>
+  <div class="panel-body">
+   <address> 
+	<table class="table">
+		<thead>
+			<td width="200px"><strong>Membership</strong></td>
+			<td>{{Auth::user()->membership_no}}</td>
+		</thead>
+		<tr>
+			<th><strong>Expiry Date</strong></th>
+			<td>{{Auth::user()->membership_expired_at}}</td>
+		</tr>
+		<tr>
+			<th><strong>Breeds</strong></th>
+			<td>
+				@foreach(Auth::user()->breeds as $breed)
+					{{$breed->name}}
+				@endforeach	
+			</td>
+		</tr>
+	</table>
+   </address>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
 	<a href="{{URL::route('change_address')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Edit Detail</a>
 	Contact Detail
     </h3>

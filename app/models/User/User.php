@@ -34,7 +34,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('first_name', 'last_name', 'email', 'confirmation_code');
+	protected $fillable = array('first_name', 'last_name', 'email', 'confirmation_code', 'membership_no');
 
 	/**
 	 * List of attributes not allow to be mass-assignable
@@ -47,7 +47,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public function breeds()
 	{
-		return $this->belongsToMany('Breed');
+		return $this->belongsToMany('Breed','Breed_User');
 	}
 
 	public function posts()
@@ -57,7 +57,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public function metadata()
 	{
-		return $this->hasOne('Metadata');
+		return $this->hasOne('Metadata', 'user_id');
 	}
 
 	public function getRememberToken()

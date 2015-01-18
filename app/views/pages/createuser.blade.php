@@ -3,6 +3,11 @@
 	Login
 @stop
 @section('external')
+	<script type="text/javascript">
+		@if(Session::has('metadata'))
+			var selected_location = <?php echo json_encode(Session::get('metadata'));?>;
+		@endif
+	</script>
 	{{HTML::script('js/utils.js')}}
 	{{HTML::script('https://www.google.com/recaptcha/api.js')}}
 	{{HTML::style('css/utils.css')}}
@@ -12,10 +17,22 @@
 
 
 @section('content')
-	{{Form::open(array('url' => 'register', 'class' => 'pure-form pure-form-aligned'))}}
+{{Form::open(array('url' => 'register', 'class' => 'pure-form pure-form-aligned'))}}
 <div class="row">
 	<div class="col-md-12 col-md-offset-1">
 		<h2>New User Form </h2>
+	</div>
+	<div class = "col-md-5 col-md-offset-1">
+			<div class="form-group">
+				<label class="control-label">Breeds</label>
+				{{Form::hidden('breed',Input::old('breed_id'),array('placeholder' => 'Breed', 'id' => 'breed_select2', 'class'=>'form-control'))}}
+			</div>
+	</div>
+	<div class="col-md-5"> 
+			<div class="form-group">
+				<label> Membership No</label>
+				{{ Form::text ('membership',"", array('placeholder' => 'Membership No', 'required', 'class' => 'form-control'))}}
+			</div>
 	</div>
 	<div class="col-md-5 col-md-offset-1">
 			<div class="form-group">
@@ -31,7 +48,7 @@
 	</div>
 	<div class="col-md-5 col-md-offset-1">
 			<div class="form-group">
-				<label> Email address </label>
+				<label> Email Address </label>
 				{{ Form::text 
 				('email', Input::old('email'), 
 				array('placeholder' => 'example@domain.com', 'required', 'class' => 'form-control'))}}
@@ -40,7 +57,7 @@
 	<div class = "col-md-5">
 			<div class="form-group">
 				<label class="control-label">Postcode</label>
-				<input type="hidden" id="e1" name="postcode" required class="form-control"></input>
+				{{Form::hidden('postcode',Input::old('postcode'),array('placeholder' => 'Postcode', 'id' => 'e1', 'class'=>'form-control'))}}
 			</div>
 	</div>
 	<div class="col-md-5 col-md-offset-1">
@@ -90,5 +107,7 @@ e srerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobi
 			<p>{{Form::hidden('postcode_id', '',array('id'=>'postcode_id'))}}</p>
 			<p>{{Form::hidden('suburb', '',array('id'=>'suburb'))}}</p>
 			<p>{{Form::hidden('state', '',array('id'=>'state'))}}</p>
+			<p>{{Form::hidden('postoffice_id', '',array('id'=>'postoffice_id'))}}</p>
+			<p>{{Form::hidden('breed_id', '',array('id'=>'breed_id'))}}</p>
 	{{ Form::close() }}
 @stop

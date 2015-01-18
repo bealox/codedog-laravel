@@ -1,9 +1,10 @@
 $(document).ready( function() {
 	postcode_select2();
+	breed_select2();
 });
 
 function postcode_select2() {
-
+	
 	var query= {q:''};
 
 	if($('input[name="static_state"]').length){
@@ -15,9 +16,12 @@ function postcode_select2() {
 		minimumInputLength: 3,
 		width: '100%',
 		initSelection: function(element, callback){
-			var data = {'id': selected_location.id, 'text': selected_location.postcode + ' - ' + 
-			selected_location.suburb + ' - ' + selected_location.state};
-			callback(data);
+			if(typeof selected_location !== 'undefined'){
+				console.log(selected_location);
+				var data = {'id': selected_location.postoffice_id, 'text': selected_location.postcode + ' - ' + 
+				selected_location.suburb + ' - ' + selected_location.state};
+				callback(data);
+			}
 		},
 		ajax:{
 			url:'/postcodejson',
@@ -55,7 +59,7 @@ function postcode_select2() {
 	}).select2('val', []);
 
 	$(document).on('change', '#e1',function() {
-		console.log($(this).select2('data').data);
+		console.log($(this).select2('data'));
 		$('input[name="postoffice_id"]').val($(this).select2('data').data.id);
 		$('input[name="postcode_id"]').val($(this).select2('data').data.postcode);
 		$('input[name="suburb"]').val($(this).select2('data').data.location)
@@ -65,60 +69,70 @@ function postcode_select2() {
 	});
 }
 
+function breed_select2(){
+	var breed = $('#breed_select2');
 
-
-
-
-function postcode_autocomplete() {
-            $("#postcode").autocomplete({
-                minLength:3, 
-                source: function (request, response) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'postcodejson', //your server side script
-                        dataType: 'json',
-                        data: {
-                            postcode: request.term,
-                        },
-                        success: function (data) {
-                            //if multiple results are returned
-                            if(data.localities.locality instanceof Array)
-                                response ($.map(data.localities.locality, function (item) {
-                                    return {
-                                        label: item.location + ' ' + item.postcode + ',' + item.state,
-                                        value: item.postcode,
-					obj: item
-                                    }
+	$("#breed_select2").select2({
+		placeholder: 'Select A Breed',
+		width: '100%',
+		multiple:true,
+		maximumSelectionSize:2,
+		initSelection: function(element, callback){
+			if(!breed.length == 0 && breed.val() ){
+				var results;
+				return $.ajax({
+				url: '/breedjson_id',
+				type: "POST",
+				dataType: "json",
+				data: {
+				  id: breed.val()
+				}
+			      }).done(function(data) {
+				 results = [];
+                                ($.map(data, function (item) {
+					results.push({'id': item.id, 'text':item.name});
                                 }));
-                            //if a single result is returned
-                            else
-                                response ($.map(data.localities, function (item) {
-                                    return {
-                                        label: item.location + ', ' + item.postcode + ',' +item.state,
-                                        value: item.postcode,
-					obj: item
-                                    }
-                                }));
-                        }
-                    });
-                },
-		select: function(event, ui) {
-			$('input[name="suburb"]').val(ui.item.obj.location);	
-			$('select[name="state"]').val(ui.item.obj.state);	
-			$('input[name="longitude"]').val(ui.item.obj.longitude);	
-			$('input[name="latitude"]').val(ui.item.obj.latitude);	
-		},
-		open: function(event) {
-			$('.ui-autocomplete').css('height', '100px');
-			var $input = $(event.target),
-			    inputTop = $input.offset().top,
-			    inputHeight = $input.height(),
-			    autocompleteHeight = $('.ui-autocomplete').height(),
-			    windowHeight = $(window).height();
-
-			if ((inputHeight + inputTop+ autocompleteHeight) > windowHeight) {
-			    $('.ui-autocomplete').css('height', (windowHeight - inputHeight - inputTop - 20) + 'px');
+				 callback(results);
+			    });
 			}
+		},
+		ajax:{
+			url:'/breedjson',
+			type:'POST',
+			datatype:'json',
+			params: {
+			    contentType: 'application/json; charset=utf-8'
+			},
+			data: function(term, page) {
+				return {
+					q : term	
+				}	
+			},
+			results: function(data, page) {
+			    var Results = [];
+                            if(data instanceof Array){
+                                ($.map(data, function (item) {
+					Results.push({'id': item.id, 'text':item.name});
+                                }));
+				   return {
+					results: Results
+				    };
+                            //if a single result is returned
+			    }else{
+                                 ($.map(data.localities, function (item) {
+					Results.push({'id': item.id, 'text':item.name});
+                                }));
+				    return {
+					results: Results
+				    }
+			    }
+			},
+			cache: true
 		}
-            });
+	}).select2('val', []);
+
+	$(document).on('change', '#breed_select2',function() {
+		$('input[name="breed_id"]').val($('#breed_select2').select2('data'));
+	});
 }
+
