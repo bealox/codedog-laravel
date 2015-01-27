@@ -70,6 +70,7 @@ function postcode_select2() {
 }
 
 function breed_select2(){
+
 	var breed = $('#breed_select2');
 
 	$("#breed_select2").select2({

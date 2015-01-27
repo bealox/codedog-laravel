@@ -1,22 +1,17 @@
 <?php
-namespace controllers\Post;
+namespace controllers\Breeder;
 
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Request;
 use Post;
 use Codedog\Utilities\General;
 
 
-class PostController extends \BaseController {
+class BreederController extends \BaseController {
 
 	public function index() {
 		$general = new General();
-
-		$query = Request::get('state');
-
-		return View::make('pages.post',[
-			//'active' => Post::active()->orderBy('updated_at','created_at')->paginate('10'),
-			'active' => Post::expired()->paginate('10'),
+		return View::make('pages.breeder',[
+			'actives' => Post::where('expired_at', '>', new \DateTime('today'))->get(),
 			'state' => $general->state() 
 		]);
 	}

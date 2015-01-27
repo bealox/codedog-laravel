@@ -16,20 +16,20 @@ $(document).ready(function() {
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			{{Form::open(array('method' => 'PATCH', 'route' => ['profile.post.update', $post->id]))}}
+			{{Form::open(array('url' => URL::route('profile.post.store')))}}
 			<div class="form-group">
 				<label> Title </label>
-				{{Form::text('title',$post->title , array('class' => 'form-control input-lg center-block', 'style' => 'width:100%;'))}}
+				{{Form::text('title',null , array('class' => 'form-control input-lg center-block', 'style' => 'width:100%;'))}}
 			</div>
 			<div class="form-group">
 				<label> Description </label>
-				{{Form::textarea('body',$post->description, array('id' => 'body', 'class' => 'form-control' ))}}
+				{{Form::textarea('body',null, array('id' => 'body', 'class' => 'form-control' ))}}
 			</div>
 			<div class="form-group">
 				<label>Breed</label>
-				{{Form::select('breed', $breeds, $post->breed->id, array('class'=>'form-control' ))}}
+				{{Form::select('breed', $breeds, null, array('class'=>'form-control' ))}}
 			</div>
-				<input type="submit" class="btn btn-success btn-lg btn-block" value="Save">
+				<input type="submit" class="btn btn-success btn-lg btn-block" value="Publish">
 			<script>
 				var btnsGrps = jQuery.trumbowyg.btnsGrps;
 				$('#body').trumbowyg({

@@ -21,6 +21,13 @@ Route::get('login', array('as' => 'login','uses' => 'LoginController@getLogin'))
 Route::get('logout', array('as' => 'logout', 'uses' => 'LoginController@getLogout'));
 Route::post('login', array('as' => 'login', 'uses' => 'LoginController@postLogin'));
 
+/**
+ * Post
+ */
+Route::resource('post', 'controllers\Post\PostController', array('only' => array('show','index'))); 
+Route::resource('dog_breed', 'controllers\Breed\BreedController', array('only' => array('show','index'))); 
+Route::resource('dog_breeder', 'controllers\Breeder\BreederController', array('only' => array('show','index'))); 
+
 
 /**
  * User creation
@@ -36,12 +43,6 @@ Route::get('register/verify/{confirmationCode}', [
     'uses' => 'RegistrationController@getConfirmAction'
 ]);
 
-/**
- * Post Controller
- */
-
-Route::get('puppypost', array('as' => 'puppypost', 'uses' => 'HomeController@homePage'));
-Route::get('maturepost', array('as' => 'maturepost', 'uses' => 'HomeController@homePage'));
 
 /**
  * Profile
@@ -55,7 +56,7 @@ Route::group(
 		Route::post('dashboard/change_password', [ 'as' => 'change_password', 'uses' => 'controllers\User\UserProfileController@postChangePassword']);
 		Route::get('dashboard/change_address', [ 'as' => 'change_address', 'uses' => 'controllers\User\UserProfileController@getChangeAddress']);
 		Route::post('dashboard/change_address', [ 'as' => 'change_address', 'uses' => 'controllers\User\UserProfileController@postChangeAddress']);
-		Route::resource('post', 'controllers\Post\PostProfileController');
+		Route::resource('post', 'controllers\Post\PostProfileController', array('except' => array('show',))); 
 	}
 );
 
@@ -81,5 +82,6 @@ Route::get('password/reset/{token}', 'RemindersController@getReset');
 Route::post('password/reset/{token}', 'RemindersController@postReset');
 Route::post('password/remind/', 'RemindersController@postRemind');
 Route::get('password/remind/', 'RemindersController@getRemind');
+
 
 

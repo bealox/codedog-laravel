@@ -10,3 +10,33 @@
 	-webkit-border-radius: 10px 10px 10px 10px;
 	border: 0px solid #ddd;
 }
+
+.trumbowyg-box, .trumbowyg-editor {
+	width:100% !important;
+	margin: 2px 0 15px 0 !important;
+}
+
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.title {
+	display: inline-block;
+        max-width: 600px;
+       	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.post-details {
+	font-size:12px;
+	display:inline-block;
+}
+
+.panel-footer img{
+	width:50px;
+	vertical-align:top;
+}

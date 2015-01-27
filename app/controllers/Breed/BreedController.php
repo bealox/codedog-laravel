@@ -3,8 +3,34 @@ namespace controllers\Breed;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Codedog\Utilities\General;
+use Illuminate\Support\Facades\View;
+use Post;
 
 class BreedController extends \BaseController {
+	public function index() {
+		$general = new General();
+		return View::make('pages.breed',[
+			'actives' => Post::where('expired_at', '>', new \DateTime('today'))->get(),
+			'state' => $general->state() 
+		]);
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * return list of breeds
+	 * @return Json
+	 */
 	public function json(){
 		$request = \Request::instance();
 		$value = trim($request->getContent(), "q=");
@@ -16,6 +42,10 @@ class BreedController extends \BaseController {
 		return \Response::json(($breeds));
 	}
 
+	/**
+	 * Display list of breeds based on the id 
+	 * @return Json 
+	 */
 	public function json_id(){
 		$request = \Request::instance();
 		$value = trim($request->getContent(), "id=");

@@ -14,16 +14,27 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-	<li class="active">
-	<a href="#">
-		<span class="fa fa-pencil fa-fw"></span>
-		Post<span class="sr-only">(current)</span></a></li>
-	<li><a href="#">
-		<span class="fa fa-paw fa-fw"></span>
-	Dog Breeds</a></li>
-	<li><a href="#">
-		<span class="fa fa-male fa-fw"></span>
-		Breeders</a></li>
+	<li class="{{Request::is('post')?'active' : ''}}">
+		<a href="{{URL::route('post.index')}}">
+			<span class="fa fa-pencil fa-fw"></span>
+			Post
+			<span class="sr-only">{{(Request::is('post')?'(current)' : '')}}</span>
+		</a>
+	</li>
+	<li class="{{(Request::is('dog_breed')?'active' : 'false')}}">
+		<a href="{{URL::route('dog_breed.index')}}">
+			<span class="fa fa-paw fa-fw"></span>
+			Dog Breeds
+			<span class="sr-only">{{(Request::is('dog_breed')?'(current)' : '')}}</span>
+		</a>
+	</li>
+	<li class="{{(Request::is('dog_breeder')?'active' : 'false')}}">
+		<a href="{{URL::route('dog_breeder.index')}}">
+			<span class="fa fa-male fa-fw"></span>
+			Breeders
+			<span class="sr-only">{{(Request::is('dog_breeder')?'(current)' : '')}}</span>
+		</a>
+	</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	@if(Auth::user())

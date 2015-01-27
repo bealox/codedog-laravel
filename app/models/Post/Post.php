@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Codedog\Observers\PostObserver;
 
 class Post extends BaseModel{
 
@@ -28,18 +29,27 @@ class Post extends BaseModel{
 
 	public function user()
 	{
-		return $this->belongTo('User');
+		return $this->belongsTo('User');
 	}
 
 	public function breed()
 	{
-		return $this->belongTo('Breed');
+		return $this->belongsTo('Breed');
 	}
 
-	public function scopeSessionuser($query) 
+	public function scopeSessionUser($query) 
 	{
-		return $query->where('user_id', '=', Auth::user().id);
+		return $query->where('user_id', '=', Auth::user()->id);
 	}
 
+	public function scopeActive($query)
+	{
+		return $query->where('expired_at', '>', new \DateTime('today'));  
+	}
+
+	public function scopeExpired($query)
+	{
+		return $query->where('expired_at', '<', new \DateTime('today'));  
+	}
 }
 

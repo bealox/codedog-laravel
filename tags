@@ -5,6 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 AddImageurlForPost	app/database/migrations/2015_01_01_224716_add_imageurl_for_Post.php	/^class AddImageurlForPost extends Migration {$/;"	c
+AddMembershipToUser	app/database/migrations/2015_01_16_124115_add_membership_to_user.php	/^class AddMembershipToUser extends Migration {$/;"	c
 AddPostIdInMetadata	app/database/migrations/2015_01_08_212002_add_post_id_in_metadata.php	/^class AddPostIdInMetadata extends Migration {$/;"	c
 AddThumbnailUser	app/database/migrations/2015_01_04_075945_add_thumbnail_user.php	/^class AddThumbnailUser extends Migration {$/;"	c
 BaseController	app/controllers/BaseController.php	/^class BaseController extends Controller {$/;"	c
@@ -39,6 +40,7 @@ Metadata	app/models/Metadata/Metadata.php	/^class Metadata extends BaseModel{$/;
 MetadataTableSeeder	app/database/seeds/MetadataTableSeeder.php	/^class MetadataTableSeeder extends Seeder$/;"	c
 Post	app/models/Post/Post.php	/^class Post extends BaseModel{$/;"	c
 PostController	app/controllers/Post/PostController.php	/^class PostController extends \\BaseController {$/;"	c
+PostObserver	app/Codedog/Observers/PostObserver.php	/^class PostObserver {$/;"	c
 PostProfileController	app/controllers/Post/PostProfileController.php	/^class PostProfileController extends \\BaseController {$/;"	c
 PostTableSeeder	app/database/seeds/PostTableSeeder.php	/^class PostTableSeeder extends Seeder {$/;"	c
 PostcodeController	app/controllers/PostcodeController.php	/^class PostcodeController extends BaseController {$/;"	c
@@ -75,11 +77,19 @@ all	app/models/BaseModel.php	/^	public static function all($columns = array('*')
 answers	app/lib/ReCaptchaResponse.php	/^        $answers = json_decode($getResponse, true);$/;"	v
 api_key	app/controllers/PostcodeController.php	/^	private $api_key = 'd52a2ddd-37ee-4fa9-9d44-31a433ae95a6';$/;"	v
 area	app/models/Metadata/Metadata.php	/^	public function area() $/;"	f
+boot	app/models/Post/Post.php	/^	public static function boot()$/;"	f
+breed	app/controllers/Post/PostProfileController.php	/^			$breed = \\DogBreed::find(Input::get('breed'));$/;"	v
 breed	app/models/Post/Post.php	/^	public function breed()$/;"	f
 breed_type	app/models/Breed/Breed.php	/^	public function breed_type(){$/;"	f
 breeder	app/controllers/RegistrationController.php	/^			$breeder = DogBreeder::create($userdata);$/;"	v
-breeds	app/controllers/Breed/BreedController.php	/^		$breeds = \\DogBreed::All();$/;"	v
+breeds	app/controllers/Breed/BreedController.php	/^			$breeds = \\DogBreed::orderBy('name', 'asc')->get();$/;"	v
+breeds	app/controllers/Breed/BreedController.php	/^			$breeds = \\DogBreed::where('name', 'LIKE', '%'.$value.'%')->get();	$/;"	v
+breeds	app/controllers/Breed/BreedController.php	/^		$breeds =explode("%2C", $value);$/;"	v
+breeds	app/controllers/Post/PostProfileController.php	/^			$breeds = array_add($breeds, $breed->id, $breed->name);	$/;"	v
+breeds	app/controllers/Post/PostProfileController.php	/^		$breeds = array();$/;"	v
+breeds	app/controllers/RegistrationController.php	/^			$breeds =explode(',', Input::get('breed'));$/;"	v
 breeds	app/models/BreedType/BrredType.php	/^	public function breeds()$/;"	f
+breeds	app/models/User/DogBreeder.php	/^	public function breeds()$/;"	f
 breeds	app/models/User/User.php	/^	public function breeds()$/;"	f
 builder	app/models/BaseModel.php	/^    $builder = parent::newQuery($excludeDeleted);$/;"	v
 ch	app/controllers/PostcodeController.php	/^		$ch = curl_init();$/;"	v
@@ -129,6 +139,7 @@ down	app/database/migrations/2015_01_04_075945_add_thumbnail_user.php	/^	public 
 down	app/database/migrations/2015_01_08_212002_add_post_id_in_metadata.php	/^	public function down()$/;"	f
 down	app/database/migrations/2015_01_11_211615_table_breed_type.php	/^	public function down()$/;"	f
 down	app/database/migrations/2015_01_12_073344_update_breeder_breeder_type.php	/^	public function down()$/;"	f
+down	app/database/migrations/2015_01_16_124115_add_membership_to_user.php	/^	public function down()$/;"	f
 edit	app/controllers/Post/PostController.php	/^	public function edit($id)$/;"	f
 email	app/controllers/RemindersController.php	/^		$email = DB::table(Config::get('auth.reminder.table'))->where('token', $token)->pluck('email'); $/;"	v
 error	app/Codedog/Notifications/FlashNotifier.php	/^	public function error($message) $/;"	f
@@ -140,7 +151,7 @@ faker	app/database/seeds/UserTableSeeder.php	/^		$faker = Faker\\Factory::create
 fillable	app/models/BreedType/BrredType.php	/^	protected $fillable = array('name', 'group_id');$/;"	v
 fillable	app/models/Metadata/Metadata.php	/^	protected $fillable = array('address', 'suburb', 'postcode', 'latitude', 'longitude', 'state', 'phone_no', 'postoffice_id');$/;"	v
 fillable	app/models/Post/Post.php	/^	protected $fillable = array('title', 'description');$/;"	v
-fillable	app/models/User/User.php	/^	protected $fillable = array('first_name', 'last_name', 'email', 'confirmation_code');$/;"	v
+fillable	app/models/User/User.php	/^	protected $fillable = array('first_name', 'last_name', 'email', 'confirmation_code', 'membership_no');$/;"	v
 flat	app/Codedog/Notifications/FlashNotifier.php	/^		$flat = array_flatten($messages);$/;"	v
 forgotPassword	app/controllers/LoginController.php	/^	public function forgotPassword()$/;"	f
 fullName	app/models/User/User.php	/^	public function fullName()$/;"	f
@@ -170,11 +181,12 @@ instance	app/models/BaseModel.php	/^      $instance = new $class;$/;"	v
 it_displays_flash_notifications	app/tests/ExampleTest.php	/^	public function it_displays_flash_notifications()$/;"	f
 jQueryPostcode	app/controllers/PostcodeController.php	/^	public function jQueryPostcode(){$/;"	f
 json	app/controllers/Breed/BreedController.php	/^	public function json(){$/;"	f
+json_id	app/controllers/Breed/BreedController.php	/^	public function json_id(){$/;"	f
 layout	app/controllers/BaseController.php	/^			$this->layout = View::make($this->layout);$/;"	v
 message	app/Codedog/Notifications/FlashNotifier.php	/^		$message = implode($flat);$/;"	v
 message	app/Codedog/Notifications/FlashNotifier.php	/^	public function message($message, $level = 'info') $/;"	f
-meta	app/controllers/RegistrationController.php	/^			$meta = Metadata::create($metadata);$/;"	v
-metadata	app/controllers/RegistrationController.php	/^			$metadata = array($/;"	v
+meta	app/controllers/RegistrationController.php	/^			$meta= new Metadata($metadata);$/;"	v
+metadata	app/controllers/RegistrationController.php	/^		$metadata = array($/;"	v
 metadata	app/controllers/User/UserProfileController.php	/^		$metadata = Auth::user()->metadata;$/;"	v
 metadata	app/controllers/User/UserProfileController.php	/^		$metadata = array($/;"	v
 metadata	app/models/User/User.php	/^	public function metadata()$/;"	f
@@ -182,6 +194,7 @@ newFromBuilder	app/models/BaseModel.php	/^  public function newFromBuilder($attr
 newQuery	app/models/BaseModel.php	/^  public function newQuery($excludeDeleted = true)$/;"	f
 overlay	app/Codedog/Notifications/FlashNotifier.php	/^	public function overlay($message) $/;"	f
 password_reminders	app/models/User/User.php	/^	public function password_reminders()$/;"	f
+post	app/controllers/Post/PostProfileController.php	/^			$post = array($/;"	v
 post	app/controllers/Post/PostProfileController.php	/^		$post = Post::findOrFail($id);$/;"	v
 postChangeAddress	app/controllers/User/UserProfileController.php	/^	public function postChangeAddress() {$/;"	f
 postChangePassword	app/controllers/User/UserProfileController.php	/^	public function postChangePassword() {$/;"	f
@@ -194,6 +207,8 @@ postcodeJson	app/controllers/PostcodeController.php	/^	public function postcodeJ
 posts	app/models/Breed/Breed.php	/^	public function posts() {$/;"	f
 posts	app/models/User/User.php	/^	public function posts()$/;"	f
 printPostCode	app/controllers/PostcodeController.php	/^	public function printPostCode($id) {$/;"	f
+puppy	app/controllers/Post/PostProfileController.php	/^			$puppy = \\PuppyPost::create($post);$/;"	v
+query	app/controllers/Breed/BreedController.php	/^		$query= DB::table('Breed'); $/;"	v
 rawPostcode	app/controllers/PostcodeController.php	/^	public function rawPostcode() {$/;"	f
 reCaptcha	app/controllers/RegistrationController.php	/^		$reCaptcha = new ReCaptcha($secret);$/;"	v
 recaptchaResponse	app/lib/ReCaptchaResponse.php	/^            $recaptchaResponse = new ReCaptchaResponse();$/;"	v
@@ -204,6 +219,7 @@ reminders	app/controllers/RemindersController.php	/^		 $reminders = new DbReposi
 req	app/lib/ReCaptchaResponse.php	/^        $req = "";$/;"	v
 req	app/lib/ReCaptchaResponse.php	/^        $req = $this->_encodeQS($data);$/;"	v
 req	app/lib/ReCaptchaResponse.php	/^        $req=substr($req, 0, strlen($req)-1);$/;"	v
+request	app/controllers/Breed/BreedController.php	/^		$request = \\Request::instance();$/;"	v
 request	app/controllers/PostcodeController.php	/^		$request = Request::instance();$/;"	v
 resp	app/controllers/RegistrationController.php	/^			$resp = $reCaptcha->verifyResponse($/;"	v
 resp	app/controllers/RegistrationController.php	/^		$resp = null;$/;"	v
@@ -211,7 +227,9 @@ response	app/controllers/RemindersController.php	/^		$response = Password::remin
 response	app/controllers/RemindersController.php	/^		$response = Password::reset($credentials, function($user, $password)$/;"	v
 response	app/lib/ReCaptchaResponse.php	/^        $response = file_get_contents($path . $req);$/;"	v
 result	app/controllers/PostcodeController.php	/^		$result = curl_exec($ch);$/;"	v
+results	app/controllers/Breed/BreedController.php	/^		$results = $query->get();$/;"	v
 rules	app/controllers/LoginController.php	/^		$rules = array($/;"	v
+rules	app/controllers/Post/PostProfileController.php	/^		$rules = array($/;"	v
 rules	app/controllers/RegistrationController.php	/^		$rules = array($/;"	v
 rules	app/controllers/User/UserProfileController.php	/^		$rules = array ($/;"	v
 run	app/database/seeds/BreedTableSeeder.php	/^	public function run()$/;"	f
@@ -220,6 +238,8 @@ run	app/database/seeds/DatabaseSeeder.php	/^	public function run()$/;"	f
 run	app/database/seeds/MetadataTableSeeder.php	/^	public function run()$/;"	f
 run	app/database/seeds/PostTableSeeder.php	/^	public function run() $/;"	f
 run	app/database/seeds/UserTableSeeder.php	/^	public function run()$/;"	f
+saved	app/Codedog/Observers/PostObserver.php	/^	public function saved($model){$/;"	f
+saving	app/Codedog/Observers/PostObserver.php	/^	public function saving($model)$/;"	f
 scopeSessionuser	app/models/Post/Post.php	/^	public function scopeSessionuser($query) $/;"	f
 secret	app/controllers/RegistrationController.php	/^		$secret = getenv('RECAPTCHA_SECRET');$/;"	v
 session	app/Codedog/Notifications/FlashNotifier.php	/^		$this->session = $session;$/;"	v
@@ -281,18 +301,24 @@ up	app/database/migrations/2015_01_04_075945_add_thumbnail_user.php	/^	public fu
 up	app/database/migrations/2015_01_08_212002_add_post_id_in_metadata.php	/^	public function up()$/;"	f
 up	app/database/migrations/2015_01_11_211615_table_breed_type.php	/^	public function up()$/;"	f
 up	app/database/migrations/2015_01_12_073344_update_breeder_breeder_type.php	/^	public function up()$/;"	f
+up	app/database/migrations/2015_01_16_124115_add_membership_to_user.php	/^	public function up()$/;"	f
 update	app/controllers/Post/PostController.php	/^	public function update($id)$/;"	f
 url	app/controllers/PostcodeController.php	/^		$url = $this->url.$value.'&excludepostboxflag=true';$/;"	v
 url	app/controllers/PostcodeController.php	/^	private $url = 'https:\/\/auspost.com.au\/api\/postcode\/search.json?';$/;"	v
 useSti	app/models/BaseModel.php	/^  private function useSti() {$/;"	f
 user	app/controllers/RegistrationController.php	/^		$user = User::where('confirmation_code', $confirmation_code)->firstOrFail();$/;"	v
 user	app/controllers/User/UserProfileController.php	/^		$user = Auth::user();$/;"	v
+user	app/database/seeds/UserTableSeeder.php	/^		$user = DogBreeder::create(array($/;"	v
 user	app/models/Post/Post.php	/^	public function user()$/;"	f
+user2	app/database/seeds/UserTableSeeder.php	/^		$user2 = DogBreeder::create(array($/;"	v
 userdata	app/controllers/LoginController.php	/^			$userdata = array($/;"	v
 userdata	app/controllers/RegistrationController.php	/^			$userdata = array($/;"	v
 users	app/models/Breed/Breed.php	/^	public function users() {$/;"	f
 validator	app/controllers/LoginController.php	/^		$validator = Validator::make(Input::all(), $rules);$/;"	v
+validator	app/controllers/Post/PostProfileController.php	/^		$validator = Validator::make(Input::all(), $rules);$/;"	v
 validator	app/controllers/RegistrationController.php	/^		$validator = Validator::make(Input::all(), $rules);$/;"	v
 validator	app/controllers/User/UserProfileController.php	/^		$validator = Validator::make(Input::all(), $rules);$/;"	v
+value	app/controllers/Breed/BreedController.php	/^		$value = trim($request->getContent(), "id=");$/;"	v
+value	app/controllers/Breed/BreedController.php	/^		$value = trim($request->getContent(), "q=");$/;"	v
 value	app/controllers/PostcodeController.php	/^		$value = $request->getContent();$/;"	v
 verifyResponse	app/lib/ReCaptchaResponse.php	/^    public function verifyResponse($remoteIp, $response)$/;"	f

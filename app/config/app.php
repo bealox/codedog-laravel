@@ -123,7 +123,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Codedog\Notifications\FlashServiceProvider',
 		'Jenssegers\Date\DateServiceProvider',
-
 	),
 
 	/*
