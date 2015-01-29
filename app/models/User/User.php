@@ -57,7 +57,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public function metadata()
 	{
-		return $this->hasOne('Metadata', 'user_id');
+		return $this->hasOne('Metadata');
 	}
 
 	public function getRememberToken()

@@ -34,6 +34,9 @@ class Metadata extends BaseModel{
 		return $this->suburb . " ". $this->postcode. " ".$this->state;
 	}
 	
+	public function user() {
+		    return $this->belongsTo('User');
+	}
 
 }
 

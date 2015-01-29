@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Codedog\Notifications\FlashServiceProvider',
 		'Jenssegers\Date\DateServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*
@@ -191,7 +192,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Flash'		  => 'Codedog\Notifications\Flash',
 		'Date'            => 'Jenssegers\Date\Date',
-
+		'Debugbar' 	  => 'Barryvdh\Debugbar\Facade',
 	),
 
 );
