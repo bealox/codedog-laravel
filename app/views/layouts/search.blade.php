@@ -5,6 +5,11 @@
 </head>
 <body>
 <header>
+	<script type="text/javascript">
+		$(document).ready( function() {
+			breed_select2(false);
+		});
+	</script>
 	@include('includes.header')
 	{{HTML::script('js/utils.js')}}
 	{{HTML::style('css/utils.css')}}
@@ -19,11 +24,11 @@
 			<div class="list-group">
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Breed</h4>
-					{{Form::hidden('breed',Input::old('breed'),array('placeholder' => 'Breed', 'id' => 'breed_select2', 'class'=>'form-control'))}}
+					{{Form::hidden('breed',$selected_breed,array('placeholder' => 'Breed', 'id' => 'breed_select2', 'class'=>'form-control'))}}
 				</div>	
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">State</h4>
-					{{Form::select('state',  array('' => 'State')+$state, $selectedstate, array('placeholder' => 'State', 'class' => 'form-control'))}}
+					{{Form::select('state',  array('' => 'State')+$state, $selected_state, array('placeholder' => 'State', 'class' => 'form-control'))}}
 
 				</div>	
 				<div class="list-group-item">

@@ -1,7 +1,23 @@
 $(document).ready( function() {
 	postcode_select2();
-	breed_select2();
 });
+
+/**
+ * Grabing parameter from URL
+ */
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}   
 
 function postcode_select2() {
 	
@@ -59,7 +75,6 @@ function postcode_select2() {
 	}).select2('val', []);
 
 	$(document).on('change', '#e1',function() {
-		console.log($(this).select2('data'));
 		$('input[name="postoffice_id"]').val($(this).select2('data').data.id);
 		$('input[name="postcode_id"]').val($(this).select2('data').data.postcode);
 		$('input[name="suburb"]').val($(this).select2('data').data.location)
@@ -69,17 +84,22 @@ function postcode_select2() {
 	});
 }
 
-function breed_select2(){
+function breed_select2(isMulti){
 
-	var breed = $('#breed_select2');
+	if(isMulti){
+		var breed = $('#breed_select2');
+	}else{
+		var breed = getUrlParameter('breed');	
+	}
 
 	$("#breed_select2").select2({
 		placeholder: 'Select A Breed',
 		width: '100%',
-		multiple:true,
+		multiple:isMulti,
 		maximumSelectionSize:2,
 		initSelection: function(element, callback){
-			if(!breed.length == 0 && breed.val() ){
+			//Multi is true
+			if(isMulti && !breed.length == 0 && breed.val() ){
 				var results;
 				return $.ajax({
 				url: '/breedjson_id',
@@ -92,6 +112,25 @@ function breed_select2(){
 				 results = [];
                                 ($.map(data, function (item) {
 					results.push({'id': item.id, 'text':item.name});
+					console.log(results);
+                                }));
+				 callback(results);
+			    });
+			}
+
+			if(!isMulti && breed != null ){
+				var results;
+				return $.ajax({
+				url: '/breedjson_id',
+				type: "POST",
+				dataType: "json",
+				data: {
+				  id: breed
+				}
+			      }).done(function(data) {
+				 results = [];
+                                ($.map(data, function (item) {
+					results= {'id': item.id, 'text':item.name};
                                 }));
 				 callback(results);
 			    });
@@ -136,4 +175,5 @@ function breed_select2(){
 		$('input[name="breed_id"]').val($('#breed_select2').select2('data'));
 	});
 }
+
 

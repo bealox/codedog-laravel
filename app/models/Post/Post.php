@@ -51,5 +51,10 @@ class Post extends BaseModel{
 	{
 		return $query->where('expired_at', '<', new \DateTime('today'));  
 	}
+
+	public function scopeSortBy($query)
+	{
+		return $query->orderBy('updated_at','created_at');
+	}
 }
 

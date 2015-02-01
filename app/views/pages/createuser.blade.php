@@ -7,6 +7,9 @@
 		@if(Session::has('metadata'))
 			var selected_location = <?php echo json_encode(Session::get('metadata'));?>;
 		@endif
+		$(document).ready( function() {
+			breed_select2(true);
+		});
 	</script>
 	{{HTML::script('js/utils.js')}}
 	{{HTML::script('https://www.google.com/recaptcha/api.js')}}

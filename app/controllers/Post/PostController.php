@@ -12,26 +12,35 @@ class PostController extends \BaseController {
 	public function index() {
 		$general = new General();
 
-		$state_query = Request::get('state');
-		$selected = empty($state_query)? null : Request::get('state');
+		$state_query = empty(Request::get('state')) ? null : Request::get('state');
+		$breed_query = empty(Request::get('breed')) ? null : Request::get('breed');
 
-		if(empty($state_query)){
-			$active = Post::all();
-			//$active = Post::paginate('10');
-			dd($active->count());
+
+		if(is_null($state_query) && is_null($breed_query)){
+			$active = Post::active()->sortBy()->paginate('10');
 		}else{
-			$active = \DB::table('Post')
-				->leftJoin('User', 'User.id', '=', 'Post.user_id')
-				->leftJoin('Metadata', 'Metadata.user_id', '=', 'User.id') 
-				->where('Metadata.state', '=', 'QLD')->get();
-			//return \Response::json($active);
+			$query = Post::select(array('Post.*'))
+				->active()
+				->leftJoin('User', 'Post.user_id', '=', 'User.id')
+				->leftJoin('Metadata', 'Metadata.user_id', '=', 'User.id');
+
+			if(!is_null($breed_query)) {
+				$query->where('Post.breed_id', '=', $breed_query);	
+			}
+
+			if(!is_null($state_query)) {
+				$query->where('Metadata.state', '=', $state_query);	
+			}
+
+			$active = $query->sortBy()->paginate('10');
+
 		}
 
 		return View::make('pages.post',[
-			//'active' => Post::active()->orderBy('updated_at','created_at')->paginate('10'),
 			'active' => $active,
 			'state' => $general->state(),
-			'selectedstate' => $selected
+			'selected_state' => $state_query,
+			'selected_breed' => $breed_query
 		]);
 	}
 
