@@ -52,7 +52,17 @@ class PostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$post = Post::findOrFail($id);
+		$metadata = $post->user->metadata;
+		$suburb = str_replace(' ','+',$metadata->suburb);
+		$loc = $suburb.','.$metadata->state;
+		$gmap = $metadata->latitude.','.$metadata->longitude;
+
+		$link = "http://maps.google.com/maps?q=".$loc."&ll=".$loc."&z=17";
+		$map = "https://maps.googleapis.com/maps/api/staticmap?center=".$loc.
+			"&zoom=12&size=340x340&markers=color:yellow%7C".$loc.'&key='.getenv('GOOGLE_API_KEY');
+
+		return View::make('pages.post_view')->with(compact('post','map','link'));
 	}
 
 }

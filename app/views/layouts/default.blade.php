@@ -12,6 +12,7 @@
 	</header>
 	<div class="container">
 		@include('includes.notification')
+		@yield('content')
 	</div>
 
 </body>

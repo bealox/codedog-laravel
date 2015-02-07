@@ -46,9 +46,14 @@
 		<tr>
 			<th><strong>Breeds</strong></th>
 			<td>
-				@foreach(Auth::user()->breeds as $breed)
+				@forelse(Auth::user()->breeds as $breed)
+					@if($first != $breed)
+						,
+					@endif
 					{{$breed->name}}
-				@endforeach	
+				@empty
+					No Breed
+				@endforelse
 			</td>
 		</tr>
 	</table>

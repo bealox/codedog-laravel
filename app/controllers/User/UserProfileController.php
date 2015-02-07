@@ -12,7 +12,8 @@ class UserProfileController extends \BaseController {
 	 */
 
 	public function getDashboard() {
-		return View::make('pages.admin.dashboard');
+		$first = Auth::user()->breeds()->first();
+		return View::make('pages.admin.dashboard', compact('first'));
 	}
 
 

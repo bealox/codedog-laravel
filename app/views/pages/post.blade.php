@@ -13,11 +13,13 @@
 				<div class="pull-right">{{$post->user->metadata->state}}</div>
 				<h3 class="panel-title">{{$post->breed->name}}</h3>
 			</div>
-			<div class="panel-body text" >
+			<div class="list-group">
+				<a  href="{{URL::route('post.show', $post->id)}}" class="list-group-item">
 					<div class="row">
-					<div class="col-md-2"><img src="{{$post->user->thumbnail_url}}" class="img-thumbnail"></div>
-					<div class="col-md-10"style="vertical-height:top;">{{$post->title}}</div>
+						<div class="col-md-2"><img src="{{$post->user->thumbnail_url}}" class="img-thumbnail"></div>
+						<div class="col-md-10"style="vertical-height:top;">{{$post->title}}</div>
 					</div>
+				</a>
 			</div>
 			<div class="panel-footer">
 				<div class="text-right" >

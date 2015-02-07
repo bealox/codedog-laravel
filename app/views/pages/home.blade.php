@@ -7,5 +7,4 @@
 @stop
 
 @section('content')
-	    @include('includes.notification')
 @stop

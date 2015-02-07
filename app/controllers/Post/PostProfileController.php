@@ -91,8 +91,8 @@ class PostProfileController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		Log::info("edditing");
 		$breeds = array();
+
 		foreach(Auth::user()->breeds as $breed){
 			$breeds = array_add($breeds, $breed->id, $breed->name);		
 		}
