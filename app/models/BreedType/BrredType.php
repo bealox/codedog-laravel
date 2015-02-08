@@ -16,5 +16,6 @@ class BreedType extends Eloquent{
 	{
 		return $this->hasMany('Breed');
 	}
+
 }
 

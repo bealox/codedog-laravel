@@ -6,6 +6,8 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
+use Codedog\Utilities\General;
+
 class Breed extends BaseModel {
 
 	use SoftDeletingTrait;
@@ -31,9 +33,14 @@ class Breed extends BaseModel {
 		return $this->hasMany('Post');
 	}
 
-	public function breed_type(){
-		return $this->belongTo('BreedType');
+	public function breedtype(){
+		return $this->belongsTo('BreedType');
 	}
 
+	public function transcated_name(){
+		$general = new General();
+		$text = $general->truncate($this->name, 35);
+		return $text;
+	}
 }
 

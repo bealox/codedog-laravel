@@ -29,7 +29,6 @@
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">State</h4>
 					{{Form::select('state',  array('' => 'State')+$state, $selected_state, array('placeholder' => 'State', 'class' => 'form-control'))}}
-
 				</div>	
 				<div class="list-group-item">
 					<input type="submit" value="Search">

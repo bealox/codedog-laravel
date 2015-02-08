@@ -48,3 +48,11 @@
 .post_view{
 	min-height: 500px;
 }
+
+.breed_list .thumbnail{
+	height:470px;
+}
+
+.breed_list h4 {
+	height:40px;
+}
