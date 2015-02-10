@@ -46,10 +46,5 @@ class Breed extends BaseModel {
 		$text = $general->truncate($this->name, 35);
 		return $text;
 	}
-	public function transcated_name(){
-		$general = new General();
-		$text = $general->truncate($this->name, 35);
-		return $text;
-	}
 }
 
