@@ -32,11 +32,20 @@ class Breed extends BaseModel {
 	public function posts() {
 		return $this->hasMany('Post');
 	}
+	
+	public function active_posts() {
+		return $this->posts()->where('expired_at', '>', new \DateTime('today'));
+	}
 
 	public function breedtype(){
 		return $this->belongsTo('BreedType');
 	}
 
+	public function transcated_name(){
+		$general = new General();
+		$text = $general->truncate($this->name, 35);
+		return $text;
+	}
 	public function transcated_name(){
 		$general = new General();
 		$text = $general->truncate($this->name, 35);

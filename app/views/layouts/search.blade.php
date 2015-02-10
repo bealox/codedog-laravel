@@ -26,10 +26,18 @@
 					<h4 class="list-group-item-heading">Breed</h4>
 					{{Form::hidden('breed',$selected_breed,array('placeholder' => 'Breed', 'id' => 'breed_select2', 'class'=>'form-control'))}}
 				</div>	
+				@if(Request::is('post'))
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">State</h4>
 					{{Form::select('state',  array('' => 'State')+$state, $selected_state, array('placeholder' => 'State', 'class' => 'form-control'))}}
 				</div>	
+				@endif
+				@if(!Request::is('post'))
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Type</h4>
+					{{Form::select('type',  $breedtypes, $selected_breedtype, array('placeholder' => 'Type', 'class' => 'form-control'))}}
+				</div>	
+				@endif
 				<div class="list-group-item">
 					<input type="submit" value="Search">
 				</div>	

@@ -8,43 +8,44 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Request;
 use Post;
 use Breed;
+use BreedType;
 
 class BreedController extends \BaseController {
 	public function index() {
 		$general = new General();
 
-		$state_query = empty(Request::get('state')) ? null : Request::get('state');
 		$breed_query = empty(Request::get('breed')) ? null : Request::get('breed');
+		$type_query = empty(Request::get('type')) ? null : Request::get('type');
 
 
-		if(is_null($state_query) && is_null($breed_query)){
-			$active = Post::active()->sortBy()->paginate('10');
+		if(is_null($breed_query) && is_null($type_query)){
+			$breeds = Breed::orderBy('name')->paginate('12');
 		}else{
-			$query = Post::select(array('Post.*'))
-				->active()
-				->leftJoin('User', 'Post.user_id', '=', 'User.id')
-				->leftJoin('Metadata', 'Metadata.user_id', '=', 'User.id');
+			$query = Breed::select(array('Breed.*'))
+				->leftJoin('BreedType', 'Breed.breedtype_id', '=', 'BreedType.id');
 
 			if(!is_null($breed_query)) {
-				$query->where('Post.breed_id', '=', $breed_query);	
+				$query->where('Breed.id', '=', $breed_query);	
 			}
 
-			if(!is_null($state_query)) {
-				$query->where('Metadata.state', '=', $state_query);	
+			if(!is_null($type_query)) {
+				$query->where('Breed.breedtype_id', '=', $type_query);	
 			}
 
-			$active = $query->sortBy()->paginate('10');
+
+			$breeds= $query->orderBy('name')->paginate('12');
 
 		}
 
-		$breeds = Breed::paginate('12');
 
-		return View::make('pages.breed',[
-			'actives' => Post::where('expired_at', '>', new \DateTime('today'))->get(),
-			'state' => $general->state(),
-			'selected_state' => $state_query,
+		$breedtypes = $general->breed_type_array();
+
+
+		return View::make('pages.breed_list',[
 			'selected_breed' => $breed_query,
-			'breeds' => $breeds
+			'selected_breedtype' => $type_query,
+			'breeds' => $breeds,
+			'breedtypes' => $breedtypes
 		]);
 	}
 

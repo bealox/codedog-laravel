@@ -2,6 +2,7 @@
 namespace Codedog\Utilities;
 
 use Illuminate\Support\Facades\Log;
+use BreedType;
 
 
 class General{
@@ -36,5 +37,23 @@ class General{
 	    }
 
 	    return $text;
+	}
+
+	/**
+	 * Fetch Breed type 
+	 * @return array
+	 */
+
+	public function breed_type_array() {
+
+		$breed_types = BreedType::orderBy('name')->get(); 
+
+		$array = array('' => 'Type');
+
+		foreach($breed_types as $type){
+			$array = array_add($array, $type->id, $type->name);	
+		}
+
+		return $array;
 	}
 }
