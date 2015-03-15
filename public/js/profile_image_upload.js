@@ -38,7 +38,7 @@ $(function()
 	 if(responseText.status == "success"){
 		$('.profile-container').html("<img alt='Picture' src='" + responseText.path+"' id='"+responseText.fileName+"'/>")
 		var $img = $('.profile-container > img');
-		//$img.cropper('destroy');
+		$img.cropper('destroy');
 		$img.cropper({
 			aspectRatio: 1/1,
 			autoCropArea: 0.5,
