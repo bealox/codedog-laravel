@@ -56,3 +56,23 @@
 .breed_list h4 {
 	height:40px;
 }
+
+#file
+{
+    opacity: 0;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity: 0;
+    position: absolute;
+    z-index: 20;
+    cursor: pointer;
+    display:inline-block;
+    width:165px;
+    height:165px;
+}
+
+.relative
+{
+	position:relative;
+}
+

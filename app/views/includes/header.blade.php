@@ -46,7 +46,7 @@
 				{{Auth::user()->first_name}}<span class="fa fa-chevron-down fa-fw"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="{{URL::route('dashboard')}}">
+				<li><a href="{{URL::route('profile.dashboard.index')}}">
 				<span class="fa fa-cog fa-fw"></span>
 				Profile</a></li>
 				<li><a href="/logout">

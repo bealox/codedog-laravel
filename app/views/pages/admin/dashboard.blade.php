@@ -3,27 +3,26 @@
 	Dog Post	
 @stop
 @section('content')
+
+<span id="alert">
+
+</span>
+
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">User Detail 
-	<a href="{{URL::route('change_password')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Change Password</a>
-    </h3>
-  </div>
-	<div class="panel-body">
-		<h4>
-			<img src="{{Auth::user()->thumbnail_url}}" class="img-rounded">
-			<span class="text-primary">{{Auth::user()->fullName()}}</span>
-		</h4>
+	<div class="panel-heading">
+		<h3 class="panel-title">User Detail 
+		<a href="{{URL::route('change_password')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Change Password</a>
+		</h3>
 	</div>
 	<table class="table">
-		<thead width="100px">
-			<td><strong>Email/User Name</strong></td>
-			<td>{{Auth::user()->email}}</td>
-		</thead>
-		<tr>
-			<th><strong>Password</strong></th>
-			<td>✱✱✱✱✱✱✱✱✱✱✱✱✱✱<td>
-		</tr>
+	<thead width="100px">
+		<td><strong>Email/User Name</strong></td>
+		<td>{{Auth::user()->email}}</td>
+	</thead>
+	<tr>
+		<th><strong>Password</strong></th>
+		<td>✱✱✱✱✱✱✱✱✱✱✱✱✱✱<td>
+	</tr>
 	</table>
 </div>
 <div class="panel panel-default">

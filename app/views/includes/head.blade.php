@@ -4,6 +4,8 @@
 
 <title>@yield('meta_title', 'Dog Post')</title>
 {{HTML::script('packages/jquery-1.11.2.min.js')}}
+{{HTML::script('packages/spin/spin.js')}}
+{{HTML::script('packages/spin/spin_jquery.js')}}
 {{HTML::style('css/codedog.css')}}
 {{HTML::script('js/codedog.js')}}
 

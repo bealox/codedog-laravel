@@ -124,6 +124,7 @@ return array(
 		'Codedog\Notifications\FlashServiceProvider',
 		'Jenssegers\Date\DateServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 	),
 
 	/*
@@ -193,6 +194,7 @@ return array(
 		'Flash'		  => 'Codedog\Notifications\Flash',
 		'Date'            => 'Jenssegers\Date\Date',
 		'Debugbar' 	  => 'Barryvdh\Debugbar\Facade',
+		'Image' 	  => 'Intervention\Image\Facades\Image',
 	),
 
 );

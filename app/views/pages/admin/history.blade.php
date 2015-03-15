@@ -4,5 +4,6 @@
 @stop
 
 @section('content')
+	@include('includes.notification')
 	@include('includes.post.post_profile');
 @stop
