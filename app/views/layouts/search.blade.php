@@ -16,7 +16,7 @@
 	{{HTML::style('packages/select/select2.css')}}
 	{{HTML::script('packages/select/select2.js')}}
 </header>
-<div class="container">
+<div class="container inner">
 	@include('includes.notification')
 	{{Form::open(['method' => 'GET'])}}
 		<div class="row">
@@ -43,7 +43,7 @@
 				</div>	
 			</div>
 		</div>
-		<div class="col-md-8 col-xs-12">
+		<div class="col-md-9 col-xs-12">
 			@yield('content')
 		</div>
 		</div>

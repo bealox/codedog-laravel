@@ -51,13 +51,14 @@ Route::get('register/verify/{confirmationCode}', [
 Route::group(
 	['prefix' => 'profile', 'before' => ['auth']], 
 	function () {
-		Route::get('dashboard/change_password', [ 'as' => 'change_password', 'uses' => 'controllers\User\UserProfileController@getChangePassword']);
-		Route::post('dashboard/change_password', [ 'as' => 'change_password', 'uses' => 'controllers\User\UserProfileController@postChangePassword']);
-		Route::get('dashboard/change_address', [ 'as' => 'change_address', 'uses' => 'controllers\User\UserProfileController@getChangeAddress']);
-		Route::post('dashboard/change_address', [ 'as' => 'change_address', 'uses' => 'controllers\User\UserProfileController@postChangeAddress']);
+		Route::get('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\UserProfileController@getChangePassword']);
+		Route::post('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\UserProfileController@postChangePassword']);
+		Route::get('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\UserProfileController@getChangeAddress']);
+		Route::post('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\UserProfileController@postChangeAddress']);
 		Route::post('dashboard/check', [ 'as' => 'profile.dashboard.check', 'uses' => 'controllers\User\UserProfileController@check']);
 		Route::resource('dashboard', 'controllers\User\UserProfileController', array('only' => array('index','store', 'destroy'))); 
 		Route::resource('post', 'controllers\Post\PostProfileController', array('except' => array('show'))); 
+		Route::resource('post_image', 'controllers\Post\PostImageController', array('only' => array('store', 'destroy', 'create'))); 
 		//Route::resource('post/create', 'controllers\Post\PostProfileController', array('only' => array('create',))); 
 	}
 );

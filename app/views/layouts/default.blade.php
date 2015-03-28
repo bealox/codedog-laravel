@@ -10,7 +10,7 @@
 	<header>
 		@include('includes.header')
 	</header>
-	<div class="container">
+	<div class="container inner">
 		@include('includes.notification')
 		@yield('content')
 	</div>

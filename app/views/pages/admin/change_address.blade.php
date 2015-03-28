@@ -13,7 +13,7 @@
 	{{HTML::script('packages/select/select2.js')}}
 @stop
 @section('content')
-	{{Form::open(array('url' => URL::route('change_address')))}}
+	{{Form::open(array('url' => URL::route('profile.dashboard.change_address')))}}
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 				<div class="form-group">
@@ -54,7 +54,7 @@
 				<input type="submit" value="Save" class="btn btn-success btn-block">
 			</div>
 			<div class="col-md-4">
-				<a class="btn btn-default btn-block" href="{{URL::route('dashboard')}}">
+				<a class="btn btn-default btn-block" href="{{URL::route('profile.dashboard.index')}}">
 				Back	
 				</a>
 			</div>

@@ -12,8 +12,8 @@
 <!-- Font-awsome -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+{{HTML::script('packages/bootstrap/js/bootstrap.min.js')}}
+{{HTML::style('packages/bootstrap/css/bootstrap.min.css')}}
 
 
 

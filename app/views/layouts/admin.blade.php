@@ -13,7 +13,7 @@
 	{{HTML::script('js/profile_image_upload.js')}}
 </head>
 <body>
-<div class="container">
+<div class="container inner">
 	<div class="row">
 	<div class="col-md-2 col-xs-12">
 		<div class="list-group">
@@ -35,7 +35,7 @@
 		  </a>
 		</div>
 	</div>
-	<div class="col-md-9 col-xs-12">
+	<div class="col-md-10 col-xs-12">
 		@yield('content')
 	</div>
 	@include('includes.modal.profile_image')

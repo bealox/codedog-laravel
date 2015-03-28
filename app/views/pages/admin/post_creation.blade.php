@@ -3,9 +3,10 @@
 	Dog Post	
 @stop
 @section('external')
-	{{HTML::script('js/beforeonload.js')}}
+	{{HTML::script('js/confirmPageExit.js')}}
 	{{HTML::script('packages/Trumbowyg-1.1.7/dist/trumbowyg.min.js')}}
 	{{HTML::style('packages/Trumbowyg-1.1.7/dist/ui/trumbowyg.min.css')}}
+	{{HTML::style('css/post.css')}}
 @stop
 @section('content')
 <script type="text/javascript">
@@ -15,6 +16,10 @@ $(document).ready(function() {
 </script>
 <div class="container">
 	<div class="row">
+		<div class="col-md-12">
+			<div class="post-img img-rounded">
+			</div>
+		</div>
 		<div class="col-md-8">
 			{{Form::open(array('url' => URL::route('profile.post.store')))}}
 			<div class="form-group">
@@ -37,7 +42,11 @@ $(document).ready(function() {
 					table:true,	
 					fullscreenable: false,
 					closable: false,
+					removeformatPasted: true,
 					btns:['formatting', '|', btnsGrps.design, '|', 'link','|', btnsGrps.lists ]
+				});
+				$('#body').trumbowyg().on('tbwfocus', function(){
+					console.log($('#body').trumbowyg('getSelectedText'));
 				});
 			</script>
 			{{Form::close()}}

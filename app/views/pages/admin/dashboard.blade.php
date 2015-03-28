@@ -11,7 +11,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">User Detail 
-		<a href="{{URL::route('change_password')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Change Password</a>
+		<a href="{{URL::route('profile.dashboard.change_password')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Change Password</a>
 		</h3>
 	</div>
 	<table class="table">
@@ -62,7 +62,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-	<a href="{{URL::route('change_address')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Edit Detail</a>
+	<a href="{{URL::route('profile.dashboard.change_address')}}" class="btn-link pull-right" title="Edit"><i class="fa fa-pencil fa-fw"></i>Edit Detail</a>
 	Contact Detail
     </h3>
   </div>

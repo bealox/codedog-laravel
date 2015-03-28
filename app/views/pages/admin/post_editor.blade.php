@@ -3,7 +3,7 @@
 	Dog Post	
 @stop
 @section('external')
-	{{HTML::script('js/beforeonload.js')}}
+	{{HTML::script('js/confirmPageExit.js')}}
 	{{HTML::script('packages/Trumbowyg-1.1.7/dist/trumbowyg.min.js')}}
 	{{HTML::style('packages/Trumbowyg-1.1.7/dist/ui/trumbowyg.min.css')}}
 @stop
@@ -37,6 +37,7 @@ $(document).ready(function() {
 					table:true,	
 					fullscreenable: false,
 					closable: false,
+					removeformatPasted: true,
 					btns:['formatting', '|', btnsGrps.design, '|', 'link','|', btnsGrps.lists ]
 				});
 			</script>

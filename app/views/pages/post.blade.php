@@ -4,9 +4,6 @@
 @stop
 
 @section('content')
-	<div class="page-header">
-		<h1>Dog Post</h1>
-	</div>
 	@foreach($active as $post)
 		<div class="panel panel-default">
 			<div class="panel-heading">

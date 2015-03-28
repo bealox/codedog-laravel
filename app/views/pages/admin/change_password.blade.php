@@ -3,7 +3,7 @@
 	Dog Post	
 @stop
 @section('content')
-	{{Form::open(array('url' => URL::route('change_password')))}}
+	{{Form::open(array('url' => URL::route('profile.dashboard.change_password')))}}
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 				<div class="form-group">
@@ -30,7 +30,7 @@
 				<input type="submit" value="Submit" class="btn btn-success btn-block">
 			</div>
 			<div class="col-md-4">
-				<a class="btn btn-default btn-block" href="{{URL::route('dashboard')}}">
+				<a class="btn btn-default btn-block" href="{{URL::route('profile.dashboard.index')}}">
 					Back
 				</a>
 			</div>

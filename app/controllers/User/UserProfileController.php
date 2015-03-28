@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Codedog\Notifications\Flash;
+use Codedog\Image\Upload;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
@@ -39,7 +40,7 @@ class UserProfileController extends \BaseController {
 		
 		/** If Image already exists then delete the old one **/
 		if($user->thumbnail_url != null){
-			$user->delete_thumbnail_action();
+			$this->destroy($user->id);
 		}
 
 		$user->thumbnail_url = asset('img/profile/'.Input::get('file_name'));
@@ -48,18 +49,20 @@ class UserProfileController extends \BaseController {
 		return Redirect::back();
 	}
 
-	public function destroy(){
-		$fileName = (Input::get('img_url'));
+	public function destroy($id){
+		$user = User::find($id);
+		$file_name = basename($user->thumbnail_url);
+		File::delete(User::thumbnail_path().$file_name);
 	}
 
 	public function check() {
+
+		$imageUtils = new Upload();
+
 		if(Request::ajax()){
 			$file = Input::all();
-			$rules = array (
-				'thumbnail' => 'image|max:2000'
-			);
 
-			$validator = Validator::make($file, $rules);
+			$validator = $imageUtils->validation($file);
 
 			if($validator->fails()) {
 				Flash::error($validator->messages()->first('thumbnail'));	
@@ -69,31 +72,14 @@ class UserProfileController extends \BaseController {
 				return Response::json($response);
 			}else{
 				$path = User::thumbnail_path();
-				$file_name=Input::file('thumbnail')->getClientOriginalName();
-				$file_path = $path.$file_name;
-				
-				/*
-				 * Image file name checker, if it already exists than add a counter in the file name.
-				 */
-				$counter = 0;
-				$mime = Input::file('thumbnail')->getClientOriginalExtension();
-				$name = basename($file_path, ".".$mime);
-
-				while(File::exists($file_path)){
-					$counter ++;
-					$name_checker = $name.$counter.'.'.$mime;
-					$file_path = $path.$name_checker;
-				}	
-
-				if($counter > 0){
-					$file_name = $name.$counter.'.'.$mime;
-				}
-
-				Input::file('thumbnail')->move($path,$file_name);
+				$input_file = Input::file('thumbnail');
+				$file_name = $imageUtils->file_name_checker($input_file, $path);
+				$input_file->move($path,$file_name);
 				$display_path = User::display_thumbnail_path();
-
 				$response = array('status' => 'success', 'html' => null , 
-					'path' => asset($display_path.$file_name), 'fileName' => $file_name);
+					'path' => asset($display_path.$file_name), 
+					'fileName' => $file_name);
+
 				return Response::json($response);
 			}
 		}

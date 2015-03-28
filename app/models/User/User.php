@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
@@ -106,13 +105,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	public static function display_thumbnail_path()
 	{
 		return	'img/profile/';
-	}
-
-	public function delete_thumbnail_action()
-	{
-		$file_name = basename($this->thumbnail_url);
-		Log::info("$file_name");
-		File::delete(self::thumbnail_path().$file_name);
 	}
 
 }

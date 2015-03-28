@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPostIdInMetadata extends Migration {
+class PostAddThumbnail extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,9 +13,8 @@ class AddPostIdInMetadata extends Migration {
 	public function up()
 	{
 		//
-		Schema::table('Metadata', function($table){
-		
-			$table->integer('postoffice_id');
+		Schema::table('Post', function($table){
+			$table->string('image_url');	
 		});
 	}
 
