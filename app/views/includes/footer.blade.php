@@ -1,2 +1,4 @@
-<div id="footer">© Copyright 2014 Codedog</div>
+<div id="footer">
+	© Copyright 2014 Codedog
+</div>
 

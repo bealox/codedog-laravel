@@ -49,6 +49,7 @@
 		</div>
 	{{Form::close()}}
 </div>
+	@include('includes.footer')
 </body>
 </html>
 

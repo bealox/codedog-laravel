@@ -41,7 +41,7 @@ class BreedController extends \BaseController {
 		$breedtypes = $general->breed_type_array();
 
 
-		return View::make('pages.breed_list',[
+		return View::make('pages.breed',[
 			'selected_breed' => $breed_query,
 			'selected_breedtype' => $type_query,
 			'breeds' => $breeds,
