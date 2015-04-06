@@ -7,10 +7,8 @@
 @stop
 
 <div class="banner">
-	<img class="img-responsive center-block relative" src="{{URL::asset('img/icon/banner.jpg')}}">
+	<img class="img-responsive center-block relative" src="{{URL::asset('img/icon/banner4.jpg')}}">
 	<div class="text">
-		<h1><strong>Dog Post</strong></h1>
-		<h3>is a reliable source to purchase purebreed dog </h3>
 	</div>
 </div>
 

@@ -36,9 +36,10 @@ class PostController extends \BaseController {
 
 		}
 
+
 		return View::make('pages.post',[
 			'active' => $active,
-			'state' => $general->state(),
+			'state' => json_encode($general->state()),
 			'selected_state' => $state_query,
 			'selected_breed' => $breed_query
 		]);

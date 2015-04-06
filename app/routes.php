@@ -11,7 +11,6 @@
 |
 */
  	
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@homePage'));
 
 
 /**
@@ -22,8 +21,9 @@ Route::get('logout', array('as' => 'logout', 'uses' => 'LoginController@getLogou
 Route::post('login', array('as' => 'login', 'uses' => 'LoginController@postLogin'));
 
 /**
- * Post
+ * consumer side
  */
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@homePage'));
 Route::resource('post', 'controllers\Post\PostController', array('only' => array('show','index'))); 
 Route::resource('dog_breed', 'controllers\Breed\BreedController', array('only' => array('show','index'))); 
 Route::resource('dog_breeder', 'controllers\Breeder\BreederController', array('only' => array('show','index'))); 

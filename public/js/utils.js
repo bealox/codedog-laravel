@@ -19,6 +19,22 @@ function getUrlParameter(sParam)
     }
 }   
 
+function state_select2( json ) {
+	console.log(json);
+	$("#state_select2").select2({
+		placeholder: 'State',
+		data: json
+	})
+}
+
+function type_select2( json ) {
+	console.log(json);
+	$("#type_select2").select2({
+		placeholder: 'Type',
+		data: json
+	})
+}
+
 function postcode_select2() {
 	
 	var query= {q:''};

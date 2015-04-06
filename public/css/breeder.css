@@ -1,0 +1,33 @@
+thead tr
+{
+	color:#193258;
+	border:none !important;
+}
+
+tbody tr
+{
+	border-top:1px solid #ccc!important;
+}
+
+.label-default
+{
+	background: #ccc;
+}
+
+h4
+{
+	color:#999 !important;
+}
+
+.panel
+{
+	border-bottom:2px solid #d2ddee;
+}
+
+tbody tr td
+{
+	color:#254b82;
+	text-indent:10px;
+}
+
+

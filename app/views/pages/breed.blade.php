@@ -31,7 +31,7 @@
 						{{$breed->active_posts()->count()}} post
 					 </a>
 					  @endif
-					 <a href="{{URL('/post?breed='.$breed->id.'->id&state=')}}" 
+					 <a href="{{URL('/dog_breeder?breed='.$breed->id.'->id&state=')}}" 
 						class="btn btn-warning" role="button">
 						Find Breeders
 					 </a>

@@ -3,3 +3,11 @@
 	border: 1px solid #ccc;
 	margin-bottom: 20px;
 }
+
+.post-img
+{
+	background-size: 500px 300px;
+	width:100%;
+	overflow:hidden;
+	text-align:center;
+}

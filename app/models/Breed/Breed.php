@@ -26,7 +26,11 @@ class Breed extends BaseModel {
 	protected $dates = ['deleted_at'];
 
 	public function users() {
-		return $this->belongToMany('User');
+		return $this->belongsToMany('User', 'Breed_User');
+	}
+
+	public function users_by_state(){
+		return users()->orderBy('state')->get();	
 	}
 	
 	public function posts() {

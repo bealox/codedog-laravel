@@ -1,4 +1,4 @@
-@extends('layouts.simple_default')
+@extends('layouts.default')
 @section('meta_title')
 	Dog Post	
 @stop
@@ -6,7 +6,7 @@
 	{{HTML::script('js/confirmPageExit.js')}}
 	{{HTML::script('packages/Trumbowyg-1.1.7/dist/trumbowyg.min.js')}}
 	{{HTML::style('packages/Trumbowyg-1.1.7/dist/ui/trumbowyg.min.css')}}
-	{{HTML::style('css/post.css')}}
+	{{HTML::style('css/post_creation.css')}}
 @stop
 @section('content')
 <script type="text/javascript">
@@ -16,18 +16,35 @@ $(document).ready(function() {
 </script>
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<div class="post-img img-rounded">
-			</div>
-		</div>
 		<div class="col-md-8">
 			{{Form::open(array('url' => URL::route('profile.post.store')))}}
+			<div class="form-group">
+				<input id="fileupload" type="file" name="files[]" >
+					<div id="post-image">
+						<img id="blah" src="#" alt="your image" >
+					</div>
+				<script>
+						function readURL(input) {
+						    if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							reader.onload = function (e) {
+							    $('#blah').attr('src', e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
+						    }
+						}
+
+						$("#fileupload").change(function(){
+						    readURL(this);
+						});
+				</script>
+			</div>
 			<div class="form-group">
 				<label> Title </label>
 				{{Form::text('title',null , array('class' => 'form-control input-lg center-block', 'style' => 'width:100%;'))}}
 			</div>
 			<div class="form-group">
-				<label> Description </label>
+				<label>Body</label>
 				{{Form::textarea('body',null, array('id' => 'body', 'class' => 'form-control' ))}}
 			</div>
 			<div class="form-group">

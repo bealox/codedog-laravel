@@ -3,31 +3,30 @@
 	Dog Post	
 @stop
 
+@section('heading')
+	{{HTML::style('css/post.css')}}
+@stop
+
 @section('content')
 	@foreach($active as $post)
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="pull-right">{{$post->user->metadata->state}}</div>
-				<h3 class="panel-title">{{$post->breed->name}}</h3>
-			</div>
-			<div class="list-group">
-				<a  href="{{URL::route('post.show', $post->id)}}" class="list-group-item">
+				<div class="panel-heading">
+					<h3 class="col-md-10 panel-title">{{$post->title}}</h3>
+				</div>
+				<a  href="{{URL::route('post.show', $post->id)}}" class="panel-body">
 					<div class="row">
-						<div class="col-md-2"><img src="{{$post->user->thumbnail_url}}" class="img-thumbnail"></div>
-						<div class="col-md-10"style="vertical-height:top;">{{$post->title}}</div>
+						<div class="col-md-12 post-img">
+							<img src="{{$post->image_url}}" >
+						</div>
+					</div>
+					<div class="text-right" >
+						<div class="post-details">
+							<span class="text-primary">{{$post->user->fullName()}}</span><br/>
+							<span class="text-info">edited: {{Date::parse($post->updated_at)->ago()}}</span><br/>
+							<span class="text-info">created: {{Date::parse($post->created_at)->ago()}}</span>
+						</div>
 					</div>
 				</a>
-			</div>
-			<div class="panel-footer">
-				<div class="text-right" >
-					<img src="{{$post->user->thumbnail_url}}" class="img-thumbnail">
-					<div class="post-details">
-						<span class="text-primary">{{$post->user->fullName()}}</span><br/>
-						<span class="text-info">edited: {{Date::parse($post->updated_at)->ago()}}</span><br/>
-						<span class="text-info">created: {{Date::parse($post->created_at)->ago()}}</span>
-					</div>
-				</div>
-			</div>
 		</div>
 	@endforeach
 	{{$active->links()}}

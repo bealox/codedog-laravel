@@ -12,13 +12,15 @@ class General{
 	 */
 	public function state()
 	{
-		$state = array('VIC' => 'VIC',
-	       			'NSW' => 'NSW',
-				'QLD' => 'QLD',
-				'SA' => 'SA',
-				'WA' => 'WA',
-				'TAS' => 'TAS',
-				'NT' => 'NT'	);	
+		$state = [
+			array('id'=> 'VIC', 'text'=> 'VIC'),
+			array('id'=> 'NSW', 'text'=> 'NSW'),
+			array('id'=> 'QLD', 'text'=> 'QLD'),
+			array('id'=> 'SA', 'text'=> 'SA'),
+			array('id'=> 'WA', 'text'=> 'WA'),
+			array('id'=> 'TAS', 'text'=> 'TAS'),
+			array('id'=> 'NT', 'text'=> 'NT'),
+		];
 		return $state;
 	}
 
@@ -48,10 +50,10 @@ class General{
 
 		$breed_types = BreedType::orderBy('name')->get(); 
 
-		$array = array('' => 'Type');
-
+		$array = array(); 
 		foreach($breed_types as $type){
-			$array = array_add($array, $type->id, $type->name);	
+			$item = array( 'id' => $type->id, 'text'=>$type->name);	
+			$array[] = $item;
 		}
 
 		return $array;

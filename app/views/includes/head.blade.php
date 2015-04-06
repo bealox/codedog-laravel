@@ -1,3 +1,4 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta charset="utf-8">
 <meta name="description" content="@yield('meta_description','Defailt description')">
 <meta name="keywords" content="@yield('meta_keywords', 'default keywords')">

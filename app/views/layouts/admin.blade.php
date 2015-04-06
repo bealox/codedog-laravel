@@ -41,6 +41,7 @@
 	@include('includes.modal.profile_image')
 	</div>
 </div>
+	@include('includes.footer')
 </body>
 </html>
 

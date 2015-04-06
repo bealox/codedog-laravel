@@ -29,6 +29,7 @@ class PostImageController extends \BaseController {
 	 */
 	public function create()
 	{
+		Log::info("uploading image to ");
 	}
 
 	/**

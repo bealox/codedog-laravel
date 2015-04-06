@@ -23,6 +23,9 @@ class UserProfileController extends \BaseController {
 		return View::make('pages.admin.dashboard', compact('first'));
 	}
 
+	/*
+	 * store profile image
+	 */
 	public function store() {
 
 		$width = Input::get('cropper_width');	
@@ -49,12 +52,18 @@ class UserProfileController extends \BaseController {
 		return Redirect::back();
 	}
 
+	/*
+	 * destory image
+	 */
 	public function destroy($id){
 		$user = User::find($id);
 		$file_name = basename($user->thumbnail_url);
 		File::delete(User::thumbnail_path().$file_name);
 	}
 
+	/*
+	 * check image
+	 */
 	public function check() {
 
 		$imageUtils = new Upload();
