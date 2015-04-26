@@ -3,11 +3,12 @@ $(function()
       $('input:file').prop('disabled', false);
 //      $('#profile_upload_cover').hide();
 
-      var options = { 
+     var options = { 
         beforeSubmit: showRequest,  // pre-submit callback 
         success: showResponse// post-submit callback 
      }; 
 
+     //this one can be on the component
      $("input:file").mouseover( function(){
 	     $('#profile_upload_cover').show();
      }).mouseout(function(){
@@ -81,6 +82,11 @@ $(function()
 			$('input[name="cropper_y"]').val(data.y);
 			$('input[name="cropper_width"]').val(data.width);
 			$('input[name="cropper_height"]').val(data.height);
+			$('input[name="file_name"]').val($('.profile-container > img').attr('id'));
+			$('#imageModalForm').submit();
+		})
+
+		$('.modal-content .delete').on('click', function(){
 			$('input[name="file_name"]').val($('.profile-container > img').attr('id'));
 			$('#imageModalForm').submit();
 		})

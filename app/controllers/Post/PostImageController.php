@@ -18,6 +18,7 @@ class PostImageController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function destroy($id)
 	{
 	}
@@ -33,6 +34,16 @@ class PostImageController extends \BaseController {
 	}
 
 	/**
+	 * Validation for image files
+	 *
+	 * @return json 
+	 */
+	public function check()
+	{
+		Log::info("checking image to ");
+	}
+
+	/**to
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response

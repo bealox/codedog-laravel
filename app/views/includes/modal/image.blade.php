@@ -1,5 +1,5 @@
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-{{Form::open(['route' => 'profile.dashboard.store', 'id' => 'imageModalForm'])}}
+{{Form::open(['route' => 'profile.image_modal.postAuth', 'id' => 'imageModalForm'])}}
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -16,8 +16,9 @@
 	</div>
       </div>
       <div class="modal-footer">
-        <button  type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button  type="button" class="btn btn-primary save">Save changes</button>
+	<!--<input type="submit" class="btn btn-default delete" name="close" value="Close">-->
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	<input type="submit"class="btn btn-primary save" name="save" value="Save Changes">
       </div>
     </div>
   </div>
@@ -26,5 +27,8 @@
 			{{Form::hidden('cropper_width', '',array('id'=>'cropper_width'))}}
 			{{Form::hidden('cropper_height', '',array('id'=>'cropper_height'))}}
 			{{Form::hidden('file_name', '',array('id'=>'file_name'))}}
+			{{Form::hidden('file_type', '',array('id'=>'file_type'))}}
+			{{Form::hidden('title', '',array('id'=>'title'))}}
+			{{Form::hidden('body', '',array('id'=>'body'))}}
 {{Form::close()}}
 </div>

@@ -56,5 +56,15 @@ class Post extends BaseModel{
 	{
 		return $query->orderBy('updated_at','created_at');
 	}
+
+	public static function image_path()
+	{
+		return	public_path().'/img/post/';
+	}
+
+	public static function display_image_path()
+	{
+		return	'img/post/';
+	}
 }
 

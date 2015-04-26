@@ -55,11 +55,16 @@ Route::group(
 		Route::post('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\UserProfileController@postChangePassword']);
 		Route::get('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\UserProfileController@getChangeAddress']);
 		Route::post('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\UserProfileController@postChangeAddress']);
-		Route::post('dashboard/check', [ 'as' => 'profile.dashboard.check', 'uses' => 'controllers\User\UserProfileController@check']);
-		Route::resource('dashboard', 'controllers\User\UserProfileController', array('only' => array('index','store', 'destroy'))); 
+		//Route::post('dashboard/check', [ 'as' => 'profile.dashboard.check', 'uses' => 'controllers\User\UserProfileController@check']);
+		//Route::post('dashboard/postAuth', [ 'as' => 'profile.dashboard.postAuth', 'uses' => 'controllers\User\UserProfileController@postAuth']);
+		//Route::resource('dashboard', 'controllers\User\UserProfileController', array('only' => array('index','store', 'destroy'))); 
+		Route::resource('dashboard', 'controllers\User\UserProfileController', array('only' => array('index'))); 
 		Route::resource('post', 'controllers\Post\PostProfileController', array('except' => array('show'))); 
-		Route::resource('post_image', 'controllers\Post\PostImageController', array('only' => array('store', 'destroy', 'create'))); 
-		//Route::resource('post/create', 'controllers\Post\PostProfileController', array('only' => array('create',))); 
+		Route::post('post/check', [ 'as' => 'profile.post.check', 'uses' => 'controllers\Post\PostProfileController@check']);
+		Route::post('post/postAuth', [ 'as' => 'profile.post.postAuth', 'uses' => 'controllers\Post\PostProfileController@postAuth']);
+		Route::resource('image_modal', 'controllers\ImageEditModalController', array('only' => array('store', 'destroy'))); 
+		Route::post('image_modal/check', [ 'as' => 'profile.image_modal.check', 'uses' => 'controllers\ImageEditModalController@check']);
+		Route::post('image_modal/postAuth', [ 'as' => 'profile.image_modal.postAuth', 'uses' => 'controllers\ImageEditModalController@postAuth']);
 	}
 );
 

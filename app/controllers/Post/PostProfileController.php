@@ -6,10 +6,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Post;
+use Codedog\Image\Upload;
 use Codedog\Notifications\Flash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use controllers\ImageEditModalController;
 
 class PostProfileController extends \BaseController {
 
@@ -21,6 +26,16 @@ class PostProfileController extends \BaseController {
 		]);
 	}
 
+	public function postAuth()
+	{
+		if(Input::get('publish')){
+			return $this->store();	
+		}else if (Input::get('edit')){
+			return $this->update();
+		}else if(Input::get('type') == 'submit'){
+			return ImageEditModalController::check();
+		}
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -137,8 +152,6 @@ class PostProfileController extends \BaseController {
 			return $this->index();
 		}
 	}
-
-
 
 }
 ?>

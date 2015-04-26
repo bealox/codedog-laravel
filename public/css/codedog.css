@@ -75,19 +75,6 @@ body
 	min-height:800px
 }
 
-#file
-{
-    opacity: 0;
-    filter:alpha(opacity=0);
-    -moz-opacity:0;
-    -khtml-opacity: 0;
-    position: absolute;
-    z-index: 20;
-    cursor: pointer;
-    display:inline-block;
-    width:165px;
-    height:165px;
-}
 
 .relative
 {
@@ -109,8 +96,6 @@ body
 	overflow:hidden;
 	text-align:center;
 }
-
-
 
 @media (max-width:1015px){
 	.banner img

@@ -16,7 +16,7 @@ $(document).ready(function() {
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			{{Form::open(array('method' => 'PATCH', 'route' => ['profile.post.update', $post->id]))}}
+			{{Form::open(array('method' => 'PATCH', 'route' => ['profile.post.postAuth', $post->id], 'id'=>'postAuth', 'files' => true))}}
 			<div class="form-group">
 				<label> Title </label>
 				{{Form::text('title',$post->title , array('class' => 'form-control input-lg center-block', 'style' => 'width:100%;'))}}
@@ -29,7 +29,7 @@ $(document).ready(function() {
 				<label>Breed</label>
 				{{Form::select('breed', $breeds, $post->breed->id, array('class'=>'form-control' ))}}
 			</div>
-				<input type="submit" class="btn btn-success btn-lg btn-block" value="Save">
+				<input type="submit" class="btn btn-success btn-lg btn-block" value="Save" name="edit">
 			<script>
 				var btnsGrps = jQuery.trumbowyg.btnsGrps;
 				$('#body').trumbowyg({

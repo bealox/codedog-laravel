@@ -4,7 +4,6 @@
 
 #post-image{
 	width:750px;
-	height:550px;	
 	overflow:hidden;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -14,5 +13,39 @@
 {
 	position:relative;
 	min-width:100%;
-	min-height:100%;
+}
+
+#post-uploader 
+{
+	display:inline-block;
+	position:relative;
+}
+
+#post-uploader-cover
+{
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 30%;
+	background: rgb(204, 204, 204) none repeat scroll 0% 0%;
+	opacity: 0.5;
+	filter:alpha(opacity=0.5);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+}
+
+#file
+{
+    opacity: 0;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity: 0;
+    position: absolute;
+    z-index: 20;
+    cursor: pointer;
+    display:inline-block;
+    width:100%;
+    height:100%;
 }
