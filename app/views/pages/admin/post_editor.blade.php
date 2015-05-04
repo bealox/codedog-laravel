@@ -30,7 +30,11 @@ $(document).ready(function() {
 				<div class="fa fa-cloud-upload fa-4x" id="post-uploader-cover" style="display:none;"></div>
 				<span id="spinning" style="position:absolute; right:50%; top:50%; background:white;"></span>
 					@if(isset($path) && !empty($path))
-							<img src="{{URL::asset($path)}}" class="img-thumbnail" width="751px" >
+							@if(Session::has('new_path'))
+								<img src="{{URL::asset(Session::get('new_path'))}}" class="img-thumbnail" width="751px" >
+							@else
+								<img src="{{URL::asset($path)}}" class="img-thumbnail" width="751px" >
+							@endif
 					@else
 						@if(Session::has('new_path'))
 							<img src="{{URL::asset(Session::get('new_path'))}}" class="img-thumbnail" width="751px" >
