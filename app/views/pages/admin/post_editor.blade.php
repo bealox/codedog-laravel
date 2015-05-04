@@ -21,22 +21,22 @@ $(document).ready(function() {
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			{{Form::open(array('url' => URL::route('profile.post.postAuth', $post->id), 'id' => 'postAuth', 'files' => 'true'))}}
+			{{-- {{Form::open(array('url' => URL::route('profile.post.postAuth', array($post->id)), 'id' => 'postAuth', 'files' => 'true'))}} --}}
+			{{Form::open(array('method' => 'POST', 'route' => ['profile.post.postAuth', $post->id], 'id'=>'postAuth', 'files' => true))}}
 
 				<div class="form-group">
 				<a href="#" id="post-uploader" title="upload an image">
 				<input name="thumbnail" type="file" id="file"/>
 				<div class="fa fa-cloud-upload fa-4x" id="post-uploader-cover" style="display:none;"></div>
 				<span id="spinning" style="position:absolute; right:50%; top:50%; background:white;"></span>
-					@if(isset($path))
+					@if(isset($path) && !empty($path))
+							<img src="{{URL::asset($path)}}" class="img-thumbnail" width="751px" >
+					@else
 						@if(Session::has('new_path'))
 							<img src="{{URL::asset(Session::get('new_path'))}}" class="img-thumbnail" width="751px" >
 						@else
-							<img src="{{URL::asset($path)}}" class="img-thumbnail" width="751px" >
+							<img src="{{URL::asset('img/icon/default_post.jpg')}}" class="img-thumbnail" width="751px" >
 						@endif
-
-					@else
-						<img src="{{URL::asset('img/icon/default_post.jpg')}}" class="img-thumbnail" width="751px" >
 					@endif
 				</a>
 
@@ -52,6 +52,13 @@ $(document).ready(function() {
 
 					$('#file').uploader({
 						formID: 'postAuth',
+
+						onBeforeUpload: function(){
+							$('#spinning').spin('large','white');
+							$('input#file').prop('disabled', true);
+						},
+
+
 						onError: function(){
 							var responseText = this;
 							$('#alert').html(responseText.html); 

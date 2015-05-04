@@ -9,7 +9,6 @@ class PostObserver {
 	{
 		$date = Carbon::today();
 		$date->addMonths(3);
-		Log::info($date);
 		$model->expired_at = $date;
 	}
 

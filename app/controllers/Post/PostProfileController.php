@@ -26,12 +26,12 @@ class PostProfileController extends \BaseController {
 		]);
 	}
 
-	public function postAuth()
+	public function postAuth($id = null)
 	{
 		if(Input::get('publish')){
 			return $this->store();	
 		}else if (Input::get('edit')){
-			return $this->update();
+			return $this->update($id);
 		}else if(Input::get('type') == 'submit'){
 			return ImageEditModalController::check();
 		}
@@ -83,16 +83,23 @@ class PostProfileController extends \BaseController {
 			Flash::errors($validator->errors()->toArray());
 			return Redirect::back()->withInput();
 		}else{
+
 			$post = array(
 				'title' => Input::get('title'),
 				'description' => Input::get('body'),
 			);	
 
+			Log::info("storing right now !!!");
+
 			$puppy = \PuppyPost::create($post);
 			$breed = \DogBreed::find(Input::get('breed'));
-			$puppy->breed()->associate($breed);
 			$puppy->user()->associate(Auth::user());
-			$puppy->image_url = asset(Input::get('file_path'));
+			$puppy->breed()->associate($breed);
+
+			if(!is_null(Input::get('file_path'))){
+				$puppy->image_url = asset(Input::get('file_path'));
+			}
+
 			$puppy->save();
 		}
 
@@ -154,7 +161,7 @@ class PostProfileController extends \BaseController {
 			$post->breed()->associate($breed);
 
 			//check if existing image is different the one that has uploaded.
-			if(!is_null($post->image_url)){
+			if(!is_null($post->image_url) && !is_null(Input::get('file_path'))){
 				$check = $imageUtils->file_name_compare($post->image_url, Input::get('file_path'));
 				if(!$check){
 					$post->image_url = asset(Input::get('file_path'));

@@ -29,7 +29,7 @@ $(document).ready(function() {
 				<input name="thumbnail" type="file" id="file"/>
 				<div class="fa fa-cloud-upload fa-4x" id="post-uploader-cover" style="display:none;"></div>
 				<span id="spinning" style="position:absolute; right:50%; top:50%; background:white;"></span>
-					@if(Session::get('new_path'))
+					@if(Session::has('new_path'))
 						<img src="{{URL::asset(Session::get('new_path'))}}" class="img-thumbnail" width="751px" >
 					@else
 						<img src="{{URL::asset('img/icon/default_post.jpg')}}" class="img-thumbnail" width="751px" >
@@ -48,6 +48,12 @@ $(document).ready(function() {
 
 					$('#file').uploader({
 						formID: 'postAuth',
+
+						onBeforeUpload: function(){
+							$('#spinning').spin('large','white');
+							$('input#file').prop('disabled', true);
+						},
+
 						onError: function(){
 							var responseText = this;
 							$('#alert').html(responseText.html); 
@@ -133,7 +139,7 @@ $(document).ready(function() {
 				<label>Breed</label>
 				{{Form::select('breed', $breeds, null, array('class'=>'form-control' ))}}
 			</div>
-				@if(Session::get('new_path'))
+				@if(Session::has('new_path'))
 					{{Form::hidden('file_path', Session::get('new_path') ,array('id'=>'file_path'))}}
 				@endif
 				<input type="submit" class="btn btn-success btn-lg btn-block" value="Publish" name="publish">
