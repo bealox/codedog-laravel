@@ -51,14 +51,14 @@ Route::get('register/verify/{confirmationCode}', [
 Route::group(
 	['prefix' => 'profile', 'before' => ['auth']], 
 	function () {
-		Route::get('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\UserProfileController@getChangePassword']);
-		Route::post('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\UserProfileController@postChangePassword']);
-		Route::get('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\UserProfileController@getChangeAddress']);
-		Route::post('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\UserProfileController@postChangeAddress']);
-		//Route::post('dashboard/check', [ 'as' => 'profile.dashboard.check', 'uses' => 'controllers\User\UserProfileController@check']);
-		//Route::post('dashboard/postAuth', [ 'as' => 'profile.dashboard.postAuth', 'uses' => 'controllers\User\UserProfileController@postAuth']);
-		//Route::resource('dashboard', 'controllers\User\UserProfileController', array('only' => array('index','store', 'destroy'))); 
-		Route::resource('dashboard', 'controllers\User\UserProfileController', array('only' => array('index'))); 
+		Route::get('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\DashboardController@getChangePassword']);
+		Route::post('dashboard/change_password', [ 'as' => 'profile.dashboard.change_password', 'uses' => 'controllers\User\DashboardController@postChangePassword']);
+		Route::get('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\DashboardController@getChangeAddress']);
+		Route::post('dashboard/change_address', [ 'as' => 'profile.dashboard.change_address', 'uses' => 'controllers\User\DashboardController@postChangeAddress']);
+		//Route::post('dashboard/check', [ 'as' => 'profile.dashboard.check', 'uses' => 'controllers\User\DashboardController@check']);
+		//Route::post('dashboard/postAuth', [ 'as' => 'profile.dashboard.postAuth', 'uses' => 'controllers\User\DashboardController@postAuth']);
+		//Route::resource('dashboard', 'controllers\User\DashboardController', array('only' => array('index','store', 'destroy'))); 
+		Route::resource('dashboard', 'controllers\User\DashboardController', array('only' => array('index'))); 
 		Route::resource('post', 'controllers\Post\PostProfileController', array('except' => array('show'))); 
 		Route::post('post/check', [ 'as' => 'profile.post.check', 'uses' => 'controllers\Post\PostProfileController@check']);
 		Route::post('post/postAuth', [ 'as' => 'profile.post.postAuth', 'uses' => 'controllers\Post\PostProfileController@postAuth']);

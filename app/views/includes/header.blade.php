@@ -71,4 +71,5 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
+  <div id="alert" style="position:absolute; width:100%"></div>
 </nav>

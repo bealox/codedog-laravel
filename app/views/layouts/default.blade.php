@@ -10,8 +10,7 @@
 
 	<header>
 		@include('includes.header')
-		<div id="alert" style="margin-top:60px;">
-		</div>
+		
 	</header>
 	<div class="container inner">
 		@yield('content')

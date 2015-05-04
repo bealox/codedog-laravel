@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\HTML;
 use User;
 use Image;
 
-class UserProfileController extends \BaseController {
+class DashboardController extends \BaseController {
 
 	public function index() {
 		$first = Auth::user()->breeds()->first();

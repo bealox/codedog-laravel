@@ -9,7 +9,6 @@ class PuppyPost extends Post {
 
 	public static function boot()
 	{
-		Log::info('callimng from Puppy Post');
 		parent::boot();
 		PuppyPost::observe(new PostObserver);
 	}

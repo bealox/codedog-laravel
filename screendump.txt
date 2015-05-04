@@ -31,7 +31,7 @@ ue)
 #13 {main} [] []
 [2015-03-21 23:29:52] local.INFO:  [] []
 [2015-03-21 23:30:03] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Codedog\Image\Upload' not found' in /home/beal
-ox/Git/php/codedog-laravel/app/controllers/User/UserProfileController.php:61
+ox/Git/php/codedog-laravel/app/controllers/User/DashboardController.php:61
 Stack trace:
 #0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
 #1 {main} [] []

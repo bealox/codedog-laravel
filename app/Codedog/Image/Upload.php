@@ -62,4 +62,16 @@ class Upload{
 		return $file_name;
 	}
 
+	/*
+	compare 2 string to see if they are the same.
+	@return bool
+	*/
+
+	public function file_name_compare($file1, $file2){
+		$name1 = $file::name($file1);
+		$name2 = $file::name($file2);
+		$isEqual = strcasecmp($name1, $name2);
+
+		return ($isEqual === 0);
+	}
 }

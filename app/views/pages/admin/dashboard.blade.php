@@ -4,10 +4,6 @@
 @stop
 @section('content')
 
-<span id="alert">
-
-</span>
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">User Detail 

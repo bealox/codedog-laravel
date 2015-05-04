@@ -49,41 +49,41 @@ class ImageEditModalController extends BaseController {
 		$img->crop($width, $height, $x, $y);
 		$img->save();
 
-		//Place modified image into the propery folder.
+		//Place modified image into the proper folder.
 		//Post Image goes into /img/post
 		//User Image goes into /img/profile
 
-		if($type == 'post'){
-			//still saving in temp folder because user might cancel a new post which mean the image will not be used.
-			$display_path = $imageUtils->display_temp_path();
-		}else if($type == 'user'){
+		if($type == 'user'){
 			$path = User::thumbnail_path();
 			$display_path = User::display_thumbnail_path();
-		}
-
-			if($type == 'user'){
-
-				$mime = File::extension($oldPath);
-				$new_file_name = $imageUtils->file_name_checker(File::name($oldPath), $mime, $path);
-				$new_file_name = $new_file_name.'.'.$mime;
-				$newPath = $path.$new_file_name;
-				//if successfuly edit the image then move the image to the profile folder
-				if(File::move($oldPath, $newPath)){
-					$user = Auth::user();
-					$user->thumbnail_url = asset($display_path.$new_file_name);
-					$user->save();
-				}
-				return Redirect::back();
-
-			}else if($type == 'post'){
-				//return json that shows the image 
-				Log::info("aaaaaaaaaaaaaaaaaaaa");
-				Log::info(Input::all());
-				$newPath = asset($display_path.$file_name);
-				return Redirect::back()->withInput()->with('path', $newPath);
+			$mime = File::extension($oldPath);
+			$new_file_name = $imageUtils->file_name_checker(File::name($oldPath), $mime, $path);
+			$new_file_name = $new_file_name.'.'.$mime;
+			$newPath = $path.$new_file_name;
+			//if successfuly edit the image then move the image to the profile folder
+			if(File::move($oldPath, $newPath)){
+				$user = Auth::user();
+				$user->thumbnail_url = asset($display_path.$new_file_name);
+				$user->save();
 			}
-	
-
+			return Redirect::back();
+		}else if($type == 'post'){
+			$path = Post::image_path();
+			$display_path = Post::display_image_path();
+			$mime = File::extension($oldPath);
+			$new_file_name = $imageUtils->file_name_checker(File::name($oldPath), $mime, $path);
+			$new_file_name = $new_file_name.'.'.$mime;
+			$newPath = $path.$new_file_name;
+			//if successfuly edit the image then move the image to the post folder
+			if(!File::move($oldPath, $newPath)){
+				Log::error("notsaving");
+			}
+			$new_path = asset($display_path.$file_name);
+			
+			Log::info($new_path);
+			
+			return Redirect::back()->withInput()->with(array('new_path' => $new_path));
+		}
 	}
 
 	/*

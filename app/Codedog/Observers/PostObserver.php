@@ -8,7 +8,8 @@ class PostObserver {
 	public function saving($model)
 	{
 		$date = Carbon::today();
-		$date->month = 3;
+		$date->addMonths(3);
+		Log::info($date);
 		$model->expired_at = $date;
 	}
 

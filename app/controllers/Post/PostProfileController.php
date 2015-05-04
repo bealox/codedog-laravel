@@ -92,6 +92,7 @@ class PostProfileController extends \BaseController {
 			$breed = \DogBreed::find(Input::get('breed'));
 			$puppy->breed()->associate($breed);
 			$puppy->user()->associate(Auth::user());
+			$puppy->image_url = asset(Input::get('file_path'));
 			$puppy->save();
 		}
 
@@ -113,8 +114,9 @@ class PostProfileController extends \BaseController {
 		}
 
 		$post = Post::findOrFail($id);
-
-		return View::make('pages.admin.post_editor')->with(compact('breeds', 'post'));			
+		$path = $post->image_url;
+		
+		return View::make('pages.admin.post_editor')->with(compact('breeds', 'post', 'path'));			
 	}
 
 	/**
@@ -125,7 +127,8 @@ class PostProfileController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$imageUtils = new Upload();
+
 		$rules = array(
 			'title' => 'required',	
 			'body' => 'required',
@@ -144,10 +147,20 @@ class PostProfileController extends \BaseController {
 			);	
 
 			$breed = \DogBreed::find(Input::get('breed'));
+
 			Log::info($breed);
 			$post = Post::findOrFail($id);
 			$post->update($data);
 			$post->breed()->associate($breed);
+
+			//check if existing image is different the one that has uploaded.
+			if(!is_null($post->image_url)){
+				$check = $imageUtils->file_name_compare($post->image_url, Input::get('file_path'));
+				if(!$check){
+					$post->image_url = asset(Input::get('file_path'));
+				}
+			}
+
 			$post->save();
 			return $this->index();
 		}

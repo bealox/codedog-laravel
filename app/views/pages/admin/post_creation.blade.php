@@ -25,12 +25,12 @@ $(document).ready(function() {
 		<div class="col-md-8">
 			{{Form::open(array('url' => URL::route('profile.post.postAuth'), 'id' => 'postAuth', 'files' => 'true'))}}
 			<div class="form-group">
-				<a href="#" id="post-uploader" >
+				<a href="#" id="post-uploader" title="upload an image">
 				<input name="thumbnail" type="file" id="file"/>
 				<div class="fa fa-cloud-upload fa-4x" id="post-uploader-cover" style="display:none;"></div>
 				<span id="spinning" style="position:absolute; right:50%; top:50%; background:white;"></span>
-					@if(Session::has('path'))
-						<img src="{{URL::asset(Session::get('path'))}}" class="img-thumbnail" width="751px" >
+					@if(Session::get('new_path'))
+						<img src="{{URL::asset(Session::get('new_path'))}}" class="img-thumbnail" width="751px" >
 					@else
 						<img src="{{URL::asset('img/icon/default_post.jpg')}}" class="img-thumbnail" width="751px" >
 					@endif
@@ -61,8 +61,8 @@ $(document).ready(function() {
 							var $img = $('.profile-container > img');
 							$img.cropper('destroy');
 							$img.cropper({
-								aspectRatio: 16/9,
-								autoCropArea: 0.5,
+								aspectRatio: 16/4,
+								autoCropArea: 1,
 								guides: false,
 								highlight: false,
 								dragCrop: false,
@@ -133,6 +133,9 @@ $(document).ready(function() {
 				<label>Breed</label>
 				{{Form::select('breed', $breeds, null, array('class'=>'form-control' ))}}
 			</div>
+				@if(Session::get('new_path'))
+					{{Form::hidden('file_path', Session::get('new_path') ,array('id'=>'file_path'))}}
+				@endif
 				<input type="submit" class="btn btn-success btn-lg btn-block" value="Publish" name="publish">
  			<script>
 				var btnsGrps = jQuery.trumbowyg.btnsGrps;
