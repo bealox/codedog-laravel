@@ -10,9 +10,10 @@
         "laravel/framework": "4.2.*",
         "doctrine/dbal": "~2.3",
         "jenssegers/date": "~2.0",
-	"nesbot/Carbon": "*",
+	    "nesbot/Carbon": "*",
         "barryvdh/laravel-debugbar": "~1.8",
-        "intervention/image": "~2.1"
+        "intervention/image": "~2.1",
+        "liebig/cron": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "dev-master"

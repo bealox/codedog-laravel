@@ -9,7 +9,6 @@
 {{HTML::script('packages/spin/spin_jquery.js')}}
 {{HTML::style('css/codedog.css')}}
 {{HTML::script('js/codedog.js')}}
-
 <!-- Font-awsome -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- bootstrap -->

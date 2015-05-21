@@ -125,6 +125,7 @@ return array(
 		'Jenssegers\Date\DateServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Liebig\Cron\CronServiceProvider',
 	),
 
 	/*

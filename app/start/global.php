@@ -81,3 +81,22 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Cron Job
+|--------------------------------------------------------------------------
+|
+*/
+
+Event::listen('cron.collectJobs', function() {
+    Liebig\Cron\Cron::add('example1', '* * * * *', function() {
+                    // Do some crazy things unsuccessfully every minute
+                    // exec("echo 'hi' >> ~/cron.log");
+                    shell_exec('/usr/local/bin/cron-test');
+    				// Log::info("output :");
+    				// Log::info($output);
+    				// Log::info($return);
+                    return null;
+    });
+});
