@@ -1,6 +1,4 @@
-.breed_list .thumbnail{
-	height:470px;
-}
+
 
 .breed_list h4 {
 	height:40px;
@@ -9,18 +7,44 @@
 .thumbnail .thumbnail-container
 {
 	height: 200px;
-	width:250px;
+	max-width:350px;
 	overflow: hidden;
 
 }
 
 .thumbnail .thumbnail-container .img-thumbnail
 {
-	height: 200px;
-	width:250px;
+	height: 100%;
+	max-width:100%;
+	display: block;
 }
 
-.caption p.desc
-{
-	height: 100px;
+@media (min-width: 1202px) {
+	.caption p.desc
+	{
+		height: 100px;
+	}
+	.breed_list .thumbnail{
+	height:470px;
+	}
+}
+
+@media (max-width: 1200px) {
+  .caption p.desc
+  {	
+	height: 130px;
+  }
+  .breed_list .thumbnail{
+	height:490px;
+   }
+}
+
+@media (max-width: 768px) {
+  .caption p.desc
+  {	
+	height: 90px;
+  }
+  .breed_list .thumbnail{
+	height:440px;
+   }
 }

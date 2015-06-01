@@ -10,17 +10,17 @@
 @section('content')
 	<div class="row breed_list">
 		@foreach($breeds as $breed)
-		<div class="col-sm-6 col-md-4">
+		<div class="col-sm-4 col-md-4">
 			<div class="thumbnail">
 				<div class="thumbnail-container">
 					<div style="background:url({{$breed->thumbnail_url}}); background-size:cover;"
-					class="img-thumbnail"></div>
+					class="img-thumbnail img-responsive"></div>
 				</div>
 				<div class="caption">
 					<h4>{{$breed->transcated_name()}}</h4>
 					<p class="desc">{{$breed->transcated_desc()}} 
 						<a class="" href="{{$breed->wiki_link()}}">
-							..more
+							..more.
 						</a>
 					</span></p>
 					<p>
