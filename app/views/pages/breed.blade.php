@@ -3,17 +3,26 @@
 	Dog Post	
 @stop
 
+@section('external_css')
+	{{HTML::style('css/breed.css')}}
+@stop
+
 @section('content')
 	<div class="row breed_list">
 		@foreach($breeds as $breed)
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
-				<img src="http://lorempixel.com/242/200/" class="img-thumbnail">
+				<div class="thumbnail-container">
+					<div style="background:url({{$breed->thumbnail_url}}); background-size:cover;"
+					class="img-thumbnail"></div>
+				</div>
 				<div class="caption">
 					<h4>{{$breed->transcated_name()}}</h4>
-					<p>Cras justo odio, dapibus ac facilisis in, 
-					egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-					 Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					<p class="desc">{{$breed->transcated_desc()}} 
+						<a class="" href="{{$breed->wiki_link()}}">
+							..more
+						</a>
+					</span></p>
 					<p>
 					  @if($breed->active_posts()->count() > 1)
 					 <a href="{{URL('/post?breed='.$breed->id.'->id&state=')}}" 

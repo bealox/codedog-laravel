@@ -2,7 +2,7 @@
 @section('meta_title')
 	Seek Dog	
 @stop
-@section('external')
+@section('external_css')
 @stop
 @section('content')
 @include('includes.notification')

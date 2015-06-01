@@ -12,6 +12,8 @@
 	{{HTML::script('packages/jquery-ui-1.11.4.custom/jquery-ui.min.js')}}
 	{{HTML::style('packages/jquery-ui-1.11.4.custom/jquery-ui.min.css')}}
 	{{HTML::script('js/uploader.js')}}
+
+	@yield('external_css')
 </head>
 <body>
 <div class="container inner">

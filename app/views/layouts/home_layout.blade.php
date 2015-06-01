@@ -2,7 +2,7 @@
 <html>
 <head>
 	@include('includes.head')
-	@yield('external')
+	@yield('external_css')
 </head>
 <body>
 

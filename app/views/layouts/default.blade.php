@@ -3,7 +3,7 @@
 <html>
 <head>
 	@include('includes.head')
-	@yield('external')
+	@yield('external_css')
 	{{HTML::script('packages/ajaxForm/jquery.form.min.js')}}
 </head>
 <body>

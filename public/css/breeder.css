@@ -9,14 +9,18 @@ tbody tr
 	border-top:1px solid #ccc!important;
 }
 
-.label-default
-{
-	background: #ccc;
-}
 
 h4
 {
-	color:#999 !important;
+	color:#000 !important;
+	display:inline-block !important;
+}
+
+
+p
+{
+	line-height: 40px;
+	margin-right:20px;
 }
 
 .panel
@@ -26,8 +30,30 @@ h4
 
 tbody tr td
 {
-	color:#254b82;
+	color:#777;
 	text-indent:10px;
 }
 
+.label
+{
+	float:right;
+}
 
+
+.media .img-rounded
+{
+	height: 50px;
+	width:60px;
+}
+
+.table tr td .img
+{
+	height:40px;
+	width:40px;
+}
+
+.img-title
+{
+	height:100%;
+	width:auto;
+}

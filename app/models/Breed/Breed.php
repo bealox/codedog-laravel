@@ -22,6 +22,7 @@ class Breed extends BaseModel {
 
 	protected $sitClassField = 'class_name';
 	protected $stiBaseClass = 'Breed';
+	protected $wiki_link_base = "http://en.wikipedia.org/wiki/";
 
 	protected $dates = ['deleted_at'];
 
@@ -49,6 +50,16 @@ class Breed extends BaseModel {
 		$general = new General();
 		$text = $general->truncate($this->name, 35);
 		return $text;
+	}
+
+	public function transcated_desc(){
+		$general = new General();
+		$text = $general->truncate($this->description, 160);
+		return $text;
+	}
+
+	public function wiki_link(){
+		return $this->wiki_link_base.$this->wiki_title;
 	}
 }
 

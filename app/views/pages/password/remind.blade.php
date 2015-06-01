@@ -2,7 +2,7 @@
 @section('meta_title')
 	Pet Seeker	
 @stop
-@section('external')
+@section('external_css')
 	{{HTML::style('css/login.css');}}
 @stop
 

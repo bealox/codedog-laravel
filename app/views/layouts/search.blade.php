@@ -20,7 +20,10 @@
 	{{HTML::style('css/utils.css')}}
 	{{HTML::style('packages/select/select2.css')}}
 	{{HTML::script('packages/select/select2.js')}}
-	@yield('heading')
+
+	{{-- extra css file  --}}
+	@yield('external_css') 
+
 </head>
 <body>
 <div class="container inner">

@@ -11,3 +11,10 @@
 |
 */
 
+/*
+	Updateing title for those Breed 
+	So I can fetch data based on those titles.
+*/
+	
+Artisan::add(new UpdateBreedWikiTitle);
+

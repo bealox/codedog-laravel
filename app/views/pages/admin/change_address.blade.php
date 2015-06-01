@@ -2,7 +2,7 @@
 @section('meta_title')
 	Dog Post	
 @stop
-@section('external')
+@section('external_css')
 	<script type="text/javascript">
 		var selected_location = <?php echo json_encode($metadata);?>;
 	</script>

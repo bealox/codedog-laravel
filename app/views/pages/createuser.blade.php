@@ -2,7 +2,7 @@
 @section('meta_title')
 	Login
 @stop
-@section('external')
+@section('external_css')
 	<script type="text/javascript">
 		@if(Session::has('metadata'))
 			var selected_location = <?php echo json_encode(Session::get('metadata'));?>;

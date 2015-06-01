@@ -2,7 +2,7 @@
 @section('meta_title')
 	Dog Post	
 @stop
-@section('external')
+@section('external_css')
 	{{HTML::script('js/confirmPageExit.js')}}
 	{{HTML::script('js/uploader.js')}}
 	{{HTML::script('packages/Trumbowyg-1.1.7/dist/trumbowyg.min.js')}}

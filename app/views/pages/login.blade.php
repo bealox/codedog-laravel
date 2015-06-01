@@ -2,10 +2,9 @@
 @section('meta_title')
 	Login
 @stop
-@section('external')
-	<!--{{HTML::style('css/login.css');}}-->
-@stop
-
+@section('external_css')
+  	{{-- {{HTML::style('css/login.css');}} --}}
+ @stop
 @section('content')
 {{ Form::open(array('url' => 'login', 'class' => 'pure-form pure-form-stacked')) }}
 <div class="row">

@@ -1,0 +1,26 @@
+.breed_list .thumbnail{
+	height:470px;
+}
+
+.breed_list h4 {
+	height:40px;
+}
+
+.thumbnail .thumbnail-container
+{
+	height: 200px;
+	width:250px;
+	overflow: hidden;
+
+}
+
+.thumbnail .thumbnail-container .img-thumbnail
+{
+	height: 200px;
+	width:250px;
+}
+
+.caption p.desc
+{
+	height: 100px;
+}
