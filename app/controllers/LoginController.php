@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
+
 class LoginController extends BaseController {
 
 	public function getLogin()
@@ -39,6 +41,10 @@ class LoginController extends BaseController {
 			Log::info(Input::get('remember_me'));
 
 			if(Auth::attempt($userdata, (Input::get('remember_me')=='true') ? true : false)) {
+				//Save Ip address
+				Auth::user()->ip_address = Request::ip();
+				Auth::user()->save();
+
 				return Redirect::to('/');
 			}else{
 				Flash::error('We were unable to sign you in.');
