@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class LoginController extends BaseController {
 
@@ -42,8 +43,18 @@ class LoginController extends BaseController {
 
 			if(Auth::attempt($userdata, (Input::get('remember_me')=='true') ? true : false)) {
 				//Save Ip address
-				Auth::user()->ip_address = Request::ip();
-				Auth::user()->save();
+
+				
+				$logdata = array(
+				'ip_address' => Request::ip(),
+				'logged_in' => Carbon::now(),
+				'user_id' => Auth::user()->id,
+				);
+
+				$log = LogSession::create($logdata);
+				// $log->user()->associate(Auth::user());
+				$log->save();
+				
 
 				return Redirect::to('/');
 			}else{

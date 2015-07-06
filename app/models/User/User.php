@@ -55,6 +55,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->hasMany('Post');
 	}
 
+	public function logsessions()
+	{
+		return $this->hasMany('LogSession');
+	}
+
 	public function metadata()
 	{
 		return $this->hasOne('Metadata');
