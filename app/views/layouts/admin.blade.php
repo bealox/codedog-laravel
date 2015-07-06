@@ -122,7 +122,7 @@
 		    Account Details
 		  </a>
 		  <a href="{{URL::route('profile.post.index');}}" class="list-group-item {{(Request::is('*/post')?'active' : '')}}">
-		    Posts 
+		    Listing 
 		  </a>
 		</div>
 	</div>

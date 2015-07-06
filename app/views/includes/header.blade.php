@@ -16,8 +16,8 @@
       <ul class="nav navbar-nav">
 	<li class="{{Request::is('post')?'active' : ''}}">
 		<a href="{{URL::route('post.index')}}">
-			<span class="fa fa-pencil fa-fw"></span>
-			Post
+			<span class="fa fa-list fa-fw"></span>
+			Listing
 			<span class="sr-only">{{(Request::is('post')?'(current)' : '')}}</span>
 		</a>
 	</li>
